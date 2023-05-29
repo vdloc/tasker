@@ -9,15 +9,15 @@ export default function TodoList() {
       </legend>
       <div className='mt-4 divide-y divide-gray-200 border-t border-b border-gray-200 text-left'>
         {todos.map((todo, todoIndex) => (
-          <div key={todoIndex} className='relative flex items-start justify-between py-4'>
-            <div className='min-w-0 flex-1 max-w-sm text-sm'>
+          <div key={todoIndex} className='relative flex items-center justify-between py-4'>
+            <div className='min-w-0 max-w-xs'>
               <label
                 htmlFor={`todo-${todo.id}`}
-                className='select-none font-medium text-gray-700 cursor-pointer'
+                className='select-none font-medium text-md text-gray-700 cursor-pointer'
               >
                 {todo.title}
               </label>
-              <p className='text-xs text-gray line-clamp-3'>{todo.description}</p>
+              <p className='text-xs text-black mt-1'>{todo.description}</p>
             </div>
             <div className='ml-3 flex h-5 items-center'>
               <input

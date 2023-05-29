@@ -8,7 +8,7 @@ type CardProps = {
 
 export default function Card({ children, title, description }: CardProps) {
   return (
-    <div className='divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-lg min-w-[30rem]'>
+    <div className='divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-lg w-[30rem]'>
       <div className='border-b border-gray-200 bg-white px-4 py-5 sm:px-6'>
         <div className='-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap'>
           <div className='ml-4 mt-4'>
