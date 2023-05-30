@@ -6,7 +6,7 @@ export default function TodoList() {
   return (
     <fieldset>
       <TodoListHeader />
-      <div className='mt-4 divide-y divide-gray-200 border-t border-b border-gray-200 text-left'>
+      <div className='divide-y divide-gray-200 border-t border-gray-200 text-left px-4 max-h-[35rem] overflow-y-scroll'>
         {todos.map((todo) => (
           <TodoItem {...todo} key={todo.id} />
         ))}
