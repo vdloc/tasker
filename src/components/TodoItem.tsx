@@ -40,7 +40,7 @@ export default function TodoItem({
         />
       </div>
       <div className='col-span-2 text-right'>
-        <Button label='Edit' size='small' color='pink' rounded={true} />
+        <Button label='Edit' size='small' rounded={true} />
       </div>
     </div>
   );
