@@ -14,7 +14,6 @@ function App() {
           <Card title='Todos Maker' description='Improvement at your own way.'>
             <TodoList />
           </Card>
-          <SlidePopUp />
         </div>
       </div>
     </>
