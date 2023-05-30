@@ -8,7 +8,7 @@ export default function TodoList() {
       <TodoListHeader />
       <div className='divide-y divide-gray-200 border-t border-gray-200 text-left px-4 max-h-[35rem] overflow-y-scroll'>
         {todos.map((todo) => (
-          <TodoItem {...todo} key={todo.id} />
+          <TodoItem todo={todo} key={todo.id} />
         ))}
       </div>
     </fieldset>

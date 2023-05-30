@@ -1,25 +1,30 @@
+import { useStore } from '@/store';
 import Button from './Button';
+import type { TodoItem } from '@/types';
 
-type TodoItem = {
-  id: string | number;
-  title: string;
-  description: string;
-  status: boolean;
-  tags?: string[];
-  createTime?: string;
-  dueTime?: string;
-  finishTime?: string;
-};
+type TodoItemProps = {
+  todo: TodoItem
+}
+
 export default function TodoItem({
-  id,
-  title,
-  description,
-  status,
-  tags,
-  createTime,
-  dueTime,
-  finishTime,
-}: TodoItem) {
+  todo
+}: TodoItemProps) {
+  const { id,
+    title,
+    description,
+    status,
+    tags,
+    createTime,
+    dueTime,
+    finishTime } = todo;
+  const setSelectingTask = useStore(state => state.setSelectingTask)
+  const toggleTaskUpdatePopup = useStore(state => state.toggleTaskUpdatePopup)
+
+  function handleTaskEditClick() {
+    setSelectingTask(todo)
+    toggleTaskUpdatePopup(true)
+  }
+
   return (
     <div className='relative grid grid-cols-12 items-center py-4'>
       <div className='col-span-8'>
@@ -40,7 +45,7 @@ export default function TodoItem({
         />
       </div>
       <div className='col-span-2 text-right'>
-        <Button label='Edit' size='small' rounded={true} />
+        <Button label='Edit' size='small' rounded={true} onClick={handleTaskEditClick} />
       </div>
     </div>
   );
