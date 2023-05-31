@@ -1,8 +1,8 @@
-import { create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
-import type { StoreState, TodoItem } from './types';
+import { create } from "zustand";
+import { immer } from "zustand/middleware/immer";
+import type { StoreState, TodoItem } from "./types";
 
-export const useStore = create<StoreState, [['zustand/immer', never]]>(
+export const useStore = create<StoreState, [["zustand/immer", never]]>(
   immer((set) => ({
     tasks: [],
     selectingTask: null,
@@ -16,7 +16,8 @@ export const useStore = create<StoreState, [['zustand/immer', never]]>(
       set(() => ({
         isTaskCreatePopupOpen: isOpen,
       })),
-    setSelectingTask: (task: TodoItem) => set(() => ({ selectingTask: task })),
+    setSelectingTask: (task: null | TodoItem) =>
+      set(() => ({ selectingTask: task })),
     updateTask: (updatedTask: TodoItem) =>
       set((state: StoreState) => {
         const updatingTaskIndex = state.tasks.findIndex(

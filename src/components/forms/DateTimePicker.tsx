@@ -1,65 +1,81 @@
-import { useState } from 'react';
-import Datepicker from 'tailwind-datepicker-react';
+import { InputProps } from "@/types";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
+import { EventType, useController } from "react-hook-form";
+import Datepicker from "tailwind-datepicker-react";
 
-export default function DateTimePicker() {
-  const options = {
-    title: 'Demo Title',
-    autoHide: true,
-    todayBtn: false,
-    clearBtn: true,
-    maxDate: new Date('2030-01-01'),
-    minDate: new Date('1950-01-01'),
-    theme: {
-      background: 'z-50',
-      todayBtn: '',
-      clearBtn: '',
-      icons: '',
-      text: '',
-      disabledText: 'bg-red-500',
-      input: '',
-      inputIcon: '',
-      selected: '',
-    },
-    icons: {
-      // () => ReactElement | JSX.Element
-      prev: () => <span>Previous</span>,
-      next: () => <span>Next</span>,
-    },
-    datepickerClassNames: 'top-12',
-    defaultDate: new Date('2022-01-01'),
-    language: 'en',
-  };
+type DateTimePickerProps = {
+  title: string;
+  label: string;
+};
+
+const pickerOptions = {
+  autoHide: false,
+  todayBtn: true,
+  clearBtn: true,
+  maxDate: new Date("2030-01-01"),
+  minDate: new Date("1950-01-01"),
+  theme: {
+    background: "z-50",
+    todayBtn:
+      "bg-indigo-700 hover:bg-indigo-800 hover:shadow-lg transition duration-300 focus:ring-1",
+    clearBtn:
+      "text-indigo-700 hover:shadow-lg transition-colors duration-300 focus:ring-1",
+    icons: "text-indigo-700 transition duration-300",
+    text: "text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm",
+    disabledText: "bg-white",
+    input:
+      "block peer h-8 pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm",
+    inputIcon: "fill-indigo-700",
+    selected: "bg-indigo-700",
+  },
+  icons: {
+    prev: () => (
+      <span>
+        <ArrowLeftIcon className="w-5 h-5 stroke-2 " />
+      </span>
+    ),
+    next: () => (
+      <span>
+        <ArrowRightIcon className="w-5 h-5 stroke-2" />
+      </span>
+    ),
+  },
+  datepickerClassNames: "top-12 text-sm",
+  defaultDate: new Date(),
+  language: "en",
+};
+
+export default function DateTimePicker({
+  title,
+  control,
+  name,
+  label,
+}: DateTimePickerProps & InputProps) {
+  const options = { title, ...pickerOptions };
   const [show, setShow] = useState(false);
+  const { field } = useController({
+    name,
+    control,
+  });
   const handleChange = (selectedDate: Date) => {
-    console.log(selectedDate);
+    field.onChange(selectedDate);
   };
   const handleClose = (state: boolean) => {
     setShow(state);
   };
 
   return (
-    <div className='relative max-w-sm'>
-      <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
-        <svg
-          aria-hidden='true'
-          className='w-5 h-5 text-gray-500 dark:text-gray-400'
-          fill='currentColor'
-          viewBox='0 0 20 20'
-          xmlns='http://www.w3.org/2000/svg'
-        >
-          <path
-            fillRule='evenodd'
-            d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z'
-            clipRule='evenodd'
-          ></path>
-        </svg>
+    <div>
+      <label className="block text-sm font-medium text-gray-900">{label}</label>
+      <div className="mt-1">
+        <Datepicker
+          options={options}
+          onChange={handleChange}
+          show={show}
+          setShow={handleClose}
+        />
       </div>
-      <Datepicker
-        options={options}
-        onChange={handleChange}
-        show={show}
-        setShow={handleClose}
-      />
     </div>
   );
 }
