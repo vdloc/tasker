@@ -18,3 +18,9 @@ export interface StoreState {
   toggleTaskUpdatePopup: (isOpen: boolean) => void,
   toggleTaskCreatePopup: (isOpen: boolean) => void
 }
+
+export type TaskEditFormValues = {
+  title: string;
+  description: string;
+  status: boolean;
+};
