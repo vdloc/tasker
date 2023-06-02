@@ -1,8 +1,8 @@
-import { InputProps } from "@/types";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
-import { EventType, useController } from "react-hook-form";
-import Datepicker from "tailwind-datepicker-react";
+import { InputProps } from '@/types';
+import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
+import { useState } from 'react';
+import { useController } from 'react-hook-form';
+import Datepicker from 'tailwind-datepicker-react';
 
 type DateTimePickerProps = {
   title: string;
@@ -13,37 +13,36 @@ const pickerOptions = {
   autoHide: false,
   todayBtn: true,
   clearBtn: true,
-  maxDate: new Date("2030-01-01"),
-  minDate: new Date("1950-01-01"),
+  maxDate: new Date('2030-01-01'),
+  minDate: new Date('1950-01-01'),
   theme: {
-    background: "z-50",
+    background: 'z-50',
     todayBtn:
-      "bg-indigo-700 hover:bg-indigo-800 hover:shadow-lg transition duration-300 focus:ring-1",
+      'bg-indigo-700 hover:bg-indigo-800 hover:shadow-lg transition duration-300 focus:ring-1',
     clearBtn:
-      "text-indigo-700 hover:shadow-lg transition-colors duration-300 focus:ring-1",
-    icons: "text-indigo-700 transition duration-300",
-    text: "text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm",
-    disabledText: "bg-white",
+      'text-indigo-700 hover:shadow-lg transition-colors duration-300 focus:ring-1',
+    icons: 'text-indigo-700 transition duration-300',
+    text: 'text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm',
+    disabledText: 'bg-white',
     input:
-      "block peer h-8 pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm",
-    inputIcon: "fill-indigo-700",
-    selected: "bg-indigo-700",
+      'block peer h-8 pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
+    inputIcon: 'fill-indigo-700',
+    selected: 'bg-indigo-700',
   },
   icons: {
     prev: () => (
       <span>
-        <ArrowLeftIcon className="w-5 h-5 stroke-2 " />
+        <ArrowLeftIcon className='w-5 h-5 stroke-2 ' />
       </span>
     ),
     next: () => (
       <span>
-        <ArrowRightIcon className="w-5 h-5 stroke-2" />
+        <ArrowRightIcon className='w-5 h-5 stroke-2' />
       </span>
     ),
   },
-  datepickerClassNames: "top-12 text-sm",
-  defaultDate: new Date(),
-  language: "en",
+  datepickerClassNames: 'top-12 text-sm',
+  language: 'en',
 };
 
 export default function DateTimePicker({
@@ -52,7 +51,6 @@ export default function DateTimePicker({
   name,
   label,
 }: DateTimePickerProps & InputProps) {
-  const options = { title, ...pickerOptions };
   const [show, setShow] = useState(false);
   const { field } = useController({
     name,
@@ -64,11 +62,13 @@ export default function DateTimePicker({
   const handleClose = (state: boolean) => {
     setShow(state);
   };
+  const defaultDate = field.value instanceof Date ? field.value : new Date();
+  const options = { title, defaultDate, ...pickerOptions };
 
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-900">{label}</label>
-      <div className="mt-1">
+      <label className='block text-sm font-medium text-gray-900'>{label}</label>
+      <div className='mt-1'>
         <Datepicker
           options={options}
           onChange={handleChange}
