@@ -11,7 +11,7 @@ export default function CardHeader({ title, description }: CardHeaderProp) {
           <h3 className='text-2xl font-medium leading-6 text-gray-900 text-left'>
             {title}
           </h3>
-          <p className='mt-2 text-sm text-gray-500'>{description}</p>
+          <p className='mt-2 text-base text-gray-500'>{description}</p>
         </div>
         <div className='ml-4 mt-4 flex-shrink-0'>
           <button
