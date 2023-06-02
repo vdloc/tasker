@@ -1,28 +1,24 @@
 import { useStore } from '@/store';
 import Button from './Button';
 import type { TodoItem } from '@/types';
+import { ChangeEvent } from 'react';
 
-type TodoItemProps = {
-  todo: TodoItem
-}
+type TodoProps = {
+  todo: TodoItem;
+};
 
-export default function TodoItem({
-  todo
-}: TodoItemProps) {
-  const { id,
-    title,
-    description,
-    status,
-    tags,
-    createTime,
-    dueTime,
-    finishTime } = todo;
-  const setSelectingTask = useStore(state => state.setSelectingTask)
-  const toggleTaskUpdatePopup = useStore(state => state.toggleTaskUpdatePopup)
+export default function Todo({ todo }: TodoProps) {
+  const { id, title, description } = todo;
+  const updateTask = useStore().updateTask;
 
   function handleTaskEditClick() {
-    setSelectingTask(todo)
-    toggleTaskUpdatePopup(true)
+    useStore.setState({ selectingTask: todo, isTaskUpdateDialogOpen: true });
+  }
+
+  function handleStatusChange(event: ChangeEvent) {
+    const target = event.target as HTMLInputElement;
+    const updatingTask = { ...todo, status: target.checked };
+    updateTask(updatingTask);
   }
 
   return (
@@ -42,10 +38,16 @@ export default function TodoItem({
           name={`todo-${id}`}
           type='checkbox'
           className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer'
+          onChange={handleStatusChange}
         />
       </div>
       <div className='col-span-2 text-right'>
-        <Button label='Edit' size='small' rounded={true} onClick={handleTaskEditClick} />
+        <Button
+          label='Edit'
+          size='small'
+          rounded={true}
+          onClick={handleTaskEditClick}
+        />
       </div>
     </div>
   );

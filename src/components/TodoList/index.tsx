@@ -1,16 +1,24 @@
-import todos from '@data/todos.json';
-import TodoItem from '@components/TodoItem';
+import Todo from '@components/Todo';
 import TodoListHeader from './Header';
+import { type TodoItem } from '@/types';
 
-export default function TodoList() {
+type TodoListProps = {
+  todos: TodoItem[];
+};
+
+export default function TodoList({ todos = [] }: TodoListProps) {
   return (
     <fieldset>
       <TodoListHeader />
-      <div className='divide-y divide-gray-200 border-t border-gray-200 text-left px-4 max-h-[35rem] overflow-y-scroll'>
-        {todos.map((todo) => (
-          <TodoItem todo={todo} key={todo.id} />
-        ))}
-      </div>
+      {todos.length ? (
+        <div className='divide-y divide-gray-200 border-t border-gray-200 text-left px-4 max-h-[35rem] overflow-y-scroll'>
+          {todos.map((todo) => (
+            <Todo todo={todo} key={todo.id} />
+          ))}
+        </div>
+      ) : (
+        <p className=''>Waiting for something to do ?</p>
+      )}
     </fieldset>
   );
 }
