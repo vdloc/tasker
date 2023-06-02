@@ -1,4 +1,4 @@
-import type { Control } from "react-hook-form";
+import type { Control } from 'react-hook-form';
 
 export type TodoItem = {
   id: string | number;
@@ -12,14 +12,15 @@ export type TodoItem = {
 };
 
 export interface StoreState {
-  isTaskUpdatePopupOpen: boolean;
-  isTaskCreatePopupOpen: boolean;
+  isTaskUpdateDialogOpen: boolean;
+  isTaskCreateCreateOpen: boolean;
   selectingTask: TodoItem | null;
   tasks: TodoItem[] | [];
   setSelectingTask: (task: TodoItem) => void;
-  toggleTaskUpdatePopup: (isOpen: boolean) => void;
-  toggleTaskCreatePopup: (isOpen: boolean) => void;
+  toggleTaskUpdateDialog: (isOpen: boolean) => void;
+  toggleTaskCreateDialog: (isOpen: boolean) => void;
   updateTask: (task: TodoItem) => void;
+  fetchTasks: () => void;
 }
 
 export type TaskEditFormValues = {
