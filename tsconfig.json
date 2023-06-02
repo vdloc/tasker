@@ -20,12 +20,15 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "react-vite-library": ["./src/components/index.ts"],
       "@/*": ["./src/*", "./dist/*", ""],
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"]
     },
-    "typeRoots": ["node_modules/@types", "src/components/index.d.ts"]
+    "typeRoots": [
+      "node_modules/@types",
+      "src/components/index.d.ts",
+      "./src/types/lib.d.ts"
+    ]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
