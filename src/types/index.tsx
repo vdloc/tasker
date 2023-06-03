@@ -1,4 +1,4 @@
-import type { Control } from 'react-hook-form';
+import type { Control } from "react-hook-form";
 
 export type TodoItem = {
   id: string | number;
@@ -16,7 +16,7 @@ export interface StoreState {
   isTaskCreateCreateOpen: boolean;
   selectingTask: TodoItem | null;
   tasks: TodoItem[] | [];
-  setSelectingTask: (task: TodoItem) => void;
+  setSelectingTask: (task: TodoItem | null) => void;
   toggleTaskUpdateDialog: (isOpen: boolean) => void;
   toggleTaskCreateDialog: (isOpen: boolean) => void;
   updateTask: (task: TodoItem) => void;
