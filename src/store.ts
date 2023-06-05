@@ -1,8 +1,8 @@
-import { StateCreator, create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import type { StoreState, TodoItem } from "./types";
-import { devtools, persist } from "zustand/middleware";
-import todos from "@/data/todos.json";
+import { StateCreator, create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
+import type { StoreState, TodoItem } from './types';
+import { devtools, persist } from 'zustand/middleware';
+import todos from '@/data/todos.json';
 
 const createTasksSlice = (set: any) => ({
   tasks: [],
@@ -19,6 +19,10 @@ const createTasksSlice = (set: any) => ({
         updatedTask,
         ...state.tasks.slice(updatingTaskIndex + 1),
       ];
+    }),
+  deleteTask: (deleteTask: TodoItem) =>
+    set((state: StoreState) => {
+      state.tasks = state.tasks.filter((task) => task.id !== deleteTask.id);
     }),
   fetchTasks: async () => {
     await new Promise((res) => {
@@ -45,12 +49,12 @@ const createDialogSlice = (set: any) => ({
 
 const initializer: StateCreator<
   StoreState,
-  [["zustand/persist", unknown], ["zustand/immer", never]]
+  [['zustand/persist', unknown], ['zustand/immer', never]]
 > = (set) => ({
   ...createTasksSlice(set),
   ...createDialogSlice(set),
 });
 
-const createStore = devtools(persist(immer(initializer), { name: "todo" }));
+const createStore = devtools(persist(immer(initializer), { name: 'todo' }));
 
 export const useStore = create<StoreState>()(createStore);
