@@ -24,6 +24,7 @@ const buttonStyleProps = tv({
     color: 'indigo',
     rounded: true,
     size: 'large',
+    hasRing: true,
   },
 });
 
