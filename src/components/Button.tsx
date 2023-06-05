@@ -7,6 +7,7 @@ const buttonStyleProps = tv({
     color: {
       indigo: 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700',
       pink: 'focus:ring-pink-500 bg-pink-600 hover:bg-pink-700',
+      white: 'bg-white border-gray-300 text-black',
     },
     size: {
       small: 'px-2 py-1',
@@ -21,6 +22,8 @@ const buttonStyleProps = tv({
   },
   defaultVariants: {
     color: 'indigo',
+    rounded: true,
+    size: 'large',
   },
 });
 

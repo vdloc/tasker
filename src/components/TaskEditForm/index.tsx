@@ -7,14 +7,15 @@ import DateTimePicker from '../forms/DateTimePicker';
 import { useStore } from '@/store';
 import { TaskEditFormValues, TodoItem } from '@/types';
 import Tags from '../Tags';
+import Button from '../Button';
 
 export default function TaskEditForm() {
   const selectingTask = useStore((state) => state.selectingTask);
   const updateTask = useStore((state) => state.updateTask);
+  const deleteTask = useStore((state) => state.deleteTask);
   const toggleTaskUpdateDialog = useStore(
     (state) => state.toggleTaskUpdateDialog
   );
-
   const { control, handleSubmit } = useForm<TaskEditFormValues>({
     defaultValues: { ...selectingTask },
   });
@@ -23,6 +24,11 @@ export default function TaskEditForm() {
     toggleTaskUpdateDialog(false);
     updateTask(updatedTask);
   };
+
+  function handleDeleteTask() {
+    toggleTaskUpdateDialog(false);
+    deleteTask(selectingTask);
+  }
 
   return (
     <form
@@ -86,19 +92,20 @@ export default function TaskEditForm() {
         </div>
       </div>
       <div className='flex flex-shrink-0 justify-end px-4 py-4'>
-        <button
+        <Button
           type='button'
-          className='rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
+          label='Cancel'
           onClick={() => toggleTaskUpdateDialog(false)}
-        >
-          Cancel
-        </button>
-        <button
-          type='submit'
-          className='ml-4 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
-        >
-          Save
-        </button>
+          color='white'
+        />
+        <Button
+          type='button'
+          label='Delete'
+          className='ml-4'
+          color='pink'
+          onClick={handleDeleteTask}
+        />
+        <Button type='submit' label='Save' className='ml-4' />
       </div>
     </form>
   );
