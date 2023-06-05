@@ -13,7 +13,7 @@ export type TodoItem = {
 
 export interface StoreState {
   isTaskUpdateDialogOpen: boolean;
-  isTaskCreateCreateOpen: boolean;
+  isTaskCreateDialogOpen: boolean;
   selectingTask: TodoItem | null;
   tasks: TodoItem[] | [];
   setSelectingTask: (task: TodoItem | null) => void;
@@ -22,6 +22,7 @@ export interface StoreState {
   updateTask: (task: TodoItem) => void;
   fetchTasks: () => void;
   deleteTask: (task: TodoItem | null) => void;
+  createTask: (task: TodoItem) => void;
 }
 
 export type TaskEditFormValues = {

@@ -20,9 +20,14 @@ const createTasksSlice = (set: any) => ({
         ...state.tasks.slice(updatingTaskIndex + 1),
       ];
     }),
-  deleteTask: (deleteTask: TodoItem) =>
+  createTask: (newTask: TodoItem) => {
     set((state: StoreState) => {
-      state.tasks = state.tasks.filter((task) => task.id !== deleteTask.id);
+      state.tasks = [newTask, ...state.tasks];
+    });
+  },
+  deleteTask: (deleteTask: TodoItem | null) =>
+    set((state: StoreState) => {
+      state.tasks = state.tasks.filter((task) => task.id !== deleteTask?.id);
     }),
   fetchTasks: async () => {
     await new Promise((res) => {
@@ -34,15 +39,15 @@ const createTasksSlice = (set: any) => ({
 
 const createDialogSlice = (set: any) => ({
   isTaskUpdateDialogOpen: false,
-  isTaskCreateCreateOpen: false,
+  isTaskCreateDialogOpen: false,
   toggleTaskUpdateDialog: (isOpen = false) =>
     set(() => ({
       isTaskUpdateDialogOpen: isOpen,
-      isTaskCreateCreateOpen: false,
+      isTaskCreateDialogOpen: false,
     })),
   toggleTaskCreateDialog: (isOpen = false) =>
     set(() => ({
-      isTaskCreateCreateOpen: isOpen,
+      isTaskCreateDialogOpen: isOpen,
       isTaskUpdateDialogOpen: false,
     })),
 });
