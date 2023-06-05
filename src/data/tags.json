@@ -1,0 +1,22 @@
+[
+  {"id":0,"name": "travel" },
+  {"id":1,"name": "food" },
+  {"id":2,"name": "photography" },
+  {"id":3,"name": "music" },
+  {"id":4,"name": "books" },
+  {"id":5,"name": "fashion" },
+  {"id":6,"name": "fitness" },
+  {"id":7,"name": "art" },
+  {"id":8,"name": "education" },
+  {"id":9,"name": "business" },
+  {"id":10,"name": "health" },
+  {"id":11,"name": "sports" },
+  {"id":12,"name": "movies" },
+  {"id":13,"name": "science" },
+  {"id":14,"name": "nature" },
+  {"id":15,"name": "culture" },
+  {"id":16,"name": "history" },
+  {"id":17,"name": "politics" },
+  {"id":18,"name": "humor" },
+  {"id":19,"name": "pets" }
+]

@@ -7,6 +7,7 @@ import TodoList from '../TodoList';
 import { useStore } from '@/store';
 import TaskEditForm from '../TaskEditForm';
 import TaskCreateForm from '../TaskCreateForm';
+import TagsListEditForm from "../TagsListEditForm";
 
 type CardProps = PropsWithChildren & CardHeaderProp;
 
@@ -23,8 +24,15 @@ export default function Card({ title, description }: CardProps) {
   const toggleTaskCreateDialog = useStore(
     (state) => state.toggleTaskCreateDialog
   );
+  const isTagsListEditDialogOpen = useStore(
+    (state) => state.isTagsListEditDialogOpen
+  );
+  const toggleTagsListEditDialog = useStore(
+    (state) => state.toggleTagsListEditDialog
+  );
   const setSelectingTask = useStore((state) => state.setSelectingTask);
   const fetchTasks = useStore((state) => state.fetchTasks);
+  const fetchTags = useStore((state) => state.fetchTags);
   const tasks = useStore((state) => state.tasks);
 
   function handleCloseTaskEditDialog() {
@@ -37,8 +45,13 @@ export default function Card({ title, description }: CardProps) {
     setSelectingTask(null);
   }
 
+  function handleCloseTagsEditDialog() {
+    toggleTagsListEditDialog(false);
+  }
+
   useEffect(() => {
     fetchTasks();
+    fetchTags();
   }, []);
 
   return (
@@ -57,6 +70,12 @@ export default function Card({ title, description }: CardProps) {
         onClose={handleCloseTaskCreateDialog}
       >
         <TaskCreateForm />
+      </DialogPopup>
+      <DialogPopup
+        isOpen={isTagsListEditDialogOpen}
+        onClose={handleCloseTagsEditDialog}
+      >
+        <TagsListEditForm />
       </DialogPopup>
     </div>
   );

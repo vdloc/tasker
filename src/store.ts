@@ -3,9 +3,11 @@ import { immer } from 'zustand/middleware/immer';
 import type { StoreState, TodoItem } from './types';
 import { devtools, persist } from 'zustand/middleware';
 import todos from '@/data/todos.json';
+import tags from "@/data/tags.json";
 
 const createTasksSlice = (set: any) => ({
   tasks: [],
+  tags: [],
   selectingTask: null,
   setSelectingTask: (task: TodoItem | null) =>
     set(() => ({ selectingTask: task })),
@@ -35,20 +37,29 @@ const createTasksSlice = (set: any) => ({
     });
     set({ tasks: todos });
   },
+  fetchTags: async () => {
+    await new Promise((res) => {
+      setTimeout(res, 5000);
+    });
+    set({ tags });
+  },
 });
 
 const createDialogSlice = (set: any) => ({
   isTaskUpdateDialogOpen: false,
   isTaskCreateDialogOpen: false,
+  isTagsListEditDialogOpen: false,
   toggleTaskUpdateDialog: (isOpen = false) =>
     set(() => ({
       isTaskUpdateDialogOpen: isOpen,
-      isTaskCreateDialogOpen: false,
     })),
   toggleTaskCreateDialog: (isOpen = false) =>
     set(() => ({
       isTaskCreateDialogOpen: isOpen,
-      isTaskUpdateDialogOpen: false,
+    })),
+  toggleTagsListEditDialog: (isOpen = false) =>
+    set(() => ({
+      isTagsListEditDialogOpen: isOpen,
     })),
 });
 

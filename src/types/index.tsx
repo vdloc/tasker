@@ -11,18 +11,27 @@ export type TodoItem = {
   endDate?: string;
 };
 
+export type Tag = {
+  id: string | number;
+  name: string;
+};
+
 export interface StoreState {
   isTaskUpdateDialogOpen: boolean;
   isTaskCreateDialogOpen: boolean;
+  isTagsListEditDialogOpen: boolean;
   selectingTask: TodoItem | null;
   tasks: TodoItem[] | [];
+  tags: Tag[] | [];
   setSelectingTask: (task: TodoItem | null) => void;
   toggleTaskUpdateDialog: (isOpen: boolean) => void;
   toggleTaskCreateDialog: (isOpen: boolean) => void;
+  toggleTagsListEditDialog: (isOpen: boolean) => void;
   updateTask: (task: TodoItem) => void;
   fetchTasks: () => void;
   deleteTask: (task: TodoItem | null) => void;
   createTask: (task: TodoItem) => void;
+  fetchTags: () => void;
 }
 
 export type TaskEditFormValues = {
