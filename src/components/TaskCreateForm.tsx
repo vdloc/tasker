@@ -2,7 +2,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import FormHeader from '@components/forms/FormHeader';
 import Input from '@components/forms/Input';
 import TextArea from '@components/forms/TextArea';
-import Toggle from '@components/forms/Toggle';
 import DateTimePicker from '@components/forms/DateTimePicker';
 import Tags from '@components/Tags';
 import Button from '@components/Button';

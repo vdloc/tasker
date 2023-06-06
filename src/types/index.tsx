@@ -14,11 +14,14 @@ export type TodoItem = {
 export interface StoreState {
   isTaskUpdateDialogOpen: boolean;
   isTaskCreateDialogOpen: boolean;
+  isShowCompletedTasks: boolean;
   selectingTask: TodoItem | null;
-  tasks: TodoItem[] | [];
+  uncompletedTasks: TodoItem[];
+  completedTasks: TodoItem[];
   setSelectingTask: (task: TodoItem | null) => void;
   toggleTaskUpdateDialog: (isOpen: boolean) => void;
   toggleTaskCreateDialog: (isOpen: boolean) => void;
+  toggleShowCompletedTasks: (isShow: boolean) => void;
   updateTask: (task: TodoItem) => void;
   fetchTasks: () => void;
   deleteTask: (task: TodoItem | null) => void;
