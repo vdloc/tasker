@@ -19,13 +19,16 @@ export type Tag = {
 export interface StoreState {
   isTaskUpdateDialogOpen: boolean;
   isTaskCreateDialogOpen: boolean;
+  isShowCompletedTasks: boolean;
   isTagsListEditDialogOpen: boolean;
   selectingTask: TodoItem | null;
-  tasks: TodoItem[] | [];
+  uncompletedTasks: TodoItem[];
+  completedTasks: TodoItem[];
   tags: Tag[] | [];
   setSelectingTask: (task: TodoItem | null) => void;
   toggleTaskUpdateDialog: (isOpen: boolean) => void;
   toggleTaskCreateDialog: (isOpen: boolean) => void;
+  toggleShowCompletedTasks: (isShow: boolean) => void;
   toggleTagsListEditDialog: (isOpen: boolean) => void;
   updateTask: (task: TodoItem) => void;
   fetchTasks: () => void;
