@@ -7,25 +7,49 @@ import TodoList from '../TodoList';
 import { useStore } from '@/store';
 import TaskEditForm from '../TaskEditForm';
 import TaskCreateForm from '../TaskCreateForm';
+import { shallow } from 'zustand/shallow';
 
 type CardProps = PropsWithChildren & CardHeaderProp;
 
 export default function Card({ title, description }: CardProps) {
-  const isTaskUpdateDialogOpen = useStore(
-    (state) => state.isTaskUpdateDialogOpen
+  const [
+    toggleTaskUpdateDialog,
+    toggleTaskCreateDialog,
+    setSelectingTask,
+    fetchTasks,
+  ] = useStore(
+    (state) => [
+      state.toggleTaskUpdateDialog,
+      state.toggleTaskCreateDialog,
+      state.setSelectingTask,
+      state.fetchTasks,
+    ],
+    shallow
   );
-  const isTaskCreateDialogOpen = useStore(
-    (state) => state.isTaskCreateDialogOpen
+  const [
+    isTaskUpdateDialogOpen,
+    isTaskCreateDialogOpen,
+    isShowCompletedTasks,
+    uncompletedTasks,
+    completedTasks,
+  ] = useStore(
+    (state) => [
+      state.isTaskUpdateDialogOpen,
+      state.isTaskCreateDialogOpen,
+      state.isShowCompletedTasks,
+      state.uncompletedTasks,
+      state.completedTasks,
+    ],
+    shallow
   );
-  const toggleTaskUpdateDialog = useStore(
-    (state) => state.toggleTaskUpdateDialog
-  );
-  const toggleTaskCreateDialog = useStore(
-    (state) => state.toggleTaskCreateDialog
-  );
-  const setSelectingTask = useStore((state) => state.setSelectingTask);
-  const fetchTasks = useStore((state) => state.fetchTasks);
-  const tasks = useStore((state) => state.tasks);
+
+  console.log([
+    isTaskUpdateDialogOpen,
+    isTaskCreateDialogOpen,
+    isShowCompletedTasks,
+    uncompletedTasks,
+    completedTasks,
+  ]);
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
@@ -44,7 +68,9 @@ export default function Card({ title, description }: CardProps) {
   return (
     <div className='divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-2xl w-[30rem] relative z-10'>
       <CardHeader title={title} description={description} />
-      <TodoList todos={tasks} />
+      <TodoList
+        todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}
+      />
       <CardFooter />
       <DialogPopup
         isOpen={isTaskUpdateDialogOpen}
