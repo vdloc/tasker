@@ -1,77 +1,82 @@
-import { Switch } from "@headlessui/react";
-import { useController } from "react-hook-form";
-import type { InputProps } from "@/types";
+import { Switch } from '@headlessui/react';
+import { useController } from 'react-hook-form';
+import type { TaskFormInputProps } from '@/types';
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 
-export default function Toggle({ control, name, label, id }: InputProps) {
+export default function Toggle({
+  control,
+  name,
+  label,
+  id,
+}: TaskFormInputProps) {
   const { field } = useController({
     name,
     control,
   });
   return (
     <div>
-      <label htmlFor="" className="block text-sm font-medium text-gray-900">
+      <label htmlFor='' className='block text-sm font-medium text-gray-900'>
         {label}
       </label>
-      <div className="mt-1">
+      <div className='mt-1'>
         <Switch
           checked={field.value}
           onChange={field.onChange}
           className={classNames(
-            field.value ? "bg-indigo-600" : "bg-gray-200",
-            "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            field.value ? 'bg-indigo-600' : 'bg-gray-200',
+            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
           )}
           name={field.name}
           id={id}
         >
-          <span className="sr-only">Use setting</span>
+          <span className='sr-only'>Use setting</span>
           <span
             className={classNames(
-              field.value ? "translate-x-5" : "translate-x-0",
-              "pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+              field.value ? 'translate-x-5' : 'translate-x-0',
+              'pointer-events-none relative inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
             )}
           >
             <span
               className={classNames(
                 field.value
-                  ? "opacity-0 ease-out duration-100"
-                  : "opacity-100 ease-in duration-200",
-                "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
+                  ? 'opacity-0 ease-out duration-100'
+                  : 'opacity-100 ease-in duration-200',
+                'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
               )}
-              aria-hidden="true"
+              aria-hidden='true'
             >
               <svg
-                className="h-3 w-3 text-gray-400"
-                fill="none"
-                viewBox="0 0 12 12"
+                className='h-3 w-3 text-gray-400'
+                fill='none'
+                viewBox='0 0 12 12'
               >
                 <path
-                  d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
-                  stroke="currentColor"
+                  d='M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2'
+                  stroke='currentColor'
                   strokeWidth={2}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                 />
               </svg>
             </span>
             <span
               className={classNames(
                 field.value
-                  ? "opacity-100 ease-in duration-200"
-                  : "opacity-0 ease-out duration-100",
-                "absolute inset-0 flex h-full w-full items-center justify-center transition-opacity"
+                  ? 'opacity-100 ease-in duration-200'
+                  : 'opacity-0 ease-out duration-100',
+                'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity'
               )}
-              aria-hidden="true"
+              aria-hidden='true'
             >
               <svg
-                className="h-3 w-3 text-indigo-600"
-                fill="currentColor"
-                viewBox="0 0 12 12"
+                className='h-3 w-3 text-indigo-600'
+                fill='currentColor'
+                viewBox='0 0 12 12'
               >
-                <path d="M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z" />
+                <path d='M3.707 5.293a1 1 0 00-1.414 1.414l1.414-1.414zM5 8l-.707.707a1 1 0 001.414 0L5 8zm4.707-3.293a1 1 0 00-1.414-1.414l1.414 1.414zm-7.414 2l2 2 1.414-1.414-2-2-1.414 1.414zm3.414 2l4-4-1.414-1.414-4 4 1.414 1.414z' />
               </svg>
             </span>
           </span>

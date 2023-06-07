@@ -7,27 +7,32 @@ import TodoList from '../TodoList';
 import { useStore } from '@/store';
 import TaskEditForm from '../TaskEditForm';
 import TaskCreateForm from '../TaskCreateForm';
-import TagsListEditForm from "../TagsListEditForm";
+import TagsListEditForm from '../TagsListEditForm';
 import { shallow } from 'zustand/shallow';
 
 type CardProps = PropsWithChildren & CardHeaderProp;
 
 export default function Card({ title, description }: CardProps) {
   const [
+    toggleTagsListEditDialog,
     toggleTaskUpdateDialog,
     toggleTaskCreateDialog,
     setSelectingTask,
     fetchTasks,
+    fetchTags,
   ] = useStore(
     (state) => [
+      state.toggleTagsListEditDialog,
       state.toggleTaskUpdateDialog,
       state.toggleTaskCreateDialog,
       state.setSelectingTask,
       state.fetchTasks,
+      state.fetchTags,
     ],
     shallow
   );
   const [
+    isTagsListEditDialogOpen,
     isTaskUpdateDialogOpen,
     isTaskCreateDialogOpen,
     isShowCompletedTasks,
@@ -35,6 +40,7 @@ export default function Card({ title, description }: CardProps) {
     completedTasks,
   ] = useStore(
     (state) => [
+      state.isTagsListEditDialogOpen,
       state.isTaskUpdateDialogOpen,
       state.isTaskCreateDialogOpen,
       state.isShowCompletedTasks,
@@ -43,22 +49,6 @@ export default function Card({ title, description }: CardProps) {
     ],
     shallow
   );
-  const toggleTaskUpdateDialog = useStore(
-    (state) => state.toggleTaskUpdateDialog
-  );
-  const toggleTaskCreateDialog = useStore(
-    (state) => state.toggleTaskCreateDialog
-  );
-  const isTagsListEditDialogOpen = useStore(
-    (state) => state.isTagsListEditDialogOpen
-  );
-  const toggleTagsListEditDialog = useStore(
-    (state) => state.toggleTagsListEditDialog
-  );
-  const setSelectingTask = useStore((state) => state.setSelectingTask);
-  const fetchTasks = useStore((state) => state.fetchTasks);
-  const fetchTags = useStore((state) => state.fetchTags);
-  const tasks = useStore((state) => state.tasks);
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);

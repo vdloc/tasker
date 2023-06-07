@@ -1,14 +1,13 @@
 import { StateCreator, create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import type { StoreState, TodoItem } from './types';
+import type { StoreState, TodoItem, Tag } from './types';
 import { devtools, persist } from 'zustand/middleware';
 import todos from '@/data/todos.json';
-import tags from "@/data/tags.json";
+import tags from '@/data/tags.json';
 
 const createTasksSlice = (set: any) => ({
   uncompletedTasks: [],
   completedTasks: [],
-  tags: [],
   selectingTask: null,
   isShowCompletedTasks: false,
   toggleShowCompletedTasks: (isShow: boolean) =>
@@ -61,11 +60,23 @@ const createTasksSlice = (set: any) => ({
     const completedTasks = data.filter((task) => task.status);
     set({ uncompletedTasks, completedTasks });
   },
+});
+
+const createTagSlice = (set: any) => ({
+  tags: [],
+  addTag: (tag: Tag) =>
+    set((state: StoreState) => ({ tags: [...state.tags, tag] })),
+  deleteTag: (tag: Tag) =>
+    set((state: StoreState) => ({
+      tags: state.tags.filter(({ id }) => id !== tag.id),
+    })),
   fetchTags: async () => {
-    await new Promise((res) => {
-      setTimeout(res, 5000);
+    const data = await new Promise<Tag[]>((res) => {
+      setTimeout(() => {
+        res(tags as Tag[]);
+      }, 5000);
     });
-    set({ tasks: todos });
+    set({ tags: data });
   },
 });
 
@@ -93,6 +104,7 @@ const initializer: StateCreator<
 > = (set) => ({
   ...createTasksSlice(set),
   ...createDialogSlice(set),
+  ...createTagSlice(set),
 });
 
 const createStore = devtools(persist(immer(initializer), { name: 'todo' }));

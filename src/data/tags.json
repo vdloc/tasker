@@ -1,22 +1,102 @@
 [
-  {"id":0,"name": "travel" },
-  {"id":1,"name": "food" },
-  {"id":2,"name": "photography" },
-  {"id":3,"name": "music" },
-  {"id":4,"name": "books" },
-  {"id":5,"name": "fashion" },
-  {"id":6,"name": "fitness" },
-  {"id":7,"name": "art" },
-  {"id":8,"name": "education" },
-  {"id":9,"name": "business" },
-  {"id":10,"name": "health" },
-  {"id":11,"name": "sports" },
-  {"id":12,"name": "movies" },
-  {"id":13,"name": "science" },
-  {"id":14,"name": "nature" },
-  {"id":15,"name": "culture" },
-  {"id":16,"name": "history" },
-  {"id":17,"name": "politics" },
-  {"id":18,"name": "humor" },
-  {"id":19,"name": "pets" }
+  {
+    "id": 0,
+    "name": "travel",
+    "color": "indigo"
+  },
+  {
+    "id": 1,
+    "name": "food",
+    "color": "lime"
+  },
+  {
+    "id": 2,
+    "name": "photography",
+    "color": "red"
+  },
+  {
+    "id": 3,
+    "name": "music",
+    "color": "zinc"
+  },
+  {
+    "id": 4,
+    "name": "books",
+    "color": "indigo"
+  },
+  {
+    "id": 5,
+    "name": "fashion",
+    "color": "orange"
+  },
+  {
+    "id": 6,
+    "name": "fitness",
+    "color": ""
+  },
+  {
+    "id": 7,
+    "name": "art",
+    "color": ""
+  },
+  {
+    "id": 8,
+    "name": "education",
+    "color": ""
+  },
+  {
+    "id": 9,
+    "name": "business",
+    "color": ""
+  },
+  {
+    "id": 10,
+    "name": "health",
+    "color": ""
+  },
+  {
+    "id": 11,
+    "name": "sports",
+    "color": ""
+  },
+  {
+    "id": 12,
+    "name": "movies",
+    "color": ""
+  },
+  {
+    "id": 13,
+    "name": "science",
+    "color": ""
+  },
+  {
+    "id": 14,
+    "name": "nature",
+    "color": ""
+  },
+  {
+    "id": 15,
+    "name": "culture",
+    "color": ""
+  },
+  {
+    "id": 16,
+    "name": "history",
+    "color": ""
+  },
+  {
+    "id": 17,
+    "name": "politics",
+    "color": ""
+  },
+  {
+    "id": 18,
+    "name": "humor",
+    "color": ""
+  },
+  {
+    "id": 19,
+    "name": "pets",
+    "color": ""
+  }
 ]

@@ -1,4 +1,4 @@
-import { InputProps } from '@/types';
+import { FormInputProps } from '@/types';
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { useController } from 'react-hook-form';
@@ -50,7 +50,7 @@ export default function DateTimePicker({
   control,
   name,
   label,
-}: DateTimePickerProps & InputProps) {
+}: DateTimePickerProps & FormInputProps) {
   const [show, setShow] = useState(false);
   const { field } = useController({
     name,
