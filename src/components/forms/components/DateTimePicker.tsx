@@ -6,7 +6,6 @@ import Datepicker from 'tailwind-datepicker-react';
 
 type DateTimePickerProps = {
   title: string;
-  label: string;
 };
 
 const pickerOptions = {
@@ -25,7 +24,7 @@ const pickerOptions = {
     text: 'text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm',
     disabledText: 'bg-white',
     input:
-      'block peer h-8 pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
+      'block peer pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
     inputIcon: 'fill-indigo-700',
     selected: 'bg-indigo-700',
   },

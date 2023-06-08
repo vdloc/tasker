@@ -1,17 +1,12 @@
 import { Switch } from '@headlessui/react';
 import { useController } from 'react-hook-form';
-import type { TaskFormInputProps } from '@/types';
+import type { FormInputProps } from '@/types';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Toggle({
-  control,
-  name,
-  label,
-  id,
-}: TaskFormInputProps) {
+export default function Toggle({ control, name, label, id }: FormInputProps) {
   const { field } = useController({
     name,
     control,

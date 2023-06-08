@@ -8,23 +8,22 @@ import tags from '@/data/tags.json';
 const createTasksSlice = (set: any) => ({
   uncompletedTasks: [],
   completedTasks: [],
-  selectingTask: null,
+  selectingTask: {} as TodoItem,
   isShowCompletedTasks: false,
   toggleShowCompletedTasks: (isShow: boolean) =>
     set({ isShowCompletedTasks: isShow }),
-  setSelectingTask: (task: TodoItem | null) =>
-    set(() => ({ selectingTask: task })),
+  setSelectingTask: (task: TodoItem) => set(() => ({ selectingTask: task })),
   updateTask: (updatedTask: TodoItem) =>
     set((state: StoreState) => {
-      if (
-        updatedTask.status &&
-        !state.completedTasks.find((task) => task.id === updatedTask.id)
-      ) {
+      const isTaskCompleted = state.completedTasks.find(
+        (task) => task.id === updatedTask.id
+      );
+      if (updatedTask.status && !isTaskCompleted) {
         state.completedTasks = [updatedTask, ...state.completedTasks];
         state.uncompletedTasks = state.uncompletedTasks.filter(
           (task) => task.id !== updatedTask.id
         );
-      } else {
+      } else if (!updatedTask.status && isTaskCompleted) {
         state.uncompletedTasks = [...state.uncompletedTasks, updatedTask];
         state.completedTasks = state.completedTasks.filter(
           (task) => task.id !== updatedTask.id
@@ -41,7 +40,7 @@ const createTasksSlice = (set: any) => ({
       state.uncompletedTasks = [newTask, ...state.uncompletedTasks];
     });
   },
-  deleteTask: (deleteTask: TodoItem | null) =>
+  deleteTask: (deleteTask: TodoItem) =>
     set((state: StoreState) => {
       state.uncompletedTasks = state.uncompletedTasks.filter(
         (task) => task.id !== deleteTask?.id
@@ -107,6 +106,8 @@ const initializer: StateCreator<
   ...createTagSlice(set),
 });
 
-const createStore = devtools(persist(immer(initializer), { name: 'todo' }));
+const createStore = devtools(
+  persist(immer(initializer), { name: 'todo', skipHydration: true })
+);
 
 export const useStore = create<StoreState>()(createStore);

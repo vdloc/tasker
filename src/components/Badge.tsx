@@ -1,17 +1,19 @@
 import { tv } from 'tailwind-variants';
 import type { VariantProps } from 'tailwind-variants';
 
+const colors = {
+  indigo: 'bg-indigo-100 text-indigo-700',
+  red: 'bg-red-100 text-red-700',
+  lime: 'bg-lime-100 text-lime-700',
+  sky: 'bg-sky-100 text-sky-700',
+  zinc: 'bg-zinc-100 text-zinc-700',
+  orange: 'bg-orange-100 text-orange-700',
+};
+
 const badgeStyleProps = tv({
-  base: 'inline-flex items-center rounded-full py-0.5 text-xs font-medium',
+  base: 'inline-flex items-center rounded-full h-5 text-xs font-medium',
   variants: {
-    color: {
-      indigo: 'bg-indigo-100 text-indigo-700',
-      red: 'bg-red-100 text-red-700',
-      lime: 'bg-lime-100 text-lime-700',
-      sky: 'bg-sky-100 text-sky-700',
-      zinc: 'bg-zinc-100 text-zinc-700',
-      orange: 'bg-orange-100 text-orange-700',
-    },
+    color: colors,
     size: {
       small: 'pl-2 pr-0.5',
       large: 'pl-2.5 pr-1',
@@ -62,18 +64,20 @@ export default function Badge({
           onClick={() => onClose()}
         >
           <span className='sr-only'>Remove tag</span>
-          <svg
-            className='h-2 w-2'
-            stroke='currentColor'
-            fill='none'
-            viewBox='0 0 8 8'
-          >
-            <path
-              strokeLinecap='round'
-              strokeWidth='1.5'
-              d='M1 1l6 6m0-6L1 7'
-            />
-          </svg>
+          <span className={colors[color as keyof typeof colors]}>
+            <svg
+              className='h-2 w-2'
+              stroke='currentColor'
+              fill='none'
+              viewBox='0 0 8 8'
+            >
+              <path
+                strokeLinecap='round'
+                strokeWidth='1.5'
+                d='M1 1l6 6m0-6L1 7'
+              />
+            </svg>
+          </span>
         </button>
       )}
     </span>

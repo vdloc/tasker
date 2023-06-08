@@ -5,14 +5,15 @@ import CardFooter from './Footer';
 import DialogPopup from '../DialogPopup';
 import TodoList from '../TodoList';
 import { useStore } from '@/store';
-import TaskEditForm from '../TaskEditForm';
-import TaskCreateForm from '../TaskCreateForm';
-import TagsListEditForm from '../TagsListEditForm';
+import TaskEditForm from '../forms/TaskEditForm';
+import TaskCreateForm from '../forms/TaskCreateForm';
+import TagsListEditForm from '../forms/TagsListEditForm';
 import { shallow } from 'zustand/shallow';
+import { TodoItem } from '@/types';
 
 type CardProps = PropsWithChildren & CardHeaderProp;
 
-export default function Card({ title, description }: CardProps) {
+export default function AppCard({ title, description }: CardProps) {
   const [
     toggleTagsListEditDialog,
     toggleTaskUpdateDialog,
@@ -52,12 +53,12 @@ export default function Card({ title, description }: CardProps) {
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
-    setSelectingTask(null);
+    setSelectingTask({} as TodoItem);
   }
 
   function handleCloseTaskCreateDialog() {
     toggleTaskCreateDialog(false);
-    setSelectingTask(null);
+    setSelectingTask({} as TodoItem);
   }
 
   function handleCloseTagsEditDialog() {

@@ -20,14 +20,14 @@ export type Tag = {
 };
 
 interface TaskState {
-  selectingTask: TodoItem | null;
+  selectingTask: TodoItem;
   uncompletedTasks: TodoItem[];
   completedTasks: TodoItem[];
   isShowCompletedTasks: boolean;
-  setSelectingTask: (task: TodoItem | null) => void;
+  setSelectingTask: (task: TodoItem) => void;
   updateTask: (task: TodoItem) => void;
   fetchTasks: () => void;
-  deleteTask: (task: TodoItem | null) => void;
+  deleteTask: (task: TodoItem) => void;
   createTask: (task: TodoItem) => void;
   toggleShowCompletedTasks: (isShow: boolean) => void;
 }
