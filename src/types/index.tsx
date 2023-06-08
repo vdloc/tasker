@@ -64,7 +64,7 @@ export type TagsListEditFormValues = {
 };
 
 export type FormInputProps = {
-  control: Control<TaskEditFormValues | TagsListEditFormValues>;
+  control: Control<any>;
   name: any;
   label: string;
   id?: string;
