@@ -53,7 +53,7 @@ const createTasksSlice = (set: any) => ({
     const data = await new Promise<TodoItem[]>((res) => {
       setTimeout(() => {
         res(todos);
-      }, 5000);
+      }, 1000);
     });
     const uncompletedTasks = data.filter((task) => !task.status);
     const completedTasks = data.filter((task) => task.status);
@@ -73,7 +73,7 @@ const createTagSlice = (set: any) => ({
     const data = await new Promise<Tag[]>((res) => {
       setTimeout(() => {
         res(tags as Tag[]);
-      }, 5000);
+      }, 1000);
     });
     set({ tags: data });
   },

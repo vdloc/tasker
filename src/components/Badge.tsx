@@ -19,12 +19,12 @@ const badgeStyleProps = tv({
       large: 'pl-2.5 pr-1',
     },
     rounded: {
-      true: 'rounded-md',
+      medium: 'rounded-md',
     },
   },
   defaultVariants: {
     color: 'indigo',
-    rounded: true,
+    rounded: 'medium',
     size: 'small',
   },
 });
@@ -34,50 +34,36 @@ type OtherBadgeProps = {
   onClose?: () => void;
 };
 
-type BadgeProps = JSX.IntrinsicElements['span'] &
-  VariantProps<typeof badgeStyleProps> &
-  OtherBadgeProps;
+type BadgeProps = JSX.IntrinsicElements['span'] & VariantProps<typeof badgeStyleProps> & OtherBadgeProps;
 
-export default function Badge({
-  title,
-  className,
-  color,
-  size,
-  rounded,
-  onClose,
-  ...otherProps
-}: BadgeProps) {
+export default function Badge({ title, className, color, size, rounded, onClose, ...otherProps }: BadgeProps) {
   return title ? (
     <span
       className={`${badgeStyleProps({
         color,
         size,
         rounded,
-      })} ${className}`}
+      })} ${className || ''}`}
       {...otherProps}
     >
-      {title}
+      <span className="inline-flex h-full items-center pb-1">{title}</span>
       {typeof onClose === 'function' && (
         <button
-          type='button'
-          className='ml-0.5 inline-flex h-4 w-4 text flex-shrink-0 items-center justify-center rounded-full text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:bg-indigo-500 focus:text-white focus:outline-none'
+          type="button"
+          className="ml-0.5 h-4 w-4 inline-flex text flex-shrink-0 items-center justify-center group rounded-full hover:bg-current transition-colors focus:outline-none"
           onClick={() => onClose()}
         >
-          <span className='sr-only'>Remove tag</span>
-          <span className={colors[color as keyof typeof colors]}>
-            <svg
-              className='h-2 w-2'
-              stroke='currentColor'
-              fill='none'
-              viewBox='0 0 8 8'
-            >
-              <path
-                strokeLinecap='round'
-                strokeWidth='1.5'
-                d='M1 1l6 6m0-6L1 7'
-              />
-            </svg>
-          </span>
+          <span className="sr-only">Remove tag</span>
+          <svg
+            className={`${
+              colors[color as keyof typeof colors]
+            } h-2 w-2 group-hover:stroke-white group-hover:bg-current`}
+            stroke="currentColor"
+            fill="none"
+            viewBox="0 0 8 8"
+          >
+            <path strokeLinecap="round" strokeWidth="1.5" d="M1 1l6 6m0-6L1 7" />
+          </svg>
         </button>
       )}
     </span>
