@@ -4,10 +4,10 @@ import Input from '../components/Input';
 import TextArea from '../components/TextArea';
 import Toggle from '../components/Toggle';
 import { Control } from 'react-hook-form';
-import { Tag, TaskEditFormValues } from '@/types';
+import { Tag, TagsListEditFormValues, TaskEditFormValues } from '@/types';
 
 type TaskEditFormContentProps = {
-  control: Control<TaskEditFormValues>;
+  control: Control<TaskEditFormValues|TagsListEditFormValues>;
   currentTags: (Tag | undefined)[];
 };
 
