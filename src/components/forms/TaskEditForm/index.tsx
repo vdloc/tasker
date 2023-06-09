@@ -1,10 +1,11 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import FormLayout from '../FormLayout';
 import { useStore } from '@/store';
-import { TaskEditFormValues, TodoItem } from '@/types';
+import { Tag, TaskEditFormValues, TodoItem } from '@/types';
 import TaskEditFormHeader from './Header';
 import TaskEditFormContent from './Content';
 import TaskEditFormFooter from './Footer';
+import { useState } from 'react';
 
 export default function TaskEditForm() {
   const [selectingTask, updateTask, deleteTask, toggleTaskUpdateDialog, tags] =
@@ -18,14 +19,19 @@ export default function TaskEditForm() {
   const { control, handleSubmit } = useForm<TaskEditFormValues>({
     defaultValues: { ...selectingTask },
   });
+  const [currentTags, setCurrentTags] = useState(getCurrentTags(selectingTask));
 
-  const currentTags = (selectingTask.tags || []).map((tag) =>
-    tags.find(({ id }) => tag.id === id)
-  );
-  const onSubmit: SubmitHandler<TaskEditFormValues> = (data: TodoItem) => {
+  function getCurrentTags(selectingTask: TodoItem) {
+    return (selectingTask.tags as Tag[]).map((tag) =>
+      tags.find(({ id }) => tag.id === id)
+    );
+  }
+
+  const onSubmit: SubmitHandler<TaskEditFormValues> = (
+    data: TaskEditFormValues
+  ) => {
     const updatedTask = { ...selectingTask, ...data };
-    console.log(updatedTask);
-
+    setCurrentTags(data.tags);
     toggleTaskUpdateDialog(false);
     updateTask(updatedTask);
   };

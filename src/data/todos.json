@@ -6,13 +6,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",
@@ -26,13 +37,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",
@@ -46,13 +68,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",
@@ -66,13 +99,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",
@@ -86,13 +130,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",
@@ -106,13 +161,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",
@@ -126,13 +192,24 @@
     "status": false,
     "tags": [
       {
-        "id": 1
+        "id": 0,
+        "name": "travel",
+        "color": "indigo"
       },
       {
-        "id": 4
+        "id": 1,
+        "name": "food",
+        "color": "lime"
       },
       {
-        "id": 2
+        "id": 2,
+        "name": "photography",
+        "color": "red"
+      },
+      {
+        "id": 3,
+        "name": "music",
+        "color": "zinc"
       }
     ],
     "createTime": "29/05/2023",

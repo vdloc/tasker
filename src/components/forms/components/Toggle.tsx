@@ -1,10 +1,7 @@
 import { Switch } from '@headlessui/react';
 import { useController } from 'react-hook-form';
 import type { FormInputProps } from '@/types';
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
+import { classNames } from '@/utils';
 
 export default function Toggle({ control, name, label, id }: FormInputProps) {
   const { field } = useController({

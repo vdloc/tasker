@@ -3,6 +3,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { FormInputProps } from '@/types';
 import { useController } from 'react-hook-form';
+import { classNames } from '@/utils';
 
 const colors = {
   indigo: 'bg-indigo-500',
@@ -13,10 +14,6 @@ const colors = {
   orange: 'bg-orange-500',
 };
 const colorsName = Object.keys(colors);
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function TagsCombobox({
   label,

@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants';
 import type { VariantProps } from 'tailwind-variants';
 
 const buttonStyleProps = tv({
-  base: 'relative inline-flex items-center border border-transparent text-sm text-white shadow-sm font-medium focus:outline-none',
+  base: 'relative inline-flex items-center border border-transparent text-sm text-white shadow-sm font-medium focus:outline-none transition-colors',
   variants: {
     color: {
       indigo: 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700',

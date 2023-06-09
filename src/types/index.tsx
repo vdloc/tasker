@@ -5,7 +5,7 @@ export type TodoItem = {
   title: string;
   description: string;
   status: boolean;
-  tags?: { id: number }[];
+  tags?: Tag[];
   createDate?: string;
   dueDate?: string;
   endDate?: string;
@@ -14,7 +14,7 @@ export type TodoItem = {
 export type TagColor = 'indigo' | 'red' | 'lime' | 'sky' | 'zinc' | 'orange';
 
 export type Tag = {
-  id: string | number;
+  id: number | string;
   name: string;
   color: TagColor;
 };
@@ -55,6 +55,7 @@ export type TaskEditFormValues = {
   description: string;
   status: boolean;
   id: string | number;
+  tags: Tag[];
 };
 
 export type TagsListEditFormValues = {

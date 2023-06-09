@@ -52,7 +52,7 @@ const createTasksSlice = (set: any) => ({
   fetchTasks: async () => {
     const data = await new Promise<TodoItem[]>((res) => {
       setTimeout(() => {
-        res(todos);
+        res(todos as TodoItem[]);
       }, 1000);
     });
     const uncompletedTasks = data.filter((task) => !task.status);
