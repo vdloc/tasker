@@ -14,17 +14,17 @@ const buttonStyleProps = tv({
       large: 'px-4 py-2',
     },
     rounded: {
-      true: 'rounded-md',
+      medium: 'rounded-md',
     },
     hasRing: {
-      true: 'focus:ring-2 focus:ring-offset-2',
+      default: 'focus:ring-2 focus:ring-offset-2',
     },
   },
   defaultVariants: {
     color: 'indigo',
-    rounded: true,
+    rounded: 'medium',
     size: 'large',
-    hasRing: true,
+    hasRing: 'default',
   },
 });
 
@@ -32,22 +32,12 @@ type OtherButtonProps = {
   label: string;
 };
 
-type ButtonProps = JSX.IntrinsicElements['button'] &
-  VariantProps<typeof buttonStyleProps> &
-  OtherButtonProps;
+type ButtonProps = JSX.IntrinsicElements['button'] & VariantProps<typeof buttonStyleProps> & OtherButtonProps;
 
-export default function Button({
-  label,
-  color,
-  size,
-  rounded,
-  hasRing,
-  className,
-  ...otherProps
-}: ButtonProps) {
+export default function Button({ label, color, size, rounded, hasRing, className, ...otherProps }: ButtonProps) {
   return (
     <button
-      type='button'
+      type="button"
       className={`${buttonStyleProps({
         color,
         size,

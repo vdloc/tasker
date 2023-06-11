@@ -1,4 +1,4 @@
-import { TaskEditFormValues } from '@/types';
+import { TaskCreateFormValues } from '@/types';
 import DateTimePicker from '../components/DateTimePicker';
 import Input from '../components/Input';
 import TextArea from '../components/TextArea';
@@ -6,7 +6,7 @@ import { Control } from 'react-hook-form';
 import Tags from '@/components/Tags';
 
 type TaskCreateFormContentProps = {
-  control: Control<TaskEditFormValues>;
+  control: Control<TaskCreateFormValues>;
 };
 
 export default function TaskCreateFormContent({ control }: TaskCreateFormContentProps) {
