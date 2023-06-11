@@ -13,7 +13,7 @@ export default function FormLayout({
 }: FormLayoutProps) {
   return (
     <form
-      className='flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl rounded-lg overflow-hidden'
+      className='flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl rounded-lg'
       onSubmit={onSubmit}
     >
       <div className='flex-1'>

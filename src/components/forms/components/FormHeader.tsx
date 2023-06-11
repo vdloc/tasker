@@ -13,7 +13,7 @@ export default function FormHeader({
   description,
 }: FormHeaderProps) {
   return (
-    <div className='bg-indigo-700 py-6 px-4 sm:px-6'>
+    <div className='bg-indigo-700 py-6 px-4 sm:px-6 rounded-t-lg'>
       <div className='flex items-center justify-between'>
         <Dialog.Title className='text-lg font-medium text-white'>
           {title}
