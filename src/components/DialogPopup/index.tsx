@@ -20,7 +20,7 @@ export default function DialogPopup({
         onClose={onClose}
       >
         <div className='bg-indigo-400 opacity-40 absolute w-full h-full'></div>
-        <div className='pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] rounded-lg z-30 shadow-xl'>
+        <div className='pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] z-30'>
           <Transition.Child
             as={Fragment}
             enter='transform transition ease-in-out duration-300'
@@ -30,7 +30,7 @@ export default function DialogPopup({
             leaveFrom='opacity-1'
             leaveTo='opacity-0'
           >
-            <Dialog.Panel className='pointer-events-auto h-full'>
+            <Dialog.Panel className='pointer-events-auto h-full rounded-lg'>
               {children}
             </Dialog.Panel>
           </Transition.Child>

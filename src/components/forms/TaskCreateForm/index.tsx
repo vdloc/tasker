@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import Tags from '@components/Tags';
 import { useStore } from '@/store';
 import { TaskEditFormValues, TodoItem } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,7 +11,7 @@ import TaskCreateFormFooter from './Footer';
 export default function TaskCreateForm() {
   const [createTask, toggleTaskCreateDialog] = useStore(
     (state) => [state.createTask, state.toggleTaskCreateDialog],
-    shallow
+    shallow,
   );
   const { control, handleSubmit } = useForm<TaskEditFormValues>({
     defaultValues: {},

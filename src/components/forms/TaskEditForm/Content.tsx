@@ -11,54 +11,36 @@ type TaskEditFormContentProps = {
   currentTags: (Tag | undefined)[];
 };
 
-export default function TaskEditFormContent({
-  control,
-  currentTags,
-}: TaskEditFormContentProps) {
+export default function TaskEditFormContent({ control, currentTags }: TaskEditFormContentProps) {
   return (
     <>
-      <Input label='Title' id='task-title' control={control} name='title' />
+      <Input
+        label="Title"
+        id="task-title"
+        control={control}
+        name="title"
+        rules={{
+          required: { value: true, message: 'Task title is required!' },
+          maxLength: { value: 255, message: 'Task title is maximum of 255 characters only!' },
+          minLength: { value: 3, message: 'Task title is at least 3 characters!' },
+        }}
+      />
       <TextArea
-        label='Description'
-        id='task-description'
+        label="Description"
+        id="task-description"
         control={control}
-        name='description'
+        name="description"
+        rules={{
+          maxLength: { value: 1000, message: 'Task description is maximum of 255 characters only!' },
+          minLength: { value: 3, message: 'Task description is at least 3 characters!' },
+        }}
       />
-
-      <div className='grid grid-cols-2 items-center gap-4'>
-        <DateTimePicker
-          title='Choose start date'
-          label='Start date'
-          control={control}
-          name='startDate'
-        />
-        <Toggle
-          label='Status'
-          control={control}
-          id='task-stastus'
-          name='status'
-        />
+      <div className="grid grid-cols-2 items-center gap-4">
+        <DateTimePicker title="Choose start date" label="Start date" control={control} name="startDate" />
+        <DateTimePicker title="Choose due date" label="Due date" name="dueDate" control={control} />
       </div>
-      <div className='flex gap-4'>
-        <DateTimePicker
-          title='Choose end date'
-          label='End date'
-          name='endDate'
-          control={control}
-        />
-        <DateTimePicker
-          title='Choose due date'
-          label='Due date'
-          name='dueDate'
-          control={control}
-        />
-      </div>
-      <Tags
-        label='Tags'
-        name='tags'
-        control={control}
-        defaultTags={currentTags}
-      />
+      <Toggle label="Status" control={control} id="task-stastus" name="status" />
+      <Tags label="Tags" name="tags" control={control} defaultTags={currentTags} />
     </>
   );
 }

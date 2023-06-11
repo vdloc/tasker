@@ -10,12 +10,7 @@ type TagsProps = {
   defaultTags: (Tag | undefined)[];
 };
 
-export default function Tags({
-  label,
-  control,
-  name,
-  defaultTags,
-}: TagsProps & FormInputProps) {
+export default function Tags({ label, control, name, defaultTags }: TagsProps & FormInputProps) {
   const { field } = useController({
     name,
     control,
@@ -23,34 +18,29 @@ export default function Tags({
   const [tags, setTags] = useState(defaultTags);
 
   function handleRemoveTag(removeTag: Tag) {
-    setTags(tags.filter((tag) => removeTag.id !== tag?.id));
+    const updatedTags = tags.filter((tag) => removeTag.id !== tag?.id);
+    setTags(updatedTags);
+    field.onChange(updatedTags);
   }
 
   function handleAddTag(tag: Tag) {
-    setTags([...tags, tag]);
+    const updatedTags = [...tags, tag];
+    setTags(updatedTags);
+    field.onChange(updatedTags);
   }
-
-  useEffect(() => {
-    field.onChange(tags);
-  }, [field,tags]);
 
   return (
     <div>
-      <h3 className='text-sm font-medium text-gray-900'>{label}</h3>
-      <div className='mt-2'>
-        <div className='space-y-2'>
-          <div className='flex gap-2 flex-wrap items-center'>
+      <h3 className="text-sm font-medium text-gray-900">{label}</h3>
+      <div className="mt-2">
+        <div className="space-y-2">
+          <div className="flex gap-2 flex-wrap items-center">
             {(tags as Tag[]).map((tag) => (
-              <Badge
-                key={tag.id}
-                title={tag.name}
-                color={tag.color}
-                onClose={() => handleRemoveTag(tag)}
-              />
+              <Badge key={tag.id} title={tag.name} color={tag.color} onClose={() => handleRemoveTag(tag)} />
             ))}
             <TagsDropDown onChange={handleAddTag} excludeTags={tags} />
           </div>
-          <div className='flex'></div>
+          <div className="flex"></div>
         </div>
       </div>
     </div>
