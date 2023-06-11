@@ -32,7 +32,7 @@ export default function Tags({
 
   useEffect(() => {
     field.onChange(tags);
-  }, [tags]);
+  }, [field,tags]);
 
   return (
     <div>
