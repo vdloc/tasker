@@ -1,0 +1,26 @@
+{
+  "indigo": {
+    "strong": "bg-indigo-700",
+    "light": "bg-indigo-100"
+  },
+  "red": {
+    "strong": "bg-red-700",
+    "light": "bg-red-100"
+  },
+  "lime": {
+    "strong": "bg-lime-700",
+    "light": "bg-lime-100"
+  },
+  "sky": {
+    "strong": "bg-sky-700",
+    "light": "bg-sky-100"
+  },
+  "zinc": {
+    "strong": "bg-zinc-700",
+    "light": "bg-zinc-100"
+  },
+  "orange": {
+    "strong": "bg-orange-700",
+    "light": "bg-orange-100"
+  }
+}

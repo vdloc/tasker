@@ -1,31 +1,29 @@
 import { StateCreator, create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import type { StoreState, TodoItem } from './types';
+import type { StoreState, TodoItem, Tag } from './types';
 import { devtools, persist } from 'zustand/middleware';
 import todos from '@/data/todos.json';
-import tags from "@/data/tags.json";
+import tags from '@/data/tags.json';
 
 const createTasksSlice = (set: any) => ({
   uncompletedTasks: [],
   completedTasks: [],
-  tags: [],
-  selectingTask: null,
+  selectingTask: {} as TodoItem,
   isShowCompletedTasks: false,
   toggleShowCompletedTasks: (isShow: boolean) =>
     set({ isShowCompletedTasks: isShow }),
-  setSelectingTask: (task: TodoItem | null) =>
-    set(() => ({ selectingTask: task })),
+  setSelectingTask: (task: TodoItem) => set(() => ({ selectingTask: task })),
   updateTask: (updatedTask: TodoItem) =>
     set((state: StoreState) => {
-      if (
-        updatedTask.status &&
-        !state.completedTasks.find((task) => task.id === updatedTask.id)
-      ) {
+      const isTaskCompleted = state.completedTasks.find(
+        (task) => task.id === updatedTask.id
+      );
+      if (updatedTask.status && !isTaskCompleted) {
         state.completedTasks = [updatedTask, ...state.completedTasks];
         state.uncompletedTasks = state.uncompletedTasks.filter(
           (task) => task.id !== updatedTask.id
         );
-      } else {
+      } else if (!updatedTask.status && isTaskCompleted) {
         state.uncompletedTasks = [...state.uncompletedTasks, updatedTask];
         state.completedTasks = state.completedTasks.filter(
           (task) => task.id !== updatedTask.id
@@ -42,7 +40,7 @@ const createTasksSlice = (set: any) => ({
       state.uncompletedTasks = [newTask, ...state.uncompletedTasks];
     });
   },
-  deleteTask: (deleteTask: TodoItem | null) =>
+  deleteTask: (deleteTask: TodoItem) =>
     set((state: StoreState) => {
       state.uncompletedTasks = state.uncompletedTasks.filter(
         (task) => task.id !== deleteTask?.id
@@ -54,18 +52,30 @@ const createTasksSlice = (set: any) => ({
   fetchTasks: async () => {
     const data = await new Promise<TodoItem[]>((res) => {
       setTimeout(() => {
-        res(todos);
-      }, 5000);
+        res(todos as TodoItem[]);
+      }, 1000);
     });
     const uncompletedTasks = data.filter((task) => !task.status);
     const completedTasks = data.filter((task) => task.status);
     set({ uncompletedTasks, completedTasks });
   },
+});
+
+const createTagSlice = (set: any) => ({
+  tags: [],
+  addTag: (tag: Tag) =>
+    set((state: StoreState) => ({ tags: [...state.tags, tag] })),
+  deleteTag: (tag: Tag) =>
+    set((state: StoreState) => ({
+      tags: state.tags.filter(({ id }) => id !== tag.id),
+    })),
   fetchTags: async () => {
-    await new Promise((res) => {
-      setTimeout(res, 5000);
+    const data = await new Promise<Tag[]>((res) => {
+      setTimeout(() => {
+        res(tags as Tag[]);
+      }, 1000);
     });
-    set({ tasks: todos });
+    set({ tags: data });
   },
 });
 
@@ -93,8 +103,11 @@ const initializer: StateCreator<
 > = (set) => ({
   ...createTasksSlice(set),
   ...createDialogSlice(set),
+  ...createTagSlice(set),
 });
 
-const createStore = devtools(persist(immer(initializer), { name: 'todo' }));
+const createStore = devtools(
+  persist(immer(initializer), { name: 'todo', skipHydration: true })
+);
 
 export const useStore = create<StoreState>()(createStore);

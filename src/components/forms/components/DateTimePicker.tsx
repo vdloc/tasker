@@ -1,4 +1,4 @@
-import { InputProps } from '@/types';
+import { FormInputProps } from '@/types';
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { useController } from 'react-hook-form';
@@ -6,7 +6,6 @@ import Datepicker from 'tailwind-datepicker-react';
 
 type DateTimePickerProps = {
   title: string;
-  label: string;
 };
 
 const pickerOptions = {
@@ -25,7 +24,7 @@ const pickerOptions = {
     text: 'text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm',
     disabledText: 'bg-white',
     input:
-      'block peer h-8 pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
+      'block peer pl-10 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
     inputIcon: 'fill-indigo-700',
     selected: 'bg-indigo-700',
   },
@@ -50,7 +49,7 @@ export default function DateTimePicker({
   control,
   name,
   label,
-}: DateTimePickerProps & InputProps) {
+}: DateTimePickerProps & FormInputProps) {
   const [show, setShow] = useState(false);
   const { field } = useController({
     name,

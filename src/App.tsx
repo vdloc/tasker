@@ -1,12 +1,12 @@
 import './App.css';
-import Card from './components/Card';
+import AppCard from './components/AppCard';
 
 function App() {
   return (
     <>
       <div className='container mx-auto bg-white'>
         <div className='flex justify-center items-center min-h-screen'>
-          <Card title='The TooDoo' description='Achieve your goals' />
+          <AppCard title='The TooDoo' description='Achieve your goals' />
         </div>
       </div>
     </>
