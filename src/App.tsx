@@ -7,8 +7,8 @@ function App() {
     <>
       <div className="container mx-auto bg-white">
         <div className="flex justify-center items-center min-h-screen">
-          <AppCard title='The TooDoo' description='Achieve your goals' />
-          {/* <LoginCard /> */}
+          {/* <AppCard title='The TooDoo' description='Achieve your goals' /> */}
+          <LoginCard />
         </div>
       </div>
     </>

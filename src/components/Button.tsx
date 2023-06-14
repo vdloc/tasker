@@ -8,6 +8,7 @@ const buttonStyleProps = tv({
       indigo: 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700',
       pink: 'focus:ring-pink-500 bg-pink-600 hover:bg-pink-700',
       white: 'bg-white border-gray-300 text-black',
+      gray: 'bg-gray-900 border-gray-900 text-white',
     },
     size: {
       small: 'px-2 py-1',
@@ -29,15 +30,25 @@ const buttonStyleProps = tv({
 });
 
 type OtherButtonProps = {
-  label: string;
+  label: string | React.ReactElement;
 };
 
-type ButtonProps = JSX.IntrinsicElements['button'] & VariantProps<typeof buttonStyleProps> & OtherButtonProps;
+type ButtonProps = JSX.IntrinsicElements['button'] &
+  VariantProps<typeof buttonStyleProps> &
+  OtherButtonProps;
 
-export default function Button({ label, color, size, rounded, hasRing, className, ...otherProps }: ButtonProps) {
+export default function Button({
+  label,
+  color,
+  size,
+  rounded,
+  hasRing,
+  className,
+  ...otherProps
+}: ButtonProps) {
   return (
     <button
-      type="button"
+      type='button'
       className={`${buttonStyleProps({
         color,
         size,

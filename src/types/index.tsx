@@ -74,6 +74,12 @@ export type LoginFormValues = {
   password: string;
 };
 
+export type RegisterFormValues = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
 export type FormInputProps = {
   control: Control<any>;
   rules?: object;
