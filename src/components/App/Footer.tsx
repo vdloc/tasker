@@ -1,8 +1,8 @@
-import Button from "../Button";
-import { useStore } from "@/store";
-import { shallow } from "zustand/shallow";
+import Button from '../common/Button';
+import { useStore } from '@/store';
+import { shallow } from 'zustand/shallow';
 
-const CardFooter = function CardFooter() {
+const CardFooter = function AppFooter() {
   const [
     toggleShowCompletedTasks,
     toggleTagsListEditDialog,
@@ -27,17 +27,17 @@ const CardFooter = function CardFooter() {
   }
 
   return (
-    <div className="px-4 py-4 sm:px-6">
-      <div className="flex gap-4 justify-end">
+    <div className='px-4 py-4 sm:px-6'>
+      <div className='flex gap-4 justify-end'>
         <Button
-          label="Edit Tags"
-          size="large"
+          label='Edit Tags'
+          size='large'
           rounded={true}
           onClick={handleEditTagsButtonClick}
         />
         <Button
-          label={isShowCompletedTasks ? "Doing Tasks" : "Completed Tasks"}
-          size="large"
+          label={isShowCompletedTasks ? 'Doing Tasks' : 'Completed Tasks'}
+          size='large'
           rounded={true}
           onClick={handleCompletedTasksButtonClick}
         />

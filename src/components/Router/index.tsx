@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import AppCard from '../AppCard';
+import AppCard from '../App';
 
 export default function AppRouter() {
   return (

@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from 'react';
-import CardHeader from './Header';
-import type { CardHeaderProp } from './Header';
-import CardFooter from './Footer';
+import AppHeader from './Header';
+import type { AppHeaderProp } from './Header';
+import AppFooter from './Footer';
 import DialogPopup from '../DialogPopup';
 import TodoList from '../TodoList';
 import { useStore } from '@/store';
@@ -11,7 +11,7 @@ import TagsListEditForm from '../forms/TagsListEditForm';
 import { shallow } from 'zustand/shallow';
 import { TodoItem } from '@/types';
 
-type CardProps = PropsWithChildren & CardHeaderProp;
+type CardProps = PropsWithChildren & AppHeaderProp;
 
 export default function AppCard({ title, description }: CardProps) {
   const [
@@ -72,11 +72,11 @@ export default function AppCard({ title, description }: CardProps) {
 
   return (
     <div className='divide-y divide-gray-200 rounded-lg bg-white shadow-2xl w-[30rem] relative z-10'>
-      <CardHeader title={title} description={description} />
+      <AppHeader title={title} description={description} />
       <TodoList
         todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}
       />
-      <CardFooter />
+      <AppFooter />
       <DialogPopup
         isOpen={isTaskUpdateDialogOpen}
         onClose={handleCloseTaskEditDialog}

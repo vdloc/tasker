@@ -1,6 +1,6 @@
 // import { useStore } from '@/store';
 import { PlusIcon } from '@heroicons/react/24/outline';
-import Badge from '../Badge';
+import Badge from '../common/Badge';
 import { FormInputProps, Tag } from '@/types';
 import { useController } from 'react-hook-form';
 import { useEffect, useState } from 'react';

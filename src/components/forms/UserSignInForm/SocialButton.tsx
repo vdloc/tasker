@@ -1,5 +1,5 @@
 import React, { JSXElementConstructor } from 'react';
-import Button from '../Button';
+import Button from '../../common/Button';
 type SocialButtonProps = {
   Icon: JSXElementConstructor<React.JSX.IntrinsicElements['svg']>;
   label: string;

@@ -1,26 +1,26 @@
-import { LoginFormValues } from '@/types';
-import Input from '../forms/components/Input';
+import { UserSignInFormValues } from '@/types';
+import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
-import Button from '../Button';
+import Button from '../../common/Button';
 import { signInUser } from '@/firebase';
 import SocialButton from './SocialButton';
-import GoogleIcon from '../icons/GoogleIcon';
-import GithubIcon from '../icons/GithubIcon';
-import UserIcon from '../icons/UserIcon';
+import GoogleIcon from '../../icons/GoogleIcon';
+import GithubIcon from '../../icons/GithubIcon';
+import UserIcon from '../../icons/UserIcon';
 
-export default function LoginCard() {
-  const { control, handleSubmit } = useForm<LoginFormValues>({
+export default function UserSignInForm() {
+  const { control, handleSubmit } = useForm<UserSignInFormValues>({
     defaultValues: {},
   });
 
-  async function onSubmit(data: LoginFormValues) {
+  async function onSubmit(data: UserSignInFormValues) {
     const { email, password } = data;
     const user = await signInUser(email, password);
     console.log(user);
   }
 
   return (
-    <div className='space-y-2 px-4 py-8 rounded-2xl bg-white shadow-2xl drop-shadow-2xl w-[25rem] relative z-10'>
+    <>
       <header className='py-4 text-center'>
         <h1 className='text-3xl font-bold'>TooDoo</h1>
         <p className='text-sm font-semibold mt-3'> -*- The to-do app -*- </p>
@@ -63,6 +63,6 @@ export default function LoginCard() {
           <SocialButton Icon={UserIcon} label='Sign in as guest' />
         </section>
       </form>
-    </div>
+    </>
   );
 }
