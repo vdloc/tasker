@@ -50,18 +50,34 @@ interface TagState {
 
 export interface StoreState extends TaskState, DialogState, TagState {}
 
-export type TaskEditFormValues = {
+export type TaskCreateFormValues = {
   title: string;
   description: string;
-  status: boolean;
   id: string | number;
-  tags: Tag[];
+  startDate: string;
+  dueDate: string;
+  tags?: Tag[];
 };
+
+export type TaskEditFormValues = {
+  status: boolean;
+} & TaskCreateFormValues;
 
 export type TagsListEditFormValues = {
   id: string | number;
   name: string;
   color: TagColor;
+};
+
+export type UserSignInFormValues = {
+  email: string;
+  password: string;
+};
+
+export type UserSignUpFormValues = {
+  email: string;
+  password: string;
+  confirmPassword: string;
 };
 
 export type FormInputProps = {
@@ -71,4 +87,5 @@ export type FormInputProps = {
   label: string;
   id?: string;
   className?: string;
+  type?: string;
 };

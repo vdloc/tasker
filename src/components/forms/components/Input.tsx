@@ -2,7 +2,7 @@ import { FormInputProps } from '@/types';
 import { useController } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 
-export default function Input({ control, rules, name, label, id, className }: FormInputProps) {
+export default function Input({ control, rules, name, label, id, className, type }: FormInputProps) {
   const { field, formState, fieldState } = useController({
     name,
     control,
@@ -16,10 +16,10 @@ export default function Input({ control, rules, name, label, id, className }: Fo
       </label>
       <div className="mt-1">
         <input
-          type="text"
+          type={type || 'text'}
           id={id}
-          className={`block w-full p-2 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
-            fieldState.error && 'border-red-800 focus:border-red-800 focus:ring-red-800'
+          className={`block w-full p-2 rounded-md border shadow-sm ring-1 ring-inset ring-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
+            fieldState.error && 'border-pink-600 focus:border-pink-600 focus:ring-pink-600'
           }`}
           name={field.name}
           value={field.value}
@@ -30,7 +30,7 @@ export default function Input({ control, rules, name, label, id, className }: Fo
       <ErrorMessage
         errors={formState.errors}
         name={name}
-        render={({ message }) => <p className="text-red-800 text-xs mt-1 whitespace-nowrap">{message}</p>}
+        render={({ message }) => <p className="text-pink-600 text-xs mt-1 whitespace-nowrap">{message}</p>}
       />
     </div>
   );

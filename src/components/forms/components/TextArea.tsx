@@ -18,7 +18,7 @@ export default function TextArea({ control, rules, name, label, id }: FormInputP
         <textarea
           id={id}
           rows={4}
-          className={`block w-full p-2 rounded-md border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
+          className={`block w-full p-2 rounded-md border shadow-sm ring-1 ring-gray-300 ring-inset focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${
             fieldState.error && 'border-red-800 focus:border-red-800 focus:ring-red-800'
           }`}
           name={field.name}

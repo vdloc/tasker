@@ -1,12 +1,12 @@
 import { useStore } from '@/store';
-import Button from '../Button';
+import Button from '../common/Button';
 
-export type CardHeaderProp = {
+export type AppHeaderProp = {
   title: string;
   description: string;
 };
 
-export default function CardHeader({ title, description }: CardHeaderProp) {
+export default function AppHeader({ title, description }: AppHeaderProp) {
   const isTaskCreateDialogOpen = useStore(
     (state) => state.isTaskCreateDialogOpen
   );

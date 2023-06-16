@@ -8,28 +8,29 @@ const buttonStyleProps = tv({
       indigo: 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700',
       pink: 'focus:ring-pink-500 bg-pink-600 hover:bg-pink-700',
       white: 'bg-white border-gray-300 text-black',
+      gray: 'bg-gray-900 border-gray-900 text-white',
     },
     size: {
       small: 'px-2 py-1',
       large: 'px-4 py-2',
     },
     rounded: {
-      true: 'rounded-md',
+      medium: 'rounded-md',
     },
     hasRing: {
-      true: 'focus:ring-2 focus:ring-offset-2',
+      default: 'focus:ring-2 focus:ring-offset-2',
     },
   },
   defaultVariants: {
     color: 'indigo',
-    rounded: true,
+    rounded: 'medium',
     size: 'large',
-    hasRing: true,
+    hasRing: 'default',
   },
 });
 
 type OtherButtonProps = {
-  label: string;
+  label: string | React.ReactElement;
 };
 
 type ButtonProps = JSX.IntrinsicElements['button'] &

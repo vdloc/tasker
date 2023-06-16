@@ -27,7 +27,7 @@ export default function TaskEditForm() {
 
   const onSubmit: SubmitHandler<TaskEditFormValues> = (data: TaskEditFormValues) => {
     const updatedTask = { ...selectingTask, ...data };
-    setCurrentTags(data.tags);
+    setCurrentTags(data.tags as Tag[]);
     toggleTaskUpdateDialog(false);
     updateTask(updatedTask);
   };
