@@ -1,21 +1,21 @@
-import { RegisterFormValues } from '@/types';
-import Input from '../forms/components/Input';
+import { UserSignUpFormValues } from '@/types';
+import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
-import Button from '../Button';
+import Button from '../../common/Button';
 import { createUser } from '@/firebase';
 
-export default function LoginCard() {
-  const { control, handleSubmit } = useForm<RegisterFormValues>({
+export default function UserSignUpForm() {
+  const { control, handleSubmit } = useForm<UserSignUpFormValues>({
     defaultValues: {},
   });
 
-  async function onSubmit(data: RegisterFormValues) {
+  async function onSubmit(data: UserSignUpFormValues) {
     const { email, password, confirmPassword } = data;
     const user = await createUser(email, password);
     console.log(user);
   }
   return (
-    <div className='space-y-2 p-4 rounded-lg bg-white shadow-2xl w-[25rem] relative z-10'>
+    <>
       <header className='py-4 text-center'>
         <h1 className='text-3xl font-bold'>Welcome to the TooDoo</h1>
         <span className='text-sm font-semibold'> -*- The to-do app -*- </span>
@@ -58,6 +58,6 @@ export default function LoginCard() {
 
         <p className='font-semibold mt-4'>Or</p>
       </form>
-    </div>
+    </>
   );
 }

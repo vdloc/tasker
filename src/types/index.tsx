@@ -69,12 +69,12 @@ export type TagsListEditFormValues = {
   color: TagColor;
 };
 
-export type LoginFormValues = {
+export type UserSignInFormValues = {
   email: string;
   password: string;
 };
 
-export type RegisterFormValues = {
+export type UserSignUpFormValues = {
   email: string;
   password: string;
   confirmPassword: string;
