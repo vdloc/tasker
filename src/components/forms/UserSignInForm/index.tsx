@@ -1,13 +1,13 @@
 import { User, UserSignInFormValues } from '@/types';
 import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
-import Button from '../../common/Button';
+import Button from '@components/common/Button';
 import { signInUser } from '@/firebase';
-import SocialButton from './SocialButton';
+import SocialButton from '@components/common/SocialButton';
+import { GoogleIcon, GithubIcon, UserIcon } from '@components/icons';
 import { useStore } from '@/store';
-import { GoogleIcon, GithubIcon, UserIcon } from '@/components/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import configs from '@/data/configs.json';
+import configs from '@data/configs.json';
 
 const {
   app: { name, description },
@@ -70,7 +70,7 @@ export default function UserSignInForm() {
             {' '}
             Don&apos;t have an account?{' '}
             <Link to="/sign-up" className="text-indigo-700">
-              Sign Up
+              Sign up
             </Link>{' '}
             now.{' '}
           </h5>
