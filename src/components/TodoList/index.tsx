@@ -12,19 +12,21 @@ export default function TodoList({ todos = [] }: TodoListProps) {
   return (
     <fieldset>
       <TodoListHeader />
-      {todos.length ? (
-        <div className='divide-y divide-gray-200 border-t border-gray-200 text-left px-4 max-h-[35rem] overflow-y-scroll'>
-          {todos.map((todo) => (
-            <Todo todo={todo} key={todo.id} />
-          ))}
-        </div>
-      ) : (
-        <p className='p-4'>
-          {isShowCompletedTasks
-            ? 'Do your tasks dude!'
-            : 'Great job! Create some tasks?'}
-        </p>
-      )}
+      <div className="divide-y divide-gray-200 border-t border-gray-200 text-left px-4 h-[35rem] overflow-y-auto">
+        {todos.length ? (
+          todos.map((todo) => <Todo todo={todo} key={todo.id} />)
+        ) : (
+          <p className="font-medium italic mt-8">
+            {isShowCompletedTasks ? (
+              <span>
+                No tasks has been completed! <br /> Do your tasks!
+              </span>
+            ) : (
+              'Great job! Create some tasks?'
+            )}
+          </p>
+        )}
+      </div>
     </fieldset>
   );
 }

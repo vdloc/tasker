@@ -33,22 +33,12 @@ type OtherButtonProps = {
   label: string | React.ReactElement;
 };
 
-type ButtonProps = JSX.IntrinsicElements['button'] &
-  VariantProps<typeof buttonStyleProps> &
-  OtherButtonProps;
+type ButtonProps = JSX.IntrinsicElements['button'] & VariantProps<typeof buttonStyleProps> & OtherButtonProps;
 
-export default function Button({
-  label,
-  color,
-  size,
-  rounded,
-  hasRing,
-  className,
-  ...otherProps
-}: ButtonProps) {
+export default function Button({ label, color, size, rounded, hasRing, className, ...otherProps }: ButtonProps) {
   return (
     <button
-      type='button'
+      type="button"
       className={`${buttonStyleProps({
         color,
         size,

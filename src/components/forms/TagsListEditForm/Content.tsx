@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Input from '../components/Input';
 import TagsCombobox from '../components/TagsCombobox';
-import Badge from '@/components/Badge';
+import Badge from '@/components/common/Badge';
 import { useStore } from '@/store';
 import { shallow } from 'zustand/shallow';
 import { Tag, TagColor, TagsListEditFormValues } from '@/types';

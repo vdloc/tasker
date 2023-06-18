@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 import RootRoute from './Root';
-import AppCard from '@/components/AppCard';
-import LoginCard from '@/components/LoginCard';
-import RegisterCard from '@/components/RegisterCard';
+import App from '@/components/App';
+import UserSignUpForm from '@/components/forms/UserSignUpForm';
+import Auth from './Auth';
+import SignIn from './SignIn';
 
 const router = createBrowserRouter([
   {
@@ -10,14 +11,18 @@ const router = createBrowserRouter([
     element: <RootRoute />,
     children: [
       {
-        path: 'app',
-        element: <AppCard title='The TuDu' description='Achieve your goals' />,
+        index: true,
+        element: (
+          <Auth>
+            <App />
+          </Auth>
+        ),
       },
       {
         path: 'sign-in',
-        element: <LoginCard />,
+        element: <SignIn />,
       },
-      { path: 'sign-up', element: <RegisterCard /> },
+      { path: 'sign-up', element: <UserSignUpForm /> },
     ],
   },
 ]);

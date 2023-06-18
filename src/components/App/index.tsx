@@ -1,6 +1,5 @@
-import { PropsWithChildren, useEffect } from 'react';
+import { useEffect } from 'react';
 import AppHeader from './Header';
-import type { AppHeaderProp } from './Header';
 import AppFooter from './Footer';
 import DialogPopup from '../DialogPopup';
 import TodoList from '../TodoList';
@@ -10,14 +9,14 @@ import TaskCreateForm from '../forms/TaskCreateForm';
 import TagsListEditForm from '../forms/TagsListEditForm';
 import { shallow } from 'zustand/shallow';
 import { TodoItem } from '@/types';
+import UserProfileForm from '../forms/UserProfileForm';
 
-type CardProps = PropsWithChildren & AppHeaderProp;
-
-export default function AppCard({ title, description }: CardProps) {
+export default function App() {
   const [
     toggleTagsListEditDialog,
     toggleTaskUpdateDialog,
     toggleTaskCreateDialog,
+    toggleUserProfileDialog,
     setSelectingTask,
     fetchTasks,
     fetchTags,
@@ -26,17 +25,19 @@ export default function AppCard({ title, description }: CardProps) {
       state.toggleTagsListEditDialog,
       state.toggleTaskUpdateDialog,
       state.toggleTaskCreateDialog,
+      state.toggleUserProfileDialog,
       state.setSelectingTask,
       state.fetchTasks,
       state.fetchTags,
     ],
-    shallow
+    shallow,
   );
   const [
     isTagsListEditDialogOpen,
     isTaskUpdateDialogOpen,
     isTaskCreateDialogOpen,
     isShowCompletedTasks,
+    isUserProfileOpen,
     uncompletedTasks,
     completedTasks,
   ] = useStore(
@@ -45,10 +46,11 @@ export default function AppCard({ title, description }: CardProps) {
       state.isTaskUpdateDialogOpen,
       state.isTaskCreateDialogOpen,
       state.isShowCompletedTasks,
+      state.isUserProfileOpen,
       state.uncompletedTasks,
       state.completedTasks,
     ],
-    shallow
+    shallow,
   );
 
   function handleCloseTaskEditDialog() {
@@ -65,34 +67,30 @@ export default function AppCard({ title, description }: CardProps) {
     toggleTagsListEditDialog(false);
   }
 
+  function handleCloseUserProfileDialog() {
+    toggleUserProfileDialog(false);
+  }
+
   useEffect(() => {
     fetchTasks();
     fetchTags();
   }, []);
 
   return (
-    <div className='divide-y divide-gray-200 rounded-lg bg-white shadow-2xl w-[30rem] relative z-10'>
-      <AppHeader title={title} description={description} />
-      <TodoList
-        todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}
-      />
+    <div className="w-[28rem] divide-y divide-gray-200 ">
+      <AppHeader />
+      <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} />
       <AppFooter />
-      <DialogPopup
-        isOpen={isTaskUpdateDialogOpen}
-        onClose={handleCloseTaskEditDialog}
-      >
+      <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
         <TaskEditForm />
       </DialogPopup>
-      <DialogPopup
-        isOpen={isTaskCreateDialogOpen}
-        onClose={handleCloseTaskCreateDialog}
-      >
+      <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
+        <UserProfileForm />
+      </DialogPopup>
+      <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
         <TaskCreateForm />
       </DialogPopup>
-      <DialogPopup
-        isOpen={isTagsListEditDialogOpen}
-        onClose={handleCloseTagsEditDialog}
-      >
+      <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
         <TagsListEditForm />
       </DialogPopup>
     </div>

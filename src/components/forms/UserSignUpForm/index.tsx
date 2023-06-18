@@ -10,53 +10,48 @@ export default function UserSignUpForm() {
   });
 
   async function onSubmit(data: UserSignUpFormValues) {
-    const { email, password, confirmPassword } = data;
+    const { email, password } = data;
     const user = await createUser(email, password);
     console.log(user);
   }
   return (
     <>
-      <header className='py-4 text-center'>
-        <h1 className='text-3xl font-bold'>Welcome to the TooDoo</h1>
-        <span className='text-sm font-semibold'> -*- The to-do app -*- </span>
-        <h3 className='font-semibold mt-4'>
-          Create an account to do your tasks.
-        </h3>
+      <header className="py-4 text-center">
+        <h1 className="text-3xl font-bold">Welcome to the TooDoo</h1>
+        <span className="text-sm font-semibold"> -*- The to-do app -*- </span>
+        <h3 className="font-semibold mt-4">Create an account to do your tasks.</h3>
       </header>
-      <form
-        className='py-4 w-2/3 mx-auto space-y-6'
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="py-4 w-2/3 mx-auto space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <Input
           control={control}
-          label='Email'
-          name='email'
-          id='email'
+          label="Email"
+          name="email"
+          id="email"
           rules={{ required: { value: true, message: 'Email is required!' } }}
         />
         <Input
           control={control}
-          label='Password'
-          name='password'
-          id='password'
+          label="Password"
+          name="password"
+          id="password"
           rules={{
             required: { value: true, message: 'Password is required!' },
           }}
-          type='password'
+          type="password"
         />
         <Input
           control={control}
-          label='Re-type password'
-          name='confirmPassword'
-          id='confirmPassword'
+          label="Re-type password"
+          name="confirmPassword"
+          id="confirmPassword"
           rules={{
             required: { value: true, message: 'Please re-enter the password!' },
           }}
-          type='password'
+          type="password"
         />
-        <Button label='Login' className='w-full justify-center' type='submit' />
+        <Button label="Login" className="w-full justify-center" type="submit" />
 
-        <p className='font-semibold mt-4'>Or</p>
+        <p className="font-semibold mt-4">Or</p>
       </form>
     </>
   );

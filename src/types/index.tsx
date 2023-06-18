@@ -19,6 +19,13 @@ export type Tag = {
   color: TagColor;
 };
 
+export type User = {
+  displayName: string;
+  email: string;
+  phoneNumber: string;
+  photoURL: string;
+};
+
 interface TaskState {
   selectingTask: TodoItem;
   uncompletedTasks: TodoItem[];
@@ -36,9 +43,11 @@ interface DialogState {
   isTaskUpdateDialogOpen: boolean;
   isTaskCreateDialogOpen: boolean;
   isTagsListEditDialogOpen: boolean;
+  isUserProfileOpen: boolean;
   toggleTaskUpdateDialog: (isOpen: boolean) => void;
   toggleTaskCreateDialog: (isOpen: boolean) => void;
   toggleTagsListEditDialog: (isOpen: boolean) => void;
+  toggleUserProfileDialog: (isOpen: boolean) => void;
 }
 
 interface TagState {
@@ -48,7 +57,12 @@ interface TagState {
   deleteTag: (tag: Tag) => void;
 }
 
-export interface StoreState extends TaskState, DialogState, TagState {}
+interface UserState {
+  user: User | null;
+  setUser: (user: User | null) => void;
+}
+
+export interface StoreState extends TaskState, DialogState, TagState, UserState {}
 
 export type TaskCreateFormValues = {
   title: string;
@@ -79,6 +93,8 @@ export type UserSignUpFormValues = {
   password: string;
   confirmPassword: string;
 };
+
+export type UserProfileFormValues = User;
 
 export type FormInputProps = {
   control: Control<any>;

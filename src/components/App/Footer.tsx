@@ -6,16 +6,20 @@ const CardFooter = function AppFooter() {
   const [
     toggleShowCompletedTasks,
     toggleTagsListEditDialog,
+    toggleUserProfileDialog,
     isShowCompletedTasks,
     isTagsListEditDialogOpen,
+    isUserProfileOpen,
   ] = useStore(
     (state) => [
       state.toggleShowCompletedTasks,
       state.toggleTagsListEditDialog,
+      state.toggleUserProfileDialog,
       state.isShowCompletedTasks,
       state.isTagsListEditDialogOpen,
+      state.isUserProfileOpen,
     ],
-    shallow
+    shallow,
   );
 
   function handleEditTagsButtonClick() {
@@ -26,19 +30,18 @@ const CardFooter = function AppFooter() {
     toggleShowCompletedTasks(!isShowCompletedTasks);
   }
 
+  function handleUserProfileButtonClick() {
+    toggleUserProfileDialog(!isUserProfileOpen);
+  }
+
   return (
-    <div className='px-4 py-4 sm:px-6'>
-      <div className='flex gap-4 justify-end'>
-        <Button
-          label='Edit Tags'
-          size='large'
-          rounded={true}
-          onClick={handleEditTagsButtonClick}
-        />
+    <div className="py-4">
+      <div className="flex gap-4 justify-end">
+        <Button label="Profile" size="large" onClick={handleUserProfileButtonClick} />
+        <Button label="Tags" size="large" onClick={handleEditTagsButtonClick} />
         <Button
           label={isShowCompletedTasks ? 'Doing Tasks' : 'Completed Tasks'}
-          size='large'
-          rounded={true}
+          size="large"
           onClick={handleCompletedTasksButtonClick}
         />
       </div>
