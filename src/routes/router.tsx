@@ -4,6 +4,7 @@ import App from '@/components/App';
 import UserSignInForm from '@/components/forms/UserSignInForm';
 import UserSignUpForm from '@/components/forms/UserSignUpForm';
 import Auth from './Auth';
+import SignIn from './SignIn';
 
 const router = createBrowserRouter([
   {
@@ -14,13 +15,13 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <Auth>
-            <App title="The TuDu" description="Achieve your goals" />
+            <App />
           </Auth>
         ),
       },
       {
         path: 'sign-in',
-        element: <UserSignInForm />,
+        element: <SignIn />,
       },
       { path: 'sign-up', element: <UserSignUpForm /> },
     ],

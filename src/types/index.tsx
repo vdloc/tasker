@@ -1,5 +1,4 @@
 import type { Control } from 'react-hook-form';
-import type { User } from 'firebase/auth';
 
 export type TodoItem = {
   id: string | number;
@@ -20,6 +19,13 @@ export type Tag = {
   color: TagColor;
 };
 
+export type User = {
+  displayName: string;
+  email: string;
+  phoneNumber: string;
+  photoURL: string;
+};
+
 interface TaskState {
   selectingTask: TodoItem;
   uncompletedTasks: TodoItem[];
@@ -37,9 +43,11 @@ interface DialogState {
   isTaskUpdateDialogOpen: boolean;
   isTaskCreateDialogOpen: boolean;
   isTagsListEditDialogOpen: boolean;
+  isUserProfileOpen: boolean;
   toggleTaskUpdateDialog: (isOpen: boolean) => void;
   toggleTaskCreateDialog: (isOpen: boolean) => void;
   toggleTagsListEditDialog: (isOpen: boolean) => void;
+  toggleUserProfileDialog: (isOpen: boolean) => void;
 }
 
 interface TagState {
@@ -85,6 +93,8 @@ export type UserSignUpFormValues = {
   password: string;
   confirmPassword: string;
 };
+
+export type UserProfileFormValues = User;
 
 export type FormInputProps = {
   control: Control<any>;

@@ -1,37 +1,46 @@
-import { UserSignInFormValues } from '@/types';
+import { User, UserSignInFormValues } from '@/types';
 import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
 import Button from '../../common/Button';
 import { signInUser } from '@/firebase';
 import SocialButton from './SocialButton';
-import GoogleIcon from '../../icons/GoogleIcon';
-import GithubIcon from '../../icons/GithubIcon';
-import UserIcon from '../../icons/UserIcon';
 import { useStore } from '@/store';
+import { GoogleIcon, GithubIcon, UserIcon } from '@/components/icons';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { shallow } from 'zustand/shallow';
+import configs from '@/data/configs.json';
+
+const {
+  app: { name, description },
+} = configs;
 
 export default function UserSignInForm() {
   const { control, handleSubmit } = useForm<UserSignInFormValues>({
     defaultValues: {},
   });
-  const setUser = useStore((state) => state.setUser);
+  const [user, setUser] = useStore((state) => [state.user, state.setUser], shallow);
+  const navigate = useNavigate();
 
   async function onSubmit(data: UserSignInFormValues) {
     const { email, password } = data;
     try {
       const user = await signInUser(email, password);
-      setUser(user);
+      setUser(user as User);
+      navigate('/');
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <>
-      <header className="py-4 text-center">
-        <h1 className="text-3xl font-bold">TooDoo</h1>
-        <p className="text-sm font-semibold mt-3"> -*- The to-do app -*- </p>
+    <div className="py-6 w-2/3 mx-auto">
+      <header className="pt-4 text-center">
+        <h1 className="text-3xl font-bold">{name}</h1>
+        <p className="text-base mt-1 italic font-medium">{description}</p>
+        <p className="text-sm mt-8 font-medium">Sign in to your account</p>
       </header>
-      <form className="py-4 w-2/3 mx-auto divide-y-2 divide-dashed" onSubmit={handleSubmit(onSubmit)}>
+      <form className="py-4 divide-y-2 divide-dashed" onSubmit={handleSubmit(onSubmit)}>
         <section className="space-y-6 pb-3">
           <Input
             control={control}
@@ -52,13 +61,13 @@ export default function UserSignInForm() {
           />
           <Button label="Login" className="w-full justify-center" type="submit" />
         </section>
-        <section className="space-y-6 mt-3 pt-6">
+        <section className="space-y-6 mt-3 pt-3">
           <h5 className="text-center text-sm font-medium"> Or with social accounts:</h5>
           <SocialButton Icon={GoogleIcon} label="Sign in with Google" />
           <SocialButton Icon={GithubIcon} label="Sign in with Github" />
           <SocialButton Icon={UserIcon} label="Sign in as guest" />
         </section>
       </form>
-    </>
+    </div>
   );
 }

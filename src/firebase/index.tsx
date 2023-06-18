@@ -4,7 +4,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  sendEmailVerification,
+  updateProfile,
+  updateEmail,
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
@@ -32,12 +33,14 @@ export async function signInUser(email: string, password: string) {
   await setPersistence(auth, browserLocalPersistence);
   const userCredential = await signInWithEmailAndPassword(auth, email, password);
   return userCredential.user;
-  // try {
+}
 
-  // } catch (error: any) {
-  //   console.log(error);
+export async function signOutUser() {
+  await setPersistence(auth, browserLocalPersistence);
+  await signOut(auth);
+}
 
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  // }
+export async function updateUser({ displayName, email, photoURL }: User) {
+  await updateProfile(auth.currentUser as User, { displayName, photoURL });
+  await updateEmail(auth.currentUser as User, email as string);
 }

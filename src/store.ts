@@ -1,10 +1,9 @@
 import { StateCreator, create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import type { StoreState, TodoItem, Tag } from './types';
+import type { StoreState, TodoItem, Tag, User } from './types';
 import { devtools, persist } from 'zustand/middleware';
 import todos from '@/data/todos.json';
 import tags from '@/data/tags.json';
-import { type User } from 'firebase/auth';
 
 const createTasksSlice = (set: any) => ({
   uncompletedTasks: [],
@@ -88,7 +87,9 @@ const createDialogSlice = (set: any) => ({
 
 const createUserSlice = (set: any) => ({
   user: null,
-  setUser: (user: User) => set({ user }),
+  setUser: (user: User | null) => set({ user }),
+  isUserProfileOpen: false,
+  toggleUserProfileDialog: (isShow: boolean) => set({ isUserProfileOpen: isShow }),
 });
 
 const initializer: StateCreator<StoreState, [['zustand/persist', unknown], ['zustand/immer', never]]> = (set) => ({
@@ -98,6 +99,6 @@ const initializer: StateCreator<StoreState, [['zustand/persist', unknown], ['zus
   ...createUserSlice(set),
 });
 
-const createStore = devtools(persist(immer(initializer), { name: 'todo', skipHydration: true }));
+const createStore = devtools(persist(immer(initializer), { name: 'todo' }));
 
 export const useStore = create<StoreState>()(createStore);
