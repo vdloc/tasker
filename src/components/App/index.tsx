@@ -71,7 +71,7 @@ export default function AppCard({ title, description }: CardProps) {
   }, []);
 
   return (
-    <div className='divide-y divide-gray-200 rounded-lg bg-white shadow-2xl w-[30rem] relative z-10'>
+    <div className='divide-y divide-gray-200 py-4'>
       <AppHeader title={title} description={description} />
       <TodoList
         todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}

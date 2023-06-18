@@ -8,12 +8,15 @@ import {
   setPersistence,
   browserLocalPersistence,
   onAuthStateChanged,
+  type User,
 } from 'firebase/auth';
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, console.log);
+export async function handleAuthStateChange(onChange: (user: User | null) => void) {
+  onAuthStateChanged(auth, onChange);
+}
 
 export async function createUser(email: string, password: string) {
   try {
@@ -26,14 +29,15 @@ export async function createUser(email: string, password: string) {
 }
 
 export async function signInUser(email: string, password: string) {
-  try {
-    await setPersistence(auth, browserLocalPersistence);
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const { user } = userCredential;
-  } catch (error: any) {
-    console.log(error);
+  await setPersistence(auth, browserLocalPersistence);
+  const userCredential = await signInWithEmailAndPassword(auth, email, password);
+  return userCredential.user;
+  // try {
 
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  }
+  // } catch (error: any) {
+  //   console.log(error);
+
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  // }
 }

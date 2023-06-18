@@ -1,4 +1,5 @@
 import type { Control } from 'react-hook-form';
+import type { User } from 'firebase/auth';
 
 export type TodoItem = {
   id: string | number;
@@ -48,7 +49,12 @@ interface TagState {
   deleteTag: (tag: Tag) => void;
 }
 
-export interface StoreState extends TaskState, DialogState, TagState {}
+interface UserState {
+  user: User | null;
+  setUser: (user: User | null) => void;
+}
+
+export interface StoreState extends TaskState, DialogState, TagState, UserState {}
 
 export type TaskCreateFormValues = {
   title: string;

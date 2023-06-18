@@ -31,7 +31,6 @@ export async function signInUser(email: string, password: string) {
     await setPersistence(auth, browserLocalPersistence);
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const { user } = userCredential;
-    console.log('​signInUser -> user', user);
   } catch (error: any) {
     console.log(error);
 
