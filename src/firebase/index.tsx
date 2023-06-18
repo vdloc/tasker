@@ -24,8 +24,7 @@ export async function createUser(email: string, password: string) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return userCredential.user;
   } catch (error: any) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+    console.log(error.message);
   }
 }
 
