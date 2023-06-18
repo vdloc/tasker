@@ -6,9 +6,7 @@ import { signInUser } from '@/firebase';
 import SocialButton from './SocialButton';
 import { useStore } from '@/store';
 import { GoogleIcon, GithubIcon, UserIcon } from '@/components/icons';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { shallow } from 'zustand/shallow';
+import { Link, useNavigate } from 'react-router-dom';
 import configs from '@/data/configs.json';
 
 const {
@@ -19,7 +17,7 @@ export default function UserSignInForm() {
   const { control, handleSubmit } = useForm<UserSignInFormValues>({
     defaultValues: {},
   });
-  const [user, setUser] = useStore((state) => [state.user, state.setUser], shallow);
+  const setUser = useStore((state) => state.setUser);
   const navigate = useNavigate();
 
   async function onSubmit(data: UserSignInFormValues) {
@@ -34,7 +32,7 @@ export default function UserSignInForm() {
   }
 
   return (
-    <div className="py-6 w-2/3 mx-auto">
+    <div className="w-[20rem] py-6 px-4 mx-auto">
       <header className="pt-4 text-center">
         <h1 className="text-3xl font-bold">{name}</h1>
         <p className="text-base mt-1 italic font-medium">{description}</p>
@@ -61,11 +59,21 @@ export default function UserSignInForm() {
           />
           <Button label="Login" className="w-full justify-center" type="submit" />
         </section>
-        <section className="space-y-6 mt-3 pt-3">
+        <section className="space-y-6 mt-3 py-3">
           <h5 className="text-center text-sm font-medium"> Or with social accounts:</h5>
           <SocialButton Icon={GoogleIcon} label="Sign in with Google" />
           <SocialButton Icon={GithubIcon} label="Sign in with Github" />
           <SocialButton Icon={UserIcon} label="Sign in as guest" />
+        </section>
+        <section className=" mt-3 pt-3">
+          <h5 className="text-center text-sm font-medium">
+            {' '}
+            Don&apos;t have an account?{' '}
+            <Link to="/sign-up" className="text-indigo-700">
+              Sign Up
+            </Link>{' '}
+            now.{' '}
+          </h5>
         </section>
       </form>
     </div>

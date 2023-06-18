@@ -77,7 +77,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="divide-y divide-gray-200 ">
+    <div className="w-[28rem] divide-y divide-gray-200 ">
       <AppHeader />
       <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} />
       <AppFooter />

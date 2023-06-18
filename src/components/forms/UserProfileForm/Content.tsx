@@ -10,7 +10,7 @@ type UserProfileFormContentProps = {
 export default function UserProfileFormContent({ control }: UserProfileFormContentProps) {
   return (
     <>
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center">
         <Avatar control={control} name="photoURL" alt="" />
       </div>
       <Input control={control} label="Display name" name="displayName" />

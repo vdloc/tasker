@@ -15,7 +15,7 @@ export default function AppHeader() {
   }
 
   return (
-    <div className="border-b border-gray-200 bg-white px-4 pb-6 pt-8 sm:px-6">
+    <div className="border-b border-gray-200 bg-white px-4 pb-6 pt-8">
       <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
         <div className="ml-4 mt-4">
           <h3 className="text-2xl font-medium leading-6 text-gray-900 text-left">{name}</h3>

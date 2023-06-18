@@ -13,6 +13,7 @@ export default function UserProfileFormFooter() {
   async function handleSignOut() {
     await signOutUser();
     redirect('/sign-in');
+    toggleUserProfileDialog(false);
   }
 
   return (
