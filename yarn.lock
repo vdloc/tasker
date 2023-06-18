@@ -2440,7 +2440,7 @@
     memoizerific "^1.11.3"
     prop-types "^15.7.2"
 
-"@storybook/blocks@7.0.12", "@storybook/blocks@^7.0.12":
+"@storybook/blocks@7.0.12":
   version "7.0.12"
   resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-7.0.12.tgz#4b92955c49f7beea58df1c0f8d3138dc54a01444"
   integrity sha512-MbJKjuTJ7xVbkUVwkEwb6vTYGrkRk4+Xtx1UGo+512o91ubqFs8hXwCHP+x/49RCIIQs5zl93Ig8fTtm+MejWw==
@@ -2456,6 +2456,34 @@
     "@storybook/preview-api" "7.0.12"
     "@storybook/theming" "7.0.12"
     "@storybook/types" "7.0.12"
+    "@types/lodash" "^4.14.167"
+    color-convert "^2.0.1"
+    dequal "^2.0.2"
+    lodash "^4.17.21"
+    markdown-to-jsx "^7.1.8"
+    memoizerific "^1.11.3"
+    polished "^4.2.2"
+    react-colorful "^5.1.2"
+    telejson "^7.0.3"
+    ts-dedent "^2.0.0"
+    util-deprecate "^1.0.2"
+
+"@storybook/blocks@^7.0.22":
+  version "7.0.22"
+  resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-7.0.22.tgz#b4cf7a3d99013bbf50814f93e11cf8b0fd04ee8d"
+  integrity sha512-bVOouc2LCkfaQpymPX+PzVSGwlu7Nj52jnqZFBK84aRcX8JDhJdnZ4KCxyEfraBQRuywH36GIMrlhnZCf0w54A==
+  dependencies:
+    "@storybook/channels" "7.0.22"
+    "@storybook/client-logger" "7.0.22"
+    "@storybook/components" "7.0.22"
+    "@storybook/core-events" "7.0.22"
+    "@storybook/csf" "^0.1.0"
+    "@storybook/docs-tools" "7.0.22"
+    "@storybook/global" "^5.0.0"
+    "@storybook/manager-api" "7.0.22"
+    "@storybook/preview-api" "7.0.22"
+    "@storybook/theming" "7.0.22"
+    "@storybook/types" "7.0.22"
     "@types/lodash" "^4.14.167"
     color-convert "^2.0.1"
     dequal "^2.0.2"
@@ -2834,6 +2862,19 @@
     "@storybook/core-common" "7.0.12"
     "@storybook/preview-api" "7.0.12"
     "@storybook/types" "7.0.12"
+    "@types/doctrine" "^0.0.3"
+    doctrine "^3.0.0"
+    lodash "^4.17.21"
+
+"@storybook/docs-tools@7.0.22":
+  version "7.0.22"
+  resolved "https://registry.yarnpkg.com/@storybook/docs-tools/-/docs-tools-7.0.22.tgz#8d887acf1fb665eea3009ba5ab646dee227fcbe4"
+  integrity sha512-1t+mi7vz5Yd9DN9Pmp0LdkfChNQefRXN4l5cyqzZ+62K4UPoe2ZYsfWC8zotStC+FnaDZ+QXqgWNIBkeVKTjwQ==
+  dependencies:
+    "@babel/core" "^7.12.10"
+    "@storybook/core-common" "7.0.22"
+    "@storybook/preview-api" "7.0.22"
+    "@storybook/types" "7.0.22"
     "@types/doctrine" "^0.0.3"
     doctrine "^3.0.0"
     lodash "^4.17.21"
