@@ -10,6 +10,7 @@ import TagsListEditForm from '../forms/TagsListEditForm';
 import { shallow } from 'zustand/shallow';
 import { TodoItem } from '@/types';
 import UserProfileForm from '../forms/UserProfileForm';
+import AppTransition from '../AppTransition';
 
 export default function App() {
   const [
@@ -77,22 +78,24 @@ export default function App() {
   }, []);
 
   return (
-    <div className="w-[28rem] divide-y divide-gray-200 ">
-      <AppHeader />
-      <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} />
-      <AppFooter />
-      <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
-        <TaskEditForm />
-      </DialogPopup>
-      <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
-        <UserProfileForm />
-      </DialogPopup>
-      <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
-        <TaskCreateForm />
-      </DialogPopup>
-      <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
-        <TagsListEditForm />
-      </DialogPopup>
-    </div>
+    <AppTransition>
+      <div className="w-[28rem] divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
+        <AppHeader />
+        <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} />
+        <AppFooter />
+        <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
+          <TaskEditForm />
+        </DialogPopup>
+        <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
+          <UserProfileForm />
+        </DialogPopup>
+        <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
+          <TaskCreateForm />
+        </DialogPopup>
+        <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
+          <TagsListEditForm />
+        </DialogPopup>
+      </div>
+    </AppTransition>
   );
 }

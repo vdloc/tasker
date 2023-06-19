@@ -1,6 +1,5 @@
-import CardLayout from '@/layout/CardLayout';
+import Container from '@/layout/Container';
 import { Outlet } from 'react-router-dom';
-
 import { Helmet } from 'react-helmet';
 import configs from '@data/configs.json';
 
@@ -10,12 +9,12 @@ const {
 
 export default function RootRoute() {
   return (
-    <CardLayout>
+    <Container>
       <Helmet>
         <title>{name}</title>
         <meta name="description" content={description} />
       </Helmet>
       <Outlet />
-    </CardLayout>
+    </Container>
   );
 }

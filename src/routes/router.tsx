@@ -4,6 +4,7 @@ import App from '@/components/App';
 import UserSignUpForm from '@/components/forms/UserSignUpForm';
 import Auth from './Auth';
 import SignIn from './SignIn';
+import AppTransition from '@/components/AppTransition';
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,22 @@ const router = createBrowserRouter([
       },
       {
         path: 'sign-in',
-        element: <SignIn />,
+        element: (
+          <AppTransition>
+            <SignIn />
+          </AppTransition>
+        ),
       },
-      { path: 'sign-up', element: <UserSignUpForm /> },
+      {
+        path: 'sign-up',
+        element: (
+          <AppTransition>
+            {(() => (
+              <UserSignUpForm />
+            ))()}
+          </AppTransition>
+        ),
+      },
     ],
   },
 ]);

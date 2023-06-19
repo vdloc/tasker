@@ -30,9 +30,8 @@ export default function UserSignInForm() {
       console.log(error);
     }
   }
-
   return (
-    <div className="w-[20rem] py-6 px-4 mx-auto">
+    <div className="w-[20rem] py-6 px-4 mx-auto relative z-10 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
       <header className="pt-4 text-center">
         <h1 className="text-3xl font-bold">{name}</h1>
         <p className="text-base mt-1 italic font-medium">{description}</p>
