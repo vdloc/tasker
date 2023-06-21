@@ -31,7 +31,7 @@ export default function App() {
       state.fetchTasks,
       state.fetchTags,
     ],
-    shallow,
+    shallow
   );
   const [
     isTagsListEditDialogOpen,
@@ -51,7 +51,7 @@ export default function App() {
       state.uncompletedTasks,
       state.completedTasks,
     ],
-    shallow,
+    shallow
   );
 
   function handleCloseTaskEditDialog() {
@@ -79,20 +79,34 @@ export default function App() {
 
   return (
     <AppTransition>
-      <div className="w-[28rem] divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
+      <div className='w-screen md:w-[28rem] h-screen md:h-auto overflow-hidden divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl'>
         <AppHeader />
-        <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} />
+        <TodoList
+          todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}
+        />
         <AppFooter />
-        <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
+        <DialogPopup
+          isOpen={isTaskUpdateDialogOpen}
+          onClose={handleCloseTaskEditDialog}
+        >
           <TaskEditForm />
         </DialogPopup>
-        <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
+        <DialogPopup
+          isOpen={isUserProfileOpen}
+          onClose={handleCloseUserProfileDialog}
+        >
           <UserProfileForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
+        <DialogPopup
+          isOpen={isTaskCreateDialogOpen}
+          onClose={handleCloseTaskCreateDialog}
+        >
           <TaskCreateForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
+        <DialogPopup
+          isOpen={isTagsListEditDialogOpen}
+          onClose={handleCloseTagsEditDialog}
+        >
           <TagsListEditForm />
         </DialogPopup>
       </div>
