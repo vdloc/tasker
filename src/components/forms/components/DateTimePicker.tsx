@@ -24,7 +24,7 @@ const pickerOptions = {
     text: 'text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm',
     disabledText: 'bg-white',
     input:
-      'block peer pl-10 rounded-md border shadow-sm ring-1 ring-inset ring-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm',
+      'block peer pl-10 rounded-md border shadow-sm ring-1 ring-inset ring-gray-300 focus:border-indigo-500 focus:ring-indigo-500 md:text-sm',
     inputIcon: 'fill-indigo-700',
     selected: 'bg-indigo-700',
   },
@@ -40,7 +40,8 @@ const pickerOptions = {
       </span>
     ),
   },
-  datepickerClassNames: 'top-12 text-sm',
+  datepickerClassNames:
+    'text-sm drop-shadow-2xl fixed md:absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:translate-x-0 md:translate-y-0 md:top-auto md:left-auto md:bottom-full',
   language: 'en',
 };
 
@@ -67,7 +68,7 @@ export default function DateTimePicker({
   return (
     <div>
       <label className='block text-sm font-medium text-gray-900'>{label}</label>
-      <div className='mt-1'>
+      <div className='mt-1 relative'>
         <Datepicker
           options={options}
           onChange={handleChange}
