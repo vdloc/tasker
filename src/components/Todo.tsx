@@ -2,6 +2,7 @@ import { useStore } from '@/store';
 import Button from './common/Button';
 import type { TodoItem } from '@/types';
 import { ChangeEvent } from 'react';
+import { query, where } from 'firebase/firestore';
 
 type TodoProps = {
   todo: TodoItem;
@@ -21,6 +22,7 @@ export default function Todo({ todo }: TodoProps) {
   function handleStatusChange(event: ChangeEvent) {
     const target = event.target as HTMLInputElement;
     const updatingTask = { ...todo, status: target.checked };
+    
     updateTask(updatingTask);
   }
 

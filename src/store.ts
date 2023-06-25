@@ -2,10 +2,9 @@ import { StateCreator, create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import type { StoreState, TodoItem, Tag, User } from './types';
 import { devtools, persist } from 'zustand/middleware';
-import todos from '@/data/todos.json';
-import tags from '@/data/tags.json';
+import { database } from './firebase/firestore';
 
-const createTasksSlice = (set: any) => ({
+const createTasksSlice = (set: any, get: any) => ({
   uncompletedTasks: [],
   completedTasks: [],
   selectingTask: {} as TodoItem,
@@ -14,7 +13,7 @@ const createTasksSlice = (set: any) => ({
   setSelectingTask: (task: TodoItem) => set(() => ({ selectingTask: task })),
   updateTask: (updatedTask: TodoItem) =>
     set((state: StoreState) => {
-      const isTaskCompleted = state.completedTasks.find((task) => task.id === updatedTask.id);
+      const isTaskCompleted = state.completedTasks.some((task) => task.id === updatedTask.id);
       if (updatedTask.status && !isTaskCompleted) {
         state.completedTasks = [updatedTask, ...state.completedTasks];
         state.uncompletedTasks = state.uncompletedTasks.filter((task) => task.id !== updatedTask.id);
@@ -33,17 +32,19 @@ const createTasksSlice = (set: any) => ({
       state.uncompletedTasks = [newTask, ...state.uncompletedTasks];
     });
   },
+  createTasks: (newTasks: TodoItem[]) => {
+    set((state: StoreState) => {
+      state.uncompletedTasks = [...newTasks, ...state.uncompletedTasks];
+    });
+  },
   deleteTask: (deleteTask: TodoItem) =>
     set((state: StoreState) => {
       state.uncompletedTasks = state.uncompletedTasks.filter((task) => task.id !== deleteTask?.id);
       state.completedTasks = state.completedTasks.filter((task) => task.id !== deleteTask?.id);
     }),
   fetchTasks: async () => {
-    const data = await new Promise<TodoItem[]>((res) => {
-      setTimeout(() => {
-        res(todos as TodoItem[]);
-      }, 1000);
-    });
+    const user = get().user;
+    const data = (await database.getTasks(user.uid)) as TodoItem[];
     const uncompletedTasks = data.filter((task) => !task.status);
     const completedTasks = data.filter((task) => task.status);
     set({ uncompletedTasks, completedTasks });
@@ -52,19 +53,13 @@ const createTasksSlice = (set: any) => ({
 
 const createTagSlice = (set: any) => ({
   tags: [],
+  setTags: (tags: Tag[]) => set({ tags }),
   addTag: (tag: Tag) => set((state: StoreState) => ({ tags: [...state.tags, tag] })),
+  addTags: (tags: Tag[]) => set((state: StoreState) => ({ tags: [...state.tags, ...tags] })),
   deleteTag: (tag: Tag) =>
     set((state: StoreState) => ({
       tags: state.tags.filter(({ id }) => id !== tag.id),
     })),
-  fetchTags: async () => {
-    const data = await new Promise<Tag[]>((res) => {
-      setTimeout(() => {
-        res(tags as Tag[]);
-      }, 1000);
-    });
-    set({ tags: data });
-  },
 });
 
 const createDialogSlice = (set: any) => ({
@@ -92,8 +87,8 @@ const createUserSlice = (set: any) => ({
   toggleUserProfileDialog: (isShow: boolean) => set({ isUserProfileOpen: isShow }),
 });
 
-const initializer: StateCreator<StoreState, [['zustand/persist', unknown], ['zustand/immer', never]]> = (set) => ({
-  ...createTasksSlice(set),
+const initializer: StateCreator<StoreState, [['zustand/persist', unknown], ['zustand/immer', never]]> = (set, get) => ({
+  ...createTasksSlice(set, get),
   ...createDialogSlice(set),
   ...createTagSlice(set),
   ...createUserSlice(set),

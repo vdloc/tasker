@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import AppHeader from './Header';
 import AppFooter from './Footer';
 import DialogPopup from '../DialogPopup';
@@ -8,9 +8,13 @@ import TaskEditForm from '../forms/TaskEditForm';
 import TaskCreateForm from '../forms/TaskCreateForm';
 import TagsListEditForm from '../forms/TagsListEditForm';
 import { shallow } from 'zustand/shallow';
-import { TodoItem } from '@/types';
+import { Tag, TodoItem } from '@/types';
 import UserProfileForm from '../forms/UserProfileForm';
 import AppTransition from '../AppTransition';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { query, where } from 'firebase/firestore';
+import { tagRef, taskRef } from '@/firebase/firestore';
+import { filterTasksByStatus } from '@/utils';
 
 export default function App() {
   const [
@@ -19,8 +23,7 @@ export default function App() {
     toggleTaskCreateDialog,
     toggleUserProfileDialog,
     setSelectingTask,
-    fetchTasks,
-    fetchTags,
+    setTags,
   ] = useStore(
     (state) => [
       state.toggleTagsListEditDialog,
@@ -28,8 +31,7 @@ export default function App() {
       state.toggleTaskCreateDialog,
       state.toggleUserProfileDialog,
       state.setSelectingTask,
-      state.fetchTasks,
-      state.fetchTags,
+      state.setTags,
     ],
     shallow,
   );
@@ -39,8 +41,7 @@ export default function App() {
     isTaskCreateDialogOpen,
     isShowCompletedTasks,
     isUserProfileOpen,
-    uncompletedTasks,
-    completedTasks,
+    user,
   ] = useStore(
     (state) => [
       state.isTagsListEditDialogOpen,
@@ -48,11 +49,17 @@ export default function App() {
       state.isTaskCreateDialogOpen,
       state.isShowCompletedTasks,
       state.isUserProfileOpen,
-      state.uncompletedTasks,
-      state.completedTasks,
+      state.user,
     ],
     shallow,
   );
+
+  const tasksQuery = useMemo(() => query(taskRef, where('userID', '==', user?.uid)), [user]);
+  const tagsQuery = useMemo(() => query(tagRef, where('userID', '==', user?.uid)), [user]);
+
+  const [tasks, isTasksLoading, tasksError] = useCollectionData(tasksQuery);
+  const [tags, _, tagsError] = useCollectionData(tagsQuery);
+  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as TodoItem[]) || []);
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
@@ -73,15 +80,14 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetchTasks();
-    fetchTags();
-  }, []);
+    setTags(tags as Tag[]);
+  }, [tags, setTags]);
 
   return (
     <AppTransition>
       <div className="w-[28rem] divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
         <AppHeader />
-        <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} />
+        <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} loading={isTasksLoading} />
         <AppFooter />
         <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
           <TaskEditForm />

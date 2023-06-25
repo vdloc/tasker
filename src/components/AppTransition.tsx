@@ -3,7 +3,6 @@ import { PropsWithChildren, useEffect, useState } from 'react';
 
 export default function AppTransition({ children }: PropsWithChildren) {
   const [isShow, setShow] = useState(false);
-  console.log('​AppTransition -> isShow', isShow);
   useEffect(() => {
     setShow(true);
     return () => {

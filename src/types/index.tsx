@@ -20,6 +20,7 @@ export type Tag = {
 };
 
 export type User = {
+  uid: string;
   displayName: string;
   email: string;
   phoneNumber: string;
@@ -36,6 +37,7 @@ interface TaskState {
   fetchTasks: () => void;
   deleteTask: (task: TodoItem) => void;
   createTask: (task: TodoItem) => void;
+  createTasks: (tasks: TodoItem[]) => void;
   toggleShowCompletedTasks: (isShow: boolean) => void;
 }
 
@@ -52,9 +54,10 @@ interface DialogState {
 
 interface TagState {
   tags: Tag[];
-  fetchTags: () => void;
   addTag: (tag: Tag) => void;
   deleteTag: (tag: Tag) => void;
+  addTags: (tags: Tag[]) => void;
+  setTags: (tags: Tag[]) => void;
 }
 
 interface UserState {
