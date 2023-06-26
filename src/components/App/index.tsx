@@ -11,10 +11,10 @@ import { shallow } from 'zustand/shallow';
 import { Tag, TodoItem } from '@/types';
 import UserProfileForm from '../forms/UserProfileForm';
 import AppTransition from '../AppTransition';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { query, where } from 'firebase/firestore';
 import { tagRef, taskRef } from '@/firebase/firestore';
 import { filterTasksByStatus } from '@/utils';
+import { useCollection } from '@/firebase/hooks/useCollection';
 
 export default function App() {
   const [
@@ -54,11 +54,11 @@ export default function App() {
     shallow,
   );
 
-  const tasksQuery = useMemo(() => query(taskRef, where('userID', '==', user?.uid)), [user]);
-  const tagsQuery = useMemo(() => query(tagRef, where('userID', '==', user?.uid)), [user]);
+  const tasksQuery = query(taskRef, where('userID', '==', user?.uid));
+  const tagsQuery = query(tagRef, where('userID', '==', user?.uid));
 
-  const [tasks, isTasksLoading, tasksError] = useCollectionData(tasksQuery);
-  const [tags, _, tagsError] = useCollectionData(tagsQuery);
+  const [tasks, isTasksLoading, tasksError] = useCollection(tasksQuery);
+  const [tags, _, tagsError] = useCollection(tagsQuery);
   const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as TodoItem[]) || []);
 
   function handleCloseTaskEditDialog() {

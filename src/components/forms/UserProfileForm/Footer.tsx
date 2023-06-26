@@ -1,5 +1,5 @@
 import Button from '@/components/common/Button';
-import { signOutUser } from '@/firebase';
+import { signOutUser } from '@/firebase/auth';
 import { useStore } from '@/store';
 import { redirect } from 'react-router-dom';
 

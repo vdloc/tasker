@@ -5,37 +5,46 @@ import { Tag, TaskEditFormValues, TodoItem } from '@/types';
 import TaskEditFormHeader from './Header';
 import TaskEditFormContent from './Content';
 import TaskEditFormFooter from './Footer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { database } from '@/firebase/firestore';
+import { shallow } from 'zustand/shallow';
 
 export default function TaskEditForm() {
-  const [selectingTask, updateTask, deleteTask, toggleTaskUpdateDialog, tags] = useStore((state) => [
-    state.selectingTask,
-    state.updateTask,
-    state.deleteTask,
-    state.toggleTaskUpdateDialog,
-    state.tags,
-  ]);
+  const [selectingTask, toggleTaskUpdateDialog, tags = []] = useStore(
+    (state) => [state.selectingTask, state.toggleTaskUpdateDialog, state.tags],
+    shallow,
+  );
   const { control, handleSubmit } = useForm<TaskEditFormValues>({
     defaultValues: { ...selectingTask },
   });
   const [currentTags, setCurrentTags] = useState(getCurrentTags(selectingTask));
 
   function getCurrentTags(selectingTask: TodoItem) {
-    if (!selectingTask || !selectingTask.tags) return [];
-    return (selectingTask.tags as Tag[]).map((tag) => tags.find(({ id }) => tag.id === id));
+    if (!selectingTask || !selectingTask.tags || !selectingTask.tags.length) return [];
+    return (selectingTask.tags as Tag[]).filter((tag) => tags.find(({ id }) => tag.id === id));
   }
 
   const onSubmit: SubmitHandler<TaskEditFormValues> = (data: TaskEditFormValues) => {
     const updatedTask = { ...selectingTask, ...data };
+    console.log('​updatedTask', updatedTask);
     setCurrentTags(data.tags as Tag[]);
+    database.updateTask(updatedTask);
     toggleTaskUpdateDialog(false);
-    updateTask(updatedTask);
   };
 
-  function handleDeleteTask() {
+  async function handleDeleteTask() {
+    console.log('Foo');
+
+    await database.deleteTask(selectingTask.id as string);
     toggleTaskUpdateDialog(false);
-    deleteTask(selectingTask);
+    // deleteTask(selectingTask);
   }
+  useEffect(() => {
+    console.log('Foo');
+    return () => {
+      console.log('Bar');
+    };
+  }, []);
 
   return (
     <FormLayout

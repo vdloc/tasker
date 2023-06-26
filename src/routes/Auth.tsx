@@ -1,4 +1,4 @@
-import { handleAuthStateChange } from '@/firebase';
+import { handleAuthStateChange } from '@/firebase/auth';
 import { database } from '@/firebase/firestore';
 import { useStore } from '@/store';
 // import { User } from '@/types';

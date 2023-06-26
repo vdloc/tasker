@@ -9,9 +9,12 @@ import {
   getFirestore,
   type QueryDocumentSnapshot,
   type DocumentData,
+  updateDoc,
+  writeBatch,
+  deleteDoc,
 } from 'firebase/firestore';
 import firebaseApp from './app';
-import { TodoItem } from '@/types';
+import { Tag, TodoItem } from '@/types';
 
 export const fireStore = getFirestore(firebaseApp);
 
@@ -57,10 +60,6 @@ async function createUser(uid: string) {
   await setDoc(doc(fireStore, 'user', uid), { uid });
 }
 
-// async function createTask(task: TodoItem, userID: string) {
-//   await
-// }
-
 async function createTask(task: TodoItem) {
   const docRef = doc(taskRef);
   task.id = docRef.id;
@@ -81,4 +80,76 @@ async function createTask(task: TodoItem) {
   return result;
 }
 
-export const database = { getTasks, getTags, getUser, createUser, createTask };
+async function createTag(tag: Tag) {
+  const docRef = doc(tagRef);
+  tag.id = docRef.id;
+
+  try {
+    await setDoc(docRef, tag);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function updateTask(task: TodoItem) {
+  const docRef = doc(fireStore, 'task', task.id as string);
+	console.log("​updateTask -> task.id", task.id)
+
+  try {
+    await updateDoc(docRef, task);
+  } catch (error) {
+		console.log("​}catch -> error", error)
+    return error;
+  }
+}
+
+async function createTasks(tasks: TodoItem[]) {
+  const batch = writeBatch(fireStore);
+  tasks.forEach((task) => {
+    const docRef = doc(taskRef);
+    task.id = docRef.id;
+    batch.set(docRef, task);
+  });
+
+  try {
+    await batch.commit();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function createTags(tags: Tag[]) {
+  const batch = writeBatch(fireStore);
+  tags.forEach((tag) => {
+    const docRef = doc(tagRef);
+    tag.id = docRef.id;
+    batch.set(docRef, tag);
+  });
+
+  try {
+    await batch.commit();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function deleteTask(taskID: string) {
+  try {
+    await deleteDoc(doc(fireStore, 'task', taskID));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const database = {
+  getTasks,
+  getTags,
+  getUser,
+  createUser,
+  createTask,
+  updateTask,
+  createTasks,
+  deleteTask,
+  createTag,
+  createTags,
+};

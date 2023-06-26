@@ -10,9 +10,7 @@ type TagDropDownMenuItemProps = {
 
 export default function TagDropDownMenuItem({ tag, handleClick }: TagDropDownMenuItemProps) {
   const colorSetting = colorsSetting[tag.color];
-  console.log('​tag.color', tag.color);
   const strongColor = colorSetting?.strong || '';
-  console.log('​strongColor', strongColor);
   const lightColor = colorSetting?.light || 'bg-gray-200';
 
   return (

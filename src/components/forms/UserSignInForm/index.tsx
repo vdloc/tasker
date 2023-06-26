@@ -2,7 +2,7 @@ import { User, UserSignInFormValues } from '@/types';
 import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
 import Button from '@components/common/Button';
-import { signInUser } from '@/firebase';
+import { signInUser } from '@/firebase/auth';
 import SocialButton from '@components/common/SocialButton';
 import { GoogleIcon, GithubIcon, UserIcon } from '@components/icons';
 import { useStore } from '@/store';

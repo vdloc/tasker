@@ -5,6 +5,7 @@ import { useStore } from '@/store';
 import sampleTasks from '@data/todos.json';
 import sampleTags from '@data/tags.json';
 import Placeholder from './Placeholder';
+import { database } from '@/firebase/firestore';
 
 type TodoListProps = {
   todos: TodoItem[];
@@ -13,12 +14,13 @@ type TodoListProps = {
 
 export default function TodoList({ todos = [], loading }: TodoListProps) {
   const isShowCompletedTasks = useStore((state) => state.isShowCompletedTasks);
-  const createTasks = useStore((state) => state.createTasks);
-  const addTags = useStore((state) => state.addTags);
+  const user = useStore((state) => state.user);
 
   function handleCreateSampleTasks() {
-    createTasks(sampleTasks as TodoItem[]);
-    addTags(sampleTags as Tag[]);
+    const tasks = sampleTasks.map((item) => ({ ...item, userID: user?.uid }));
+    const tags = sampleTags.map((item) => ({ ...item, userID: user?.uid }));
+    database.createTasks(tasks as TodoItem[]);
+    database.createTags(tags as Tag[]);
   }
 
   return (

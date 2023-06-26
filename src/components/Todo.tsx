@@ -3,6 +3,7 @@ import Button from './common/Button';
 import type { TodoItem } from '@/types';
 import { ChangeEvent } from 'react';
 import { query, where } from 'firebase/firestore';
+import { database } from '@/firebase/firestore';
 
 type TodoProps = {
   todo: TodoItem;
@@ -19,10 +20,11 @@ export default function Todo({ todo }: TodoProps) {
     toggleTaskUpdateDialog(true);
   }
 
-  function handleStatusChange(event: ChangeEvent) {
+  async function handleStatusChange(event: ChangeEvent) {
     const target = event.target as HTMLInputElement;
     const updatingTask = { ...todo, status: target.checked };
-    
+
+    await database.updateTask(updatingTask);
     updateTask(updatingTask);
   }
 
