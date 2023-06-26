@@ -14,13 +14,14 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import firebaseApp from './app';
-import { Tag, TodoItem } from '@/types';
+import { Tag, TodoItem, User } from '@/types';
 
 export const fireStore = getFirestore(firebaseApp);
 
 export const tagRef = collection(fireStore, 'tag');
 export const taskRef = collection(fireStore, 'task');
 export const userRef = collection(fireStore, 'user');
+const currentUser: any = {};
 
 async function getTasks(userID: string) {
   const userRef = doc(fireStore, 'user', userID);
@@ -63,44 +64,20 @@ async function createUser(uid: string) {
 async function createTask(task: TodoItem) {
   const docRef = doc(taskRef);
   task.id = docRef.id;
-  const result: any = {
-    task: null,
-    error: null,
-    loading: true,
-  };
-  try {
-    await setDoc(docRef, task);
-    result.task = task;
-  } catch (error) {
-    result.error = error;
-  } finally {
-    result.loading = false;
-  }
-
-  return result;
+  task.userID = currentUser.uid as string;
+  await setDoc(docRef, task);
 }
 
 async function createTag(tag: Tag) {
   const docRef = doc(tagRef);
   tag.id = docRef.id;
-
-  try {
-    await setDoc(docRef, tag);
-  } catch (error) {
-    console.log(error);
-  }
+  tag.userID = currentUser.uid as string;
+  await setDoc(docRef, tag);
 }
 
 async function updateTask(task: TodoItem) {
   const docRef = doc(fireStore, 'task', task.id as string);
-	console.log("​updateTask -> task.id", task.id)
-
-  try {
-    await updateDoc(docRef, task);
-  } catch (error) {
-		console.log("​}catch -> error", error)
-    return error;
-  }
+  await updateDoc(docRef, task);
 }
 
 async function createTasks(tasks: TodoItem[]) {
@@ -108,14 +85,11 @@ async function createTasks(tasks: TodoItem[]) {
   tasks.forEach((task) => {
     const docRef = doc(taskRef);
     task.id = docRef.id;
+    task.userID = currentUser.uid;
     batch.set(docRef, task);
   });
 
-  try {
-    await batch.commit();
-  } catch (error) {
-    console.log(error);
-  }
+  await batch.commit();
 }
 
 async function createTags(tags: Tag[]) {
@@ -123,22 +97,18 @@ async function createTags(tags: Tag[]) {
   tags.forEach((tag) => {
     const docRef = doc(tagRef);
     tag.id = docRef.id;
+    tag.userID = currentUser.uid;
     batch.set(docRef, tag);
   });
-
-  try {
-    await batch.commit();
-  } catch (error) {
-    console.log(error);
-  }
+  await batch.commit();
 }
 
 async function deleteTask(taskID: string) {
-  try {
-    await deleteDoc(doc(fireStore, 'task', taskID));
-  } catch (error) {
-    console.log(error);
-  }
+  await deleteDoc(doc(fireStore, 'task', taskID));
+}
+
+function setCurrentUser(user: User) {
+  Object.assign(currentUser, user);
 }
 
 export const database = {
@@ -152,4 +122,5 @@ export const database = {
   deleteTask,
   createTag,
   createTags,
+  setCurrentUser,
 };

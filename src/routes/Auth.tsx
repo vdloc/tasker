@@ -15,15 +15,13 @@ function Redirect() {
 }
 
 export default function Auth({ children }: PropsWithChildren) {
-  const [user, setUser] = useStore((state) => [state.user, state.setUser], shallow);
+  const [user, setUser] = useStore(
+    (state) => [state.user, state.setUser],
+    shallow
+  );
   async function onAuthChange(user: any) {
     setUser(user);
-    if (user) {
-      const userInDB = await database.getUser(user.uid);
-      if (!userInDB) {
-        await database.createUser(user.uid);
-      }
-    }
+    database.setCurrentUser(user);
   }
   useEffect(() => {
     handleAuthStateChange(onAuthChange);

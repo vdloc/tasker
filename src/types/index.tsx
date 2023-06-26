@@ -1,6 +1,7 @@
 import type { Control } from 'react-hook-form';
 
 export type TodoItem = {
+  userID: string;
   id: string | number;
   title: string;
   description: string;
@@ -14,6 +15,7 @@ export type TodoItem = {
 export type TagColor = 'indigo' | 'red' | 'lime' | 'sky' | 'zinc' | 'orange';
 
 export type Tag = {
+  userID: string;
   id: number | string;
   name: string;
   color: TagColor;
@@ -65,7 +67,11 @@ interface UserState {
   setUser: (user: User | null) => void;
 }
 
-export interface StoreState extends TaskState, DialogState, TagState, UserState {}
+export interface StoreState
+  extends TaskState,
+    DialogState,
+    TagState,
+    UserState {}
 
 export type TaskCreateFormValues = {
   title: string;
