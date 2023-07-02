@@ -14,7 +14,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import firebaseApp from './app';
-import { Tag, Task } from '@/types';
+import { Tag, Task, User } from '@/types';
 
 export const fireStore = getFirestore(firebaseApp);
 
