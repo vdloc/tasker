@@ -1,6 +1,6 @@
 import Todo from '@components/Todo';
 import TodoListHeader from './Header';
-import { Tag, type TodoItem } from '@/types';
+import { Tag, type Task } from '@/types';
 import { useStore } from '@/store';
 import sampleTasks from '@data/todos.json';
 import sampleTags from '@data/tags.json';
@@ -8,7 +8,7 @@ import Placeholder from './Placeholder';
 import { database } from '@/firebase/firestore';
 
 type TodoListProps = {
-  todos: TodoItem[];
+  todos: Task[];
   loading: boolean;
 };
 
@@ -19,7 +19,7 @@ export default function TodoList({ todos = [], loading }: TodoListProps) {
   function handleCreateSampleTasks() {
     const tasks = sampleTasks.map((item) => ({ ...item, userID: user?.uid }));
     const tags = sampleTags.map((item) => ({ ...item, userID: user?.uid }));
-    database.createTasks(tasks as TodoItem[]);
+    database.createTasks(tasks as Task[]);
     database.createTags(tags as Tag[]);
   }
 

@@ -1,12 +1,11 @@
 import { useStore } from '@/store';
 import Button from './common/Button';
-import type { TodoItem } from '@/types';
+import type { Task } from '@/types';
 import { ChangeEvent } from 'react';
-import { query, where } from 'firebase/firestore';
 import { database } from '@/firebase/firestore';
 
 type TodoProps = {
-  todo: TodoItem;
+  todo: Task;
 };
 
 export default function Todo({ todo }: TodoProps) {

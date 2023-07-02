@@ -8,7 +8,7 @@ import TaskEditForm from '../forms/TaskEditForm';
 import TaskCreateForm from '../forms/TaskCreateForm';
 import TagsListEditForm from '../forms/TagsListEditForm';
 import { shallow } from 'zustand/shallow';
-import { Tag, TodoItem } from '@/types';
+import { Tag, Task } from '@/types';
 import UserProfileForm from '../forms/UserProfileForm';
 import AppTransition from '../AppTransition';
 import { query, where } from 'firebase/firestore';
@@ -59,16 +59,16 @@ export default function App() {
 
   const [tasks, isTasksLoading, tasksError] = useCollection(tasksQuery);
   const [tags, _, tagsError] = useCollection(tagsQuery);
-  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as TodoItem[]) || []);
+  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as Task[]) || []);
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
-    setSelectingTask({} as TodoItem);
+    setSelectingTask({} as Task);
   }
 
   function handleCloseTaskCreateDialog() {
     toggleTaskCreateDialog(false);
-    setSelectingTask({} as TodoItem);
+    setSelectingTask({} as Task);
   }
 
   function handleCloseTagsEditDialog() {

@@ -13,10 +13,17 @@ export default function TaskCreateForm() {
   const createTask = useStore((state) => state.createTask);
   const user = useStore((state) => state.user);
   const { control, handleSubmit } = useForm<TaskCreateFormValues>({
-    defaultValues: {},
+    defaultValues: {
+      createDate: new Date().toDateString(),
+      dueDate: new Date().toDateString(),
+      title: '',
+      description: '',
+      id: uuidv4(),
+      tags: [],
+    },
   });
   const onSubmit: SubmitHandler<TaskCreateFormValues> = async (data: TaskCreateFormValues) => {
-    const updatedTask = { ...data, id: uuidv4(), status: false, tags: data.tags || [], userID: user?.uid };
+    const updatedTask = { ...data, status: false, tags: data.tags || [], userID: user?.uid };
     const result = await database.createTask(updatedTask);
     createTask(result.task);
     toggleTaskCreateDialog(false);

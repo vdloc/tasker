@@ -48,15 +48,14 @@ export default function DateTimePicker({ title, control, name, label }: DateTime
     name,
     control,
   });
+
   const handleChange = (selectedDate: Date) => {
     field.onChange(selectedDate);
   };
   const handleClose = (state: boolean) => {
     setShow(state);
   };
-  const defaultDate = field.value.toDate ? field.value.toDate() : new Date();
-  console.log('​field.value', field.value);
-  console.log('​defaultDate', defaultDate);
+  const defaultDate = field.value?.toDate ? field.value.toDate() : new Date();
   const options = { title, defaultDate, ...pickerOptions };
 
   useEffect(() => {

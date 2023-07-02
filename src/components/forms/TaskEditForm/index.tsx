@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import FormLayout from '../FormLayout';
 import { useStore } from '@/store';
-import { Tag, TaskEditFormValues, TodoItem } from '@/types';
+import { Tag, TaskEditFormValues, Task } from '@/types';
 import TaskEditFormHeader from './Header';
 import TaskEditFormContent from './Content';
 import TaskEditFormFooter from './Footer';
@@ -19,7 +19,7 @@ export default function TaskEditForm() {
   });
   const [currentTags, setCurrentTags] = useState(getCurrentTags(selectingTask));
 
-  function getCurrentTags(selectingTask: TodoItem) {
+  function getCurrentTags(selectingTask: Task) {
     if (!selectingTask || !selectingTask.tags || !selectingTask.tags.length) return [];
     return (selectingTask.tags as Tag[]).filter((tag) => tags.find(({ id }) => tag.id === id));
   }

@@ -14,7 +14,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import firebaseApp from './app';
-import { Tag, TodoItem } from '@/types';
+import { Tag, Task } from '@/types';
 
 export const fireStore = getFirestore(firebaseApp);
 
@@ -60,7 +60,7 @@ async function createUser(uid: string) {
   await setDoc(doc(fireStore, 'user', uid), { uid });
 }
 
-async function createTask(task: TodoItem) {
+async function createTask(task: Task) {
   const docRef = doc(taskRef);
   task.id = docRef.id;
   const result: any = {
@@ -91,19 +91,19 @@ async function createTag(tag: Tag) {
   }
 }
 
-async function updateTask(task: TodoItem) {
+async function updateTask(task: Task) {
   const docRef = doc(fireStore, 'task', task.id as string);
-	console.log("​updateTask -> task.id", task.id)
+  console.log('​updateTask -> task.id', task.id);
 
   try {
     await updateDoc(docRef, task);
   } catch (error) {
-		console.log("​}catch -> error", error)
+    console.log('​}catch -> error', error);
     return error;
   }
 }
 
-async function createTasks(tasks: TodoItem[]) {
+async function createTasks(tasks: Task[]) {
   const batch = writeBatch(fireStore);
   tasks.forEach((task) => {
     const docRef = doc(taskRef);

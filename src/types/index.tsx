@@ -1,6 +1,6 @@
 import type { Control } from 'react-hook-form';
 
-export type TodoItem = {
+export type Task = {
   id: string | number;
   title: string;
   description: string;
@@ -8,7 +8,6 @@ export type TodoItem = {
   tags?: Tag[];
   createDate?: string;
   dueDate?: string;
-  endDate?: string;
 };
 
 export type TagColor = 'indigo' | 'red' | 'lime' | 'sky' | 'zinc' | 'orange';
@@ -28,16 +27,16 @@ export type User = {
 };
 
 interface TaskState {
-  selectingTask: TodoItem;
-  uncompletedTasks: TodoItem[];
-  completedTasks: TodoItem[];
+  selectingTask: Task;
+  uncompletedTasks: Task[];
+  completedTasks: Task[];
   isShowCompletedTasks: boolean;
-  setSelectingTask: (task: TodoItem) => void;
-  updateTask: (task: TodoItem) => void;
+  setSelectingTask: (task: Task) => void;
+  updateTask: (task: Task) => void;
   fetchTasks: () => void;
-  deleteTask: (task: TodoItem) => void;
-  createTask: (task: TodoItem) => void;
-  createTasks: (tasks: TodoItem[]) => void;
+  deleteTask: (task: Task) => void;
+  createTask: (task: Task) => void;
+  createTasks: (tasks: Task[]) => void;
   toggleShowCompletedTasks: (isShow: boolean) => void;
 }
 
@@ -71,7 +70,7 @@ export type TaskCreateFormValues = {
   title: string;
   description: string;
   id: string | number;
-  startDate: string;
+  createDate: string;
   dueDate: string;
   tags?: Tag[];
 };
