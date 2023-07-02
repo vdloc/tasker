@@ -18,29 +18,17 @@ import { useCollection } from '@/firebase/hooks/useCollection';
 
 export default function App() {
   const [
+    isTagsListEditDialogOpen,
+    isTaskUpdateDialogOpen,
+    isTaskCreateDialogOpen,
+    isShowCompletedTasks,
+    isUserProfileOpen,
     toggleTagsListEditDialog,
     toggleTaskUpdateDialog,
     toggleTaskCreateDialog,
     toggleUserProfileDialog,
     setSelectingTask,
     setTags,
-  ] = useStore(
-    (state) => [
-      state.toggleTagsListEditDialog,
-      state.toggleTaskUpdateDialog,
-      state.toggleTaskCreateDialog,
-      state.toggleUserProfileDialog,
-      state.setSelectingTask,
-      state.setTags,
-    ],
-    shallow,
-  );
-  const [
-    isTagsListEditDialogOpen,
-    isTaskUpdateDialogOpen,
-    isTaskCreateDialogOpen,
-    isShowCompletedTasks,
-    isUserProfileOpen,
     user,
   ] = useStore(
     (state) => [
@@ -49,17 +37,24 @@ export default function App() {
       state.isTaskCreateDialogOpen,
       state.isShowCompletedTasks,
       state.isUserProfileOpen,
+      state.toggleTagsListEditDialog,
+      state.toggleTaskUpdateDialog,
+      state.toggleTaskCreateDialog,
+      state.toggleUserProfileDialog,
+      state.setSelectingTask,
+      state.setTags,
       state.user,
     ],
-    shallow,
+    shallow
   );
-
   const tasksQuery = query(taskRef, where('userID', '==', user?.uid));
   const tagsQuery = query(tagRef, where('userID', '==', user?.uid));
 
   const [tasks, isTasksLoading, tasksError] = useCollection(tasksQuery);
   const [tags, _, tagsError] = useCollection(tagsQuery);
-  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as Task[]) || []);
+  const [completedTasks, uncompletedTasks] = filterTasksByStatus(
+    (tasks as TodoItem[]) || []
+  );
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
@@ -85,20 +80,35 @@ export default function App() {
 
   return (
     <AppTransition>
-      <div className="w-[28rem] divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
+      <div className='w-[28rem] divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl'>
         <AppHeader />
-        <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} loading={isTasksLoading} />
+        <TodoList
+          todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}
+          loading={isTasksLoading}
+        />
         <AppFooter />
-        <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
+        <DialogPopup
+          isOpen={isTaskUpdateDialogOpen}
+          onClose={handleCloseTaskEditDialog}
+        >
           <TaskEditForm />
         </DialogPopup>
-        <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
+        <DialogPopup
+          isOpen={isUserProfileOpen}
+          onClose={handleCloseUserProfileDialog}
+        >
           <UserProfileForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
+        <DialogPopup
+          isOpen={isTaskCreateDialogOpen}
+          onClose={handleCloseTaskCreateDialog}
+        >
           <TaskCreateForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
+        <DialogPopup
+          isOpen={isTagsListEditDialogOpen}
+          onClose={handleCloseTagsEditDialog}
+        >
           <TagsListEditForm />
         </DialogPopup>
       </div>
