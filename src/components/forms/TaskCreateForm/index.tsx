@@ -9,7 +9,9 @@ import TaskCreateFormFooter from './Footer';
 import { database } from '@/firebase/firestore';
 
 export default function TaskCreateForm() {
-  const toggleTaskCreateDialog = useStore((state) => state.toggleTaskCreateDialog);
+  const toggleTaskCreateDialog = useStore(
+    (state) => state.toggleTaskCreateDialog
+  );
   const createTask = useStore((state) => state.createTask);
   const user = useStore((state) => state.user);
   const { control, handleSubmit } = useForm<TaskCreateFormValues>({
@@ -22,10 +24,18 @@ export default function TaskCreateForm() {
       tags: [],
     },
   });
-  const onSubmit: SubmitHandler<TaskCreateFormValues> = async (data: TaskCreateFormValues) => {
-    const updatedTask = { ...data, status: false, tags: data.tags || [], userID: user?.uid };
-    const result = await database.createTask(updatedTask);
-    createTask(result.task);
+  const onSubmit: SubmitHandler<TaskCreateFormValues> = async (
+    data: TaskCreateFormValues
+  ) => {
+    const updatedTask = {
+      ...data,
+      status: false,
+      tags: data.tags || [],
+      userID: user?.uid as string,
+    };
+
+    await database.createTask(updatedTask);
+    createTask(updatedTask);
     toggleTaskCreateDialog(false);
   };
 
