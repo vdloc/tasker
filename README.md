@@ -1,5 +1,5 @@
-[![Firebase Hosting](https://img.shields.io/badge/Firebase-Hosting-FFCA28?logo=firebase&logoColor=white)](https://your-firebase-project.web.app)
-[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare&logoColor=white)](https://your-cloudflare-project.pages.dev)
+[![Firebase Hosting](https://img.shields.io/badge/Firebase-Hosting-FFCA28?logo=firebase&logoColor=white)](https://real-todos-6d1b4.web.app/)
+[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare&logoColor=white)](https://react-todos.pages.dev)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/vdloc/tasker/blob/master/LICENSE)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat)
 ![Pull Requests](https://img.shields.io/github/issues-pr/vdloc/tasker?style=flat)
