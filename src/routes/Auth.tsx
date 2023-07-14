@@ -1,4 +1,5 @@
-import { handleAuthStateChange } from '@/firebase';
+import { handleAuthStateChange } from '@/firebase/auth';
+import { database } from '@/firebase/firestore';
 import { useStore } from '@/store';
 // import { User } from '@/types';
 import { PropsWithChildren, useEffect } from 'react';
@@ -14,9 +15,13 @@ function Redirect() {
 }
 
 export default function Auth({ children }: PropsWithChildren) {
-  const [user, setUser] = useStore((state) => [state.user, state.setUser], shallow);
-  function onAuthChange(user: any) {
+  const [user, setUser] = useStore(
+    (state) => [state.user, state.setUser],
+    shallow
+  );
+  async function onAuthChange(user: any) {
     setUser(user);
+    database.setCurrentUser(user);
   }
   useEffect(() => {
     handleAuthStateChange(onAuthChange);

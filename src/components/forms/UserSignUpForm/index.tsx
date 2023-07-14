@@ -2,7 +2,7 @@ import { User, UserSignUpFormValues } from '@/types';
 import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
 import Button from '../../common/Button';
-import { createUser } from '@/firebase';
+import { createUser } from '@/firebase/auth';
 import { useStore } from '@/store';
 import { GoogleIcon, GithubIcon } from '@/components/icons';
 import { Link, useNavigate } from 'react-router-dom';

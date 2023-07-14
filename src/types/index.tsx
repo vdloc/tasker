@@ -1,6 +1,7 @@
 import type { Control } from 'react-hook-form';
 
-export type TodoItem = {
+export type Task = {
+  userID: string;
   id: string | number;
   title: string;
   description: string;
@@ -8,18 +9,19 @@ export type TodoItem = {
   tags?: Tag[];
   createDate?: string;
   dueDate?: string;
-  endDate?: string;
 };
 
 export type TagColor = 'indigo' | 'red' | 'lime' | 'sky' | 'zinc' | 'orange';
 
 export type Tag = {
+  userID: string;
   id: number | string;
   name: string;
   color: TagColor;
 };
 
 export type User = {
+  uid: string;
   displayName: string;
   email: string;
   phoneNumber: string;
@@ -27,15 +29,16 @@ export type User = {
 };
 
 interface TaskState {
-  selectingTask: TodoItem;
-  uncompletedTasks: TodoItem[];
-  completedTasks: TodoItem[];
+  selectingTask: Task;
+  uncompletedTasks: Task[];
+  completedTasks: Task[];
   isShowCompletedTasks: boolean;
-  setSelectingTask: (task: TodoItem) => void;
-  updateTask: (task: TodoItem) => void;
+  setSelectingTask: (task: Task) => void;
+  updateTask: (task: Task) => void;
   fetchTasks: () => void;
-  deleteTask: (task: TodoItem) => void;
-  createTask: (task: TodoItem) => void;
+  deleteTask: (task: Task) => void;
+  createTask: (task: Task) => void;
+  createTasks: (tasks: Task[]) => void;
   toggleShowCompletedTasks: (isShow: boolean) => void;
 }
 
@@ -52,9 +55,10 @@ interface DialogState {
 
 interface TagState {
   tags: Tag[];
-  fetchTags: () => void;
   addTag: (tag: Tag) => void;
   deleteTag: (tag: Tag) => void;
+  addTags: (tags: Tag[]) => void;
+  setTags: (tags: Tag[]) => void;
 }
 
 interface UserState {
@@ -68,7 +72,7 @@ export type TaskCreateFormValues = {
   title: string;
   description: string;
   id: string | number;
-  startDate: string;
+  createDate: string;
   dueDate: string;
   tags?: Tag[];
 };

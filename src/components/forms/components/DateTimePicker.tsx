@@ -1,6 +1,6 @@
 import { FormInputProps } from '@/types';
 import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useController } from 'react-hook-form';
 import Datepicker from 'tailwind-datepicker-react';
 
@@ -56,14 +56,19 @@ export default function DateTimePicker({
     name,
     control,
   });
+
   const handleChange = (selectedDate: Date) => {
     field.onChange(selectedDate);
   };
   const handleClose = (state: boolean) => {
     setShow(state);
   };
-  const defaultDate = field.value instanceof Date ? field.value : new Date();
+  const defaultDate = field.value?.toDate ? field.value.toDate() : new Date();
   const options = { title, defaultDate, ...pickerOptions };
+
+  useEffect(() => {
+    field.onChange(defaultDate);
+  }, []);
 
   return (
     <div>

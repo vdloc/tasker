@@ -1,24 +1,19 @@
-import Badge from "../common/Badge";
-import { FormInputProps, Tag } from "@/types";
-import { useController } from "react-hook-form";
-import { useState } from "react";
-import TagsDropDown from "../TagsDropDown";
+import Badge from '../common/Badge';
+import { FormInputProps, Tag } from '@/types';
+import { useController } from 'react-hook-form';
+import { useState } from 'react';
+import TagsDropDown from '../TagsDropDown';
 
 type TagsProps = {
   defaultTags: (Tag | undefined)[];
 };
 
-export default function Tags({
-  label,
-  control,
-  name,
-  defaultTags,
-}: TagsProps & FormInputProps) {
+export default function Tags({ label, control, name, defaultTags }: TagsProps & FormInputProps) {
   const { field } = useController({
     name,
     control,
   });
-  const [tags, setTags] = useState(defaultTags);
+  const [tags = [], setTags] = useState(defaultTags);
 
   function handleRemoveTag(removeTag: Tag) {
     const updatedTags = tags.filter((tag) => removeTag.id !== tag?.id);
@@ -39,12 +34,7 @@ export default function Tags({
         <div className="space-y-2">
           <div className="flex gap-2 flex-wrap items-center">
             {(tags as Tag[]).map((tag) => (
-              <Badge
-                key={tag.id}
-                title={tag.name}
-                color={tag.color}
-                onClose={() => handleRemoveTag(tag)}
-              />
+              <Badge key={tag.id} title={tag.name} color={tag.color} onClose={() => handleRemoveTag(tag)} />
             ))}
             <TagsDropDown onChange={handleAddTag} excludeTags={tags} />
           </div>

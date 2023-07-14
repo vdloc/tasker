@@ -5,7 +5,7 @@ import UserProfileFormFooter from './Footer';
 import UserProfileFormContent from './Content';
 import { useForm } from 'react-hook-form';
 import { UserProfileFormValues } from '@/types';
-import { updateUser } from '@/firebase';
+import { updateUser } from '@/firebase/auth';
 import { type User } from 'firebase/auth';
 
 export default function UserProfileForm() {

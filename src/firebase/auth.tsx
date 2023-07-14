@@ -1,4 +1,4 @@
-import app from './app';
+import firebaseApp from './app';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -13,7 +13,7 @@ import {
 } from 'firebase/auth';
 
 // Initialize Firebase Authentication and get a reference to the service
-const auth = getAuth(app);
+const auth = getAuth(firebaseApp);
 
 export async function handleAuthStateChange(onChange: (user: User | null) => void) {
   onAuthStateChanged(auth, onChange);
