@@ -50,7 +50,7 @@ To run Tasker locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/tasker.git
+   git clone https://github.com/vdloc/tasker.git
    ```
 2. Navigate to the project directory:
    ```bash
