@@ -8,7 +8,7 @@
 # Tasker
 
 <div style="text-align:center;">
-  <img src="/markdown/imgs/tasker.png" alt="Tasker Logo">
+  <img src="/markdown/imgs/tasker.png" alt="Tasker Logo" style="max-width: 150px;">
 </div>
 
 **Tasker** is a **powerful and lightweight todo app** built with **React**, **Vite.js**, **Tailwind CSS**, **Zustand**, and **Firebase**. It allows you to **stay organized and productive** with its **intuitive interface** and **powerful features**.
