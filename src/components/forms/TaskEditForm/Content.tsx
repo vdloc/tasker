@@ -11,29 +11,27 @@ type TaskEditFormContentProps = {
   currentTags: (Tag | undefined)[];
 };
 
+const titleRules = {
+  required: { value: true, message: 'Task title is required!' },
+  maxLength: { value: 255, message: 'Task title is maximum of 255 characters only!' },
+  minLength: { value: 3, message: 'Task title is at least 3 characters!' },
+};
+
+const descriptionRules = {
+  maxLength: { value: 1000, message: 'Task description is maximum of 255 characters only!' },
+  minLength: { value: 3, message: 'Task description is at least 3 characters!' },
+};
+
 export default function TaskEditFormContent({ control, currentTags }: TaskEditFormContentProps) {
   return (
     <>
-      <Input
-        label="Title"
-        id="task-title"
-        control={control}
-        name="title"
-        rules={{
-          required: { value: true, message: 'Task title is required!' },
-          maxLength: { value: 255, message: 'Task title is maximum of 255 characters only!' },
-          minLength: { value: 3, message: 'Task title is at least 3 characters!' },
-        }}
-      />
+      <Input label="Title" id="task-title" control={control} name="title" rules={titleRules} />
       <TextArea
         label="Description"
         id="task-description"
         control={control}
         name="description"
-        rules={{
-          maxLength: { value: 1000, message: 'Task description is maximum of 255 characters only!' },
-          minLength: { value: 3, message: 'Task description is at least 3 characters!' },
-        }}
+        rules={descriptionRules}
       />
       <div className="grid grid-cols-2 items-center gap-4">
         <DateTimePicker title="Choose start date" label="Start date" control={control} name="startDate" />

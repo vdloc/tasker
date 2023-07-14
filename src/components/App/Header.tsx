@@ -1,4 +1,4 @@
-import { useStore } from '@/store';
+import { useDialogStore } from '@/store';
 import Button from '../common/Button';
 import configs from '@/data/configs.json';
 
@@ -7,11 +7,10 @@ const {
 } = configs;
 
 export default function AppHeader() {
-  const isTaskCreateDialogOpen = useStore((state) => state.isTaskCreateDialogOpen);
-  const toggleTaskCreateDialog = useStore((state) => state.toggleTaskCreateDialog);
+  const toggleTaskCreateDialog = useDialogStore((state) => state.toggleTaskCreateDialog);
 
   function handleCreateTaskButtonClick() {
-    toggleTaskCreateDialog(!isTaskCreateDialogOpen);
+    toggleTaskCreateDialog(true);
   }
 
   return (

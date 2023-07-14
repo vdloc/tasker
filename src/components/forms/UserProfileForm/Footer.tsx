@@ -1,10 +1,10 @@
 import Button from '@/components/common/Button';
 import { signOutUser } from '@/firebase/auth';
-import { useStore } from '@/store';
+import { useDialogStore } from '@/store';
 import { redirect } from 'react-router-dom';
 
 export default function UserProfileFormFooter() {
-  const toggleUserProfileDialog = useStore((state) => state.toggleUserProfileDialog);
+  const toggleUserProfileDialog = useDialogStore((state) => state.toggleUserProfileDialog);
 
   function handleCloseDialog() {
     toggleUserProfileDialog(false);

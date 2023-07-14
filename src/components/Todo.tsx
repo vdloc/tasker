@@ -1,8 +1,9 @@
-import { useStore } from '@/store';
+import { useDialogStore, useTaskStore } from '@/store';
 import Button from './common/Button';
 import type { Task } from '@/types';
 import { ChangeEvent } from 'react';
 import { database } from '@/firebase/firestore';
+import { shallow } from 'zustand/shallow';
 
 type TodoProps = {
   todo: Task;
@@ -10,9 +11,8 @@ type TodoProps = {
 
 export default function Todo({ todo }: TodoProps) {
   const { id, title, description, status } = todo;
-  const updateTask = useStore((state) => state.updateTask);
-  const setSelectingTask = useStore((state) => state.setSelectingTask);
-  const toggleTaskUpdateDialog = useStore((state) => state.toggleTaskUpdateDialog);
+  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
+  const { updateTask, setSelectingTask } = useTaskStore((state) => state, shallow);
 
   function handleTaskEditClick() {
     setSelectingTask(todo);

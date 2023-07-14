@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { PlusIcon } from '@heroicons/react/24/outline';
-import { useStore } from '@/store';
+import { useTagStore } from '@/store';
 
 import { Tag } from '@/types';
 import TagDropDownMenuItem from './MenuItem';
@@ -12,7 +12,7 @@ type TagsDropDownProps = {
 };
 
 export default function TagsDropDown({ onChange, excludeTags }: TagsDropDownProps) {
-  const tags: Tag[] = useStore((state) => state.tags) || [];
+  const tags: Tag[] = useTagStore((state) => state.tags) || [];
   const selectableTags = tags.filter(({ id }) => excludeTags.every((excludeTag) => (excludeTag as Tag).id !== id));
 
   return (
