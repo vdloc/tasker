@@ -1,16 +1,8 @@
-import { useStore } from '@/store';
+import { useDialogStore } from '@/store';
 import FormHeader from '../components/FormHeader';
 
 export default function TaskCreateFormHeader() {
-  const toggleTaskCreateDialog = useStore(
-    (state) => state.toggleTaskCreateDialog
-  );
+  const toggleTaskCreateDialog = useDialogStore((state) => state.toggleTaskCreateDialog);
 
-  return (
-    <FormHeader
-      onClose={toggleTaskCreateDialog}
-      title='Create task'
-      description='Create your task.'
-    />
-  );
+  return <FormHeader onClose={toggleTaskCreateDialog} title="Create task" description="Create your task." />;
 }

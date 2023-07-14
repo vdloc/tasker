@@ -1,10 +1,7 @@
-import { StateCreator, create } from 'zustand';
-import { immer } from 'zustand/middleware/immer';
-import type { StoreState, Task, Tag, User } from './types';
-import { devtools, persist } from 'zustand/middleware';
-import { database } from './firebase/firestore';
+import { database } from '@/firebase/firestore';
+import { Task, StoreState } from '@/types';
 
-const createTasksSlice = (set: any, get: any) => ({
+const taskReducer = (set: any, get: any) => ({
   uncompletedTasks: [],
   completedTasks: [],
   selectingTask: {} as Task,
@@ -51,49 +48,4 @@ const createTasksSlice = (set: any, get: any) => ({
   },
 });
 
-const createTagSlice = (set: any) => ({
-  tags: [],
-  setTags: (tags: Tag[]) => set({ tags }),
-  addTag: (tag: Tag) => set((state: StoreState) => ({ tags: [...state.tags, tag] })),
-  addTags: (tags: Tag[]) => set((state: StoreState) => ({ tags: [...state.tags, ...tags] })),
-  deleteTag: (tag: Tag) =>
-    set((state: StoreState) => ({
-      tags: state.tags.filter(({ id }) => id !== tag.id),
-    })),
-});
-
-const createDialogSlice = (set: any) => ({
-  isTaskUpdateDialogOpen: false,
-  isTaskCreateDialogOpen: false,
-  isTagsListEditDialogOpen: false,
-  toggleTaskUpdateDialog: (isOpen = false) =>
-    set(() => ({
-      isTaskUpdateDialogOpen: isOpen,
-    })),
-  toggleTaskCreateDialog: (isOpen = false) =>
-    set(() => ({
-      isTaskCreateDialogOpen: isOpen,
-    })),
-  toggleTagsListEditDialog: (isOpen = false) =>
-    set(() => ({
-      isTagsListEditDialogOpen: isOpen,
-    })),
-});
-
-const createUserSlice = (set: any) => ({
-  user: null,
-  setUser: (user: User | null) => set({ user }),
-  isUserProfileOpen: false,
-  toggleUserProfileDialog: (isShow: boolean) => set({ isUserProfileOpen: isShow }),
-});
-
-const initializer: StateCreator<StoreState, [['zustand/persist', unknown], ['zustand/immer', never]]> = (set, get) => ({
-  ...createTasksSlice(set, get),
-  ...createDialogSlice(set),
-  ...createTagSlice(set),
-  ...createUserSlice(set),
-});
-
-const createStore = devtools(persist(immer(initializer), { name: 'todo' }));
-
-export const useStore = create<StoreState>()(createStore);
+export default taskReducer;

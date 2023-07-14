@@ -1,7 +1,7 @@
 import Todo from '@components/Todo';
 import TodoListHeader from './Header';
 import { Tag, type Task } from '@/types';
-import { useStore } from '@/store';
+import { useTaskStore, useUserStore } from '@/store';
 import sampleTasks from '@data/todos.json';
 import sampleTags from '@data/tags.json';
 import Placeholder from './Placeholder';
@@ -13,8 +13,8 @@ type TodoListProps = {
 };
 
 export default function TodoList({ todos = [], loading }: TodoListProps) {
-  const isShowCompletedTasks = useStore((state) => state.isShowCompletedTasks);
-  const user = useStore((state) => state.user);
+  const isShowCompletedTasks = useTaskStore((state) => state.isShowCompletedTasks);
+  const user = useUserStore((state) => state.user);
 
   function handleCreateSampleTasks() {
     const tasks = sampleTasks.map((item) => ({ ...item, userID: user?.uid }));
@@ -32,7 +32,7 @@ export default function TodoList({ todos = [], loading }: TodoListProps) {
         ) : todos.length ? (
           todos.map((todo) => <Todo todo={todo} key={todo.id} />)
         ) : (
-          <p className='font-medium italic mt-8'>
+          <p className="font-medium italic mt-8">
             {isShowCompletedTasks ? (
               <Placeholder.CompletedTasks />
             ) : (

@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import FormLayout from '../FormLayout';
-import { useStore } from '@/store';
+import { useDialogStore, useTagStore, useTaskStore } from '@/store';
 import { Tag, TaskEditFormValues, Task } from '@/types';
 import TaskEditFormHeader from './Header';
 import TaskEditFormContent from './Content';
@@ -10,10 +10,10 @@ import { database } from '@/firebase/firestore';
 import { shallow } from 'zustand/shallow';
 
 export default function TaskEditForm() {
-  const [selectingTask, toggleTaskUpdateDialog, tags = []] = useStore(
-    (state) => [state.selectingTask, state.toggleTaskUpdateDialog, state.tags],
-    shallow,
-  );
+  const selectingTask = useTaskStore((state) => state.selectingTask);
+  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
+  const tags = useTagStore((state) => state.tags) || [];
+
   const { control, handleSubmit } = useForm<TaskEditFormValues>({
     defaultValues: { ...selectingTask },
   });

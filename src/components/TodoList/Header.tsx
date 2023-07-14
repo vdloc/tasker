@@ -1,7 +1,7 @@
-import { useStore } from '@/store';
+import { useTaskStore } from '@/store';
 
 export default function TodoListHeader() {
-  const isShowCompletedTasks = useStore((state) => state.isShowCompletedTasks);
+  const isShowCompletedTasks = useTaskStore((state) => state.isShowCompletedTasks);
 
   return (
     <legend className="font-medium text-gray-900 grid grid-cols-12 justify-center w-full px-4 h-12 items-center">

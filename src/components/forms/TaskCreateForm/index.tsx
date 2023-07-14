@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useStore } from '@/store';
+import { useDialogStore, useTaskStore, useUserStore } from '@/store';
 import { TaskCreateFormValues } from '@/types';
 import { v4 as uuidv4 } from 'uuid';
 import FormLayout from '../FormLayout';
@@ -9,11 +9,9 @@ import TaskCreateFormFooter from './Footer';
 import { database } from '@/firebase/firestore';
 
 export default function TaskCreateForm() {
-  const toggleTaskCreateDialog = useStore(
-    (state) => state.toggleTaskCreateDialog
-  );
-  const createTask = useStore((state) => state.createTask);
-  const user = useStore((state) => state.user);
+  const toggleTaskCreateDialog = useDialogStore((state) => state.toggleTaskCreateDialog);
+  const createTask = useTaskStore((state) => state.createTask);
+  const user = useUserStore((state) => state.user);
   const { control, handleSubmit } = useForm<TaskCreateFormValues>({
     defaultValues: {
       createDate: new Date().toDateString(),
@@ -24,9 +22,7 @@ export default function TaskCreateForm() {
       tags: [],
     },
   });
-  const onSubmit: SubmitHandler<TaskCreateFormValues> = async (
-    data: TaskCreateFormValues
-  ) => {
+  const onSubmit: SubmitHandler<TaskCreateFormValues> = async (data: TaskCreateFormValues) => {
     const updatedTask = {
       ...data,
       status: false,

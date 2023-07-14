@@ -1,12 +1,12 @@
 import Button from '@/components/common/Button';
-import { useStore } from '@/store';
+import { useDialogStore } from '@/store';
 
 type TaskEditFormFooterProps = {
   onDeleteTask: () => void;
 };
 
 export default function TaskEditFormFooter({ onDeleteTask }: TaskEditFormFooterProps) {
-  const toggleTaskUpdateDialog = useStore((state) => state.toggleTaskUpdateDialog);
+  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
 
   return (
     <>
