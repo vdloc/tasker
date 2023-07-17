@@ -1,3 +1,4 @@
+import { FunctionComponent, ReactNode } from 'react';
 import type { Control } from 'react-hook-form';
 
 export type Task = {
@@ -53,6 +54,19 @@ export interface DialogState {
   toggleUserProfileDialog: (isOpen: boolean) => void;
 }
 
+export interface NotificationProps {
+  icon: FunctionComponent | null;
+  title: string;
+  description: string;
+}
+
+export interface NotificationState {
+  isNotificationOpen: boolean;
+  toggleNotification: (isOpen: boolean) => void;
+  notificationProps: NotificationProps;
+  setNotification: (props: NotificationProps) => void;
+}
+
 export interface TagState {
   tags: Tag[];
   addTag: (tag: Tag) => void;
@@ -66,7 +80,12 @@ export interface UserState {
   setUser: (user: User | null) => void;
 }
 
-export interface StoreState extends TaskState, DialogState, TagState, UserState {}
+export interface StoreState
+  extends TaskState,
+    DialogState,
+    TagState,
+    UserState,
+    NotificationState {}
 
 export type TaskCreateFormValues = {
   title: string;
@@ -115,4 +134,5 @@ export const enum StorePersistKey {
   Task = 'tasker-task',
   Dialog = 'tasker-dialog',
   User = 'tasker-user',
+  Notification = 'tasker-notification',
 }

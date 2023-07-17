@@ -1,0 +1,39 @@
+{
+  "errors": {
+    "auth/invalid-email": "Please provide a valid email address.",
+    "auth/wrong-password": "The password you entered is incorrect. Please try again.",
+    "auth/user-not-found": "We couldn't find an account corresponding to that email address. Please check the email and try again or register for a new account.",
+    "auth/user-disabled": "Your account has been disabled. Please contact us if you think this is an error.",
+    "auth/email-already-in-use": "An account already exists for that email address. Please login to that account or use a different email.",
+    "auth/operation-not-allowed": "That sign in method is not enabled. Please use a supported sign in method for this account.",
+    "auth/weak-password": "Your password is too weak. Please choose a stronger password.",
+    "auth/requires-recent-login": "Please sign in again before performing this operation.",
+    "auth/account-exists-with-different-credential": "An account already exists using a different sign-in method for that email.",
+    "auth/credential-too-old": "This credential is no longer valid. Please sign in again.",
+    "auth/invalid-credential": "The credential used is malformed or invalid.",
+    "auth/invalid-verification-code": "The verification code you entered is invalid. Please try again.",
+    "auth/invalid-verification-id": "The verification ID provided is invalid.",
+    "auth/missing-verification-code": "A verification code is required for this operation.",
+    "auth/missing-verification-id": "A verification ID is required for this operation.",
+    "auth/invalid-action-code": "The action code is invalid. This can happen if the code is malformed, expired, or has already been used.",
+    "auth/user-cancelled": "The user cancelled the operation.",
+    "auth/registration-error": "There was an error registering the user. Please try again.",
+    "auth/invalid-api-key": "Your API key is invalid.",
+    "auth/network-request-failed": "A network error occurred. Please check your internet connection.",
+    "auth/too-many-requests": "There were too many requests. Please wait and try again later.",
+    "auth/web-storage-unsupported": "Browser does not support web storage.",
+    "auth/invalid-persistence-type": "Invalid persistence type specified."
+  },
+  "successes": {
+    "sign-up": "Your account was created successfully. Welcome!",
+    "sign-in": "You have signed in successfully.",
+    "email-verification": "Your email has been verified.",
+    "reset-password": "We've sent you an email to reset your password.",
+    "reset-password-complete": "Your password has been reset successfully.",
+    "account-linked": "Your account was linked successfully.",
+    "profile-updated": "Your profile has been updated.",
+    "document-added": "Your document was added successfully.",
+    "payment-complete": "Your payment was completed successfully.",
+    "message-sent": "Your message was sent successfully."
+  }
+}

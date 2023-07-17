@@ -3,7 +3,13 @@ import AppHeader from './Header';
 import AppFooter from './Footer';
 import DialogPopup from '../DialogPopup';
 import TodoList from '../TodoList';
-import { useDialogStore, useTagStore, useTaskStore, useUserStore } from '@/store';
+import {
+  useDialogStore,
+  useNotificationStore,
+  useTagStore,
+  useTaskStore,
+  useUserStore,
+} from '@/store';
 import TaskEditForm from '../forms/TaskEditForm';
 import TaskCreateForm from '../forms/TaskCreateForm';
 import TagsListEditForm from '../forms/TagsListEditForm';
@@ -15,6 +21,7 @@ import { query, where } from 'firebase/firestore';
 import { tagRef, taskRef } from '@/firebase/firestore';
 import { filterTasksByStatus } from '@/utils';
 import { useCollection } from '@/firebase/hooks/useCollection';
+import NotificationsControl from '../Notification';
 
 export default function App() {
   const [
@@ -37,11 +44,11 @@ export default function App() {
       state.toggleTaskCreateDialog,
       state.toggleUserProfileDialog,
     ],
-    shallow,
+    shallow
   );
   const [isShowCompletedTasks, setSelectingTask] = useTaskStore(
     (state) => [state.isShowCompletedTasks, state.setSelectingTask],
-    shallow,
+    shallow
   );
   const user = useUserStore((state) => state.user);
   const setTags = useTagStore((state) => state.setTags);
@@ -50,7 +57,9 @@ export default function App() {
 
   const [tasks, isTasksLoading, tasksError] = useCollection(tasksQuery);
   const [tags, _, tagsError] = useCollection(tagsQuery);
-  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as Task[]) || []);
+  const [completedTasks, uncompletedTasks] = filterTasksByStatus(
+    (tasks as Task[]) || []
+  );
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
@@ -76,20 +85,35 @@ export default function App() {
 
   return (
     <AppTransition>
-      <div className="w-screen md:w-[28rem] h-screen md:h-auto overflow-hidden divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
+      <div className='w-screen md:w-[28rem] h-screen md:h-auto overflow-hidden divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl'>
         <AppHeader />
-        <TodoList todos={isShowCompletedTasks ? completedTasks : uncompletedTasks} loading={isTasksLoading} />
+        <TodoList
+          todos={isShowCompletedTasks ? completedTasks : uncompletedTasks}
+          loading={isTasksLoading}
+        />
         <AppFooter />
-        <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
+        <DialogPopup
+          isOpen={isTaskUpdateDialogOpen}
+          onClose={handleCloseTaskEditDialog}
+        >
           <TaskEditForm />
         </DialogPopup>
-        <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
+        <DialogPopup
+          isOpen={isUserProfileOpen}
+          onClose={handleCloseUserProfileDialog}
+        >
           <UserProfileForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
+        <DialogPopup
+          isOpen={isTaskCreateDialogOpen}
+          onClose={handleCloseTaskCreateDialog}
+        >
           <TaskCreateForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
+        <DialogPopup
+          isOpen={isTagsListEditDialogOpen}
+          onClose={handleCloseTagsEditDialog}
+        >
           <TagsListEditForm />
         </DialogPopup>
       </div>

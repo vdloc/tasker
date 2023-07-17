@@ -1,5 +1,3 @@
-import { set } from 'react-hook-form';
-
 const dialogReducer = (set: any) => ({
   isTaskUpdateDialogOpen: false,
   isTaskCreateDialogOpen: false,
@@ -17,7 +15,8 @@ const dialogReducer = (set: any) => ({
     set({
       isTagsListEditDialogOpen: isOpen,
     }),
-  toggleUserProfileDialog: (isOpen = false) => set({ isUserProfileOpen: isOpen }),
+  toggleUserProfileDialog: (isOpen = false) =>
+    set({ isUserProfileOpen: isOpen }),
 });
 
 export default dialogReducer;
