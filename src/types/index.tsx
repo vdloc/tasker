@@ -1,6 +1,6 @@
 import type { Control } from 'react-hook-form';
 
-export type Task = {
+export interface Task {
   userID?: string;
   id: string | number;
   title: string;
@@ -9,24 +9,39 @@ export type Task = {
   tags?: Tag[];
   createDate?: string;
   dueDate?: string;
-};
+}
 
-export type TagColor = 'indigo' | 'red' | 'lime' | 'sky' | 'zinc' | 'orange';
-
-export type Tag = {
+export interface Tag {
   userID?: string;
   id: number | string;
   name: string;
   color: TagColor;
-};
+}
 
-export type User = {
+export interface User {
   uid: string;
   displayName: string;
   email: string;
   phoneNumber: string;
   photoURL: string;
-};
+}
+
+type TagColor =
+  | 'gray'
+  | 'green'
+  | 'yellow'
+  | 'pink'
+  | 'orange'
+  | 'blue'
+  | 'purple'
+  | 'lime'
+  | 'teal'
+  | 'cyan'
+  | 'sky'
+  | 'rose'
+  | 'amber'
+  | 'emerald'
+  | 'fuchsia';
 
 export interface TaskState {
   selectingTask: Task;
@@ -68,39 +83,37 @@ export interface UserState {
 
 export interface StoreState extends TaskState, DialogState, TagState, UserState {}
 
-export type TaskCreateFormValues = {
+export interface TaskCreateFormValues {
   title: string;
   description: string;
   id: string | number;
   createDate: string;
   dueDate: string;
   tags?: Tag[];
-};
+}
 
-export type TaskEditFormValues = {
+export interface TaskEditFormValues extends TaskCreateFormValues {
   status: boolean;
-} & TaskCreateFormValues;
+}
 
-export type TagsListEditFormValues = {
+export interface TagsListEditFormValues {
   id: string | number;
   name: string;
   color: TagColor;
-};
+}
 
-export type UserSignInFormValues = {
+export interface UserSignInFormValues {
   email: string;
   password: string;
-};
+}
 
-export type UserSignUpFormValues = {
-  email: string;
-  password: string;
+export interface UserSignUpFormValues extends UserSignInFormValues {
   confirmPassword: string;
-};
+}
 
 export type UserProfileFormValues = User;
 
-export type FormInputProps = {
+export interface FormInputProps {
   control: Control<any>;
   rules?: object;
   name: any;
@@ -108,7 +121,7 @@ export type FormInputProps = {
   id?: string;
   className?: string;
   type?: string;
-};
+}
 
 export const enum StorePersistKey {
   Tag = 'tasker-tag',
