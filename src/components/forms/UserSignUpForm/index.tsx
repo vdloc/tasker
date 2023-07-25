@@ -2,7 +2,7 @@ import { User, UserSignUpFormValues } from '@/types';
 import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
 import Button from '../../common/Button';
-import { createUser } from '@/firebase/auth';
+import { createUser, signInWithGithub, signInWithGoogle } from '@/firebase/auth';
 import { useUserStore } from '@/store';
 import { GoogleIcon, GithubIcon } from '@/components/icons';
 import { Link, useNavigate } from 'react-router-dom';
@@ -24,6 +24,26 @@ export default function UserSignUpForm() {
     const { email, password } = data;
     try {
       const user = await createUser(email, password);
+      setUser(user as User);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleGoogleSignUp() {
+    try {
+      const user = await signInWithGoogle();
+      setUser(user as User);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleGithubSignUp() {
+    try {
+      const user = await signInWithGithub();
       setUser(user as User);
       navigate('/');
     } catch (error) {
@@ -71,8 +91,8 @@ export default function UserSignUpForm() {
         </section>
         <section className="space-y-4 md:space-y-6  mt-3 py-3">
           <h5 className="text-center text-sm font-medium"> Or with social accounts:</h5>
-          <SocialButton Icon={GoogleIcon} label="Sign up with Google" />
-          <SocialButton Icon={GithubIcon} label="Sign up with Github" />
+          <SocialButton Icon={GoogleIcon} label="Sign up with Google" onClick={handleGoogleSignUp} />
+          <SocialButton Icon={GithubIcon} label="Sign up with Github" onClick={handleGithubSignUp} />
         </section>
         <section className=" mt-3 pt-3">
           <h5 className="text-center text-sm font-medium">

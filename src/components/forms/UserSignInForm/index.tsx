@@ -2,7 +2,7 @@ import { User, UserSignInFormValues } from '@/types';
 import Input from '../components/Input';
 import { useForm } from 'react-hook-form';
 import Button from '@components/common/Button';
-import { signInUser } from '@/firebase/auth';
+import { signInWithGithub, signInWithGoogle, signInUser, signInWithAnonymously } from '@/firebase/auth';
 import SocialButton from '@components/common/SocialButton';
 import { GoogleIcon, GithubIcon, UserIcon } from '@components/icons';
 import { useUserStore } from '@/store';
@@ -30,6 +30,37 @@ export default function UserSignInForm() {
       console.log(error);
     }
   }
+
+  async function handleGoogleSignIn() {
+    try {
+      const user = await signInWithGoogle();
+      setUser(user as User);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleGithubSignIn() {
+    try {
+      const user = await signInWithGithub();
+      setUser(user as User);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleAnonymouslySignIn() {
+    try {
+      const user = await signInWithAnonymously();
+      setUser(user as User);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="w-full h-screen md:h-auto flex flex-col justify-center overflow-hidden md:w-[20rem] py-6 px-4 mx-auto relative z-10 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
       <header className="pt-4 text-center">
@@ -60,9 +91,9 @@ export default function UserSignInForm() {
         </section>
         <section className="space-y-4 md:space-y-6 mt-3 py-3">
           <h5 className="text-center text-sm font-medium"> Or with social accounts:</h5>
-          <SocialButton Icon={GoogleIcon} label="Sign in with Google" />
-          <SocialButton Icon={GithubIcon} label="Sign in with Github" />
-          <SocialButton Icon={UserIcon} label="Sign in as guest" />
+          <SocialButton Icon={GoogleIcon} label="Sign in with Google" onClick={handleGoogleSignIn} />
+          <SocialButton Icon={GithubIcon} label="Sign in with Github" onClick={handleGithubSignIn} />
+          <SocialButton Icon={UserIcon} label="Sign in as guest" onClick={handleAnonymouslySignIn} />
         </section>
         <section className=" mt-3 pt-3">
           <h5 className="text-center text-sm font-medium">
