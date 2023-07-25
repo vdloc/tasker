@@ -1,219 +1,187 @@
 [
   {
-    "id": 1,
-    "title": "Buy groceries.",
-    "description": "I need to stock up on some essentials like milk, eggs, bread, and cheese. I also want to get some fruits and vegetables for healthy snacks.",
+    "id": 1, 
+    "title": "Grocery shopping",
+    "description": "Buy milk, eggs, fruits and vegetables",
     "status": false,
+    "priority": 2,
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 5, "name": "cooking", "color": "orange"},
+      {"id": 4, "name": "shopping", "color": "pink"}
     ],
     "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "dueTime": "30/05/2023"
   },
   {
     "id": 2,
-    "title": "Call mom.",
-    "description": "I haven't talked to her in a while and I want to catch up on how she's doing. I hope she's not too worried about me.",
+    "title": "Call mom",
+    "description": "Catch up with mom and see how she is doing",
     "status": false,
+    "priority": 1, 
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 2, "name": "family", "color": "green"}
     ],
     "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "dueTime": "30/05/2023"
   },
   {
     "id": 3,
-    "title": "Finish project.",
-    "description": "I have a deadline coming up for a big assignment at work and I need to put the final touches on it. I hope my boss likes it and gives me a good feedback.",
+    "title": "Finish work project",
+    "description": "Complete project and submit before deadline",
     "status": false,
+    "priority": 3,
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 1, "name": "work", "color": "gray"}
     ],
     "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "dueTime": "30/05/2023"
   },
   {
     "id": 4,
     "title": "Clean the house",
-    "description": "It's been a mess lately and I need to tidy up. I want to vacuum the carpets, dust the furniture, and wash the dishes. Maybe I'll light some candles and play some music to make it more fun.",
+    "description": "Vacuum, dust, do laundry and wash dishes",
     "status": false,
+    "priority": 2,
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 6, "name": "cleaning", "color": "blue"} 
     ],
     "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "dueTime": "01/06/2023"
   },
-  {
+  {  
     "id": 5,
     "title": "Watch a movie",
-    "description": "After a long day of work and chores, I deserve some relaxation. I want to watch a comedy or a romance to lift my mood. Maybe I'll order some pizza and popcorn too.",
+    "description": "Relax with a comedy or romance movie",
     "status": false,
+    "priority": 1,
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 8, "name": "entertainment", "color": "lime"}
     ],
-    "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "createTime": "30/05/2023",
+    "dueTime": "31/05/2023"
   },
   {
     "id": 6,
-    "title": "Clean the garage",
-    "description": "It's been a mess for months and I need to make some space for the new bike.",
+    "title": "Exercise", 
+    "description": "Go for a 30 minute jog",
     "status": false,
+    "priority": 2,
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 7, "name": "exercise", "color": "purple"}
     ],
     "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "dueTime": "31/05/2023" 
   },
   {
-    "id": 7,
-    "title": "Exercise for 30 minutes",
-    "description": "I need to stay healthy and fit, especially during the pandemic.",
+    "id": 7, 
+    "title": "Schedule doctor appointment",
+    "description": "Make annual checkup appointment",
     "status": false,
+    "priority": 2,
     "tags": [
-      {
-        "id": 0,
-        "name": "travel",
-        "color": "indigo"
-      },
-      {
-        "id": 1,
-        "name": "food",
-        "color": "lime"
-      },
-      {
-        "id": 2,
-        "name": "photography",
-        "color": "red"
-      },
-      {
-        "id": 3,
-        "name": "music",
-        "color": "zinc"
-      }
+      {"id": 12, "name": "health", "color": "rose"}
     ],
     "createTime": "29/05/2023",
-    "dueTime": "30/05/2023",
-    "finishTime": "30/05/2023"
+    "dueTime": "02/06/2023"
+  },
+  {
+    "id": 8,
+    "title": "Pay bills",
+    "description": "Pay credit card, utility and phone bills",
+    "status": false,
+    "priority": 2,
+    "tags": [
+      {"id": 3, "name": "finance", "color": "yellow"},
+      {"id": 14, "name": "bills", "color": "emerald"}
+    ],
+    "createTime": "30/05/2023",
+    "dueTime": "05/06/2023"
+  },
+  {
+    "id": 9,
+    "title": "Plan vacation",
+    "description": "Research places to visit and book flights",
+    "status": false, 
+    "priority": 1,
+    "tags": [
+      {"id": 0, "name": "travel", "color": "indigo"}
+    ],
+    "createTime": "03/06/2023",
+    "dueTime": "15/06/2023"
+  },
+  {
+    "id": 10,
+    "title": "Fix kitchen cabinet",
+    "description": "Door is loose and needs to be repaired",
+    "status": false,
+    "priority": 3,
+    "tags": [
+      {"id": 10, "name": "repairs", "color": "cyan"}
+    ],
+    "createTime": "01/06/2023",
+    "dueTime": "05/06/2023"
+  },
+  {
+    "id": 11,
+    "title": "Weed the garden",
+    "description": "Pull out weeds overgrowing the garden",
+    "status": false,
+    "priority": 2, 
+    "tags": [
+      {"id": 9, "name": "gardening", "color": "teal"}
+    ],  
+    "createTime": "03/06/2023",
+    "dueTime": "10/06/2023"
+  },
+  {
+    "id": 12,
+    "title": "Grocery shopping",
+    "description": "Buy milk, eggs, fruits and vegetables",
+    "status": false,
+    "priority": 2,
+    "tags": [
+      {"id": 5, "name": "cooking", "color": "orange"},
+      {"id": 4, "name": "shopping", "color": "pink"}
+    ],
+    "createTime": "29/05/2023",
+    "dueTime": "30/05/2023"
+  },
+  {
+    "id": 13,
+    "title": "Oil change",
+    "description": "Take car in for an oil change and inspection",
+    "status": false,
+    "priority": 2,
+    "tags": [
+      {"id": 13, "name": "car", "color": "amber"}
+    ],
+    "createTime": "01/06/2023",
+    "dueTime": "05/06/2023"
+  },
+  {  
+    "id": 14,
+    "title": "Plan birthday party",
+    "description": "Make guest list, send invites, order cake",
+    "status": false,
+    "priority": 2,
+    "tags": [
+      {"id": 2, "name": "family", "color": "green"},
+      {"id": 11, "name": "trips", "color": "sky"}
+    ],
+    "createTime": "03/06/2023",
+    "dueTime": "15/06/2023"
+  },
+  {
+    "id": 15,
+    "title": "Buy pet food",
+    "description": "Get more dog and cat food from the store",
+    "status": false,
+    "priority": 2,
+    "tags": [
+      {"id": 15, "name": "pets", "color": "fuchsia"},
+      {"id": 4, "name": "shopping", "color": "pink"}  
+    ],
+    "createTime": "29/05/2023", 
+    "dueTime": "31/05/2023"
   }
 ]

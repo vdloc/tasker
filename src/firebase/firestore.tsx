@@ -101,6 +101,7 @@ async function createTags(tags: Tag[]) {
     batch.set(docRef, tag);
   });
   await batch.commit();
+  return tags;
 }
 
 async function deleteTask(taskID: string) {

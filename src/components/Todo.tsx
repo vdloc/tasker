@@ -22,8 +22,7 @@ export default function Todo({ todo }: TodoProps) {
   async function handleStatusChange(event: ChangeEvent) {
     const target = event.target as HTMLInputElement;
     const updatingTask = { ...todo, status: target.checked };
-
-    await database.updateTask(updatingTask);
+        
     updateTask(updatingTask);
   }
 

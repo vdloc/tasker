@@ -8,13 +8,14 @@ const taskReducer = (set: any, get: any) => ({
   isShowCompletedTasks: false,
   toggleShowCompletedTasks: (isShow: boolean) => set({ isShowCompletedTasks: isShow }),
   setSelectingTask: (task: Task) => set(() => ({ selectingTask: task })),
-  updateTask: (updatedTask: Task) =>
+  updateTask: async (updatedTask: Task) => {
+    await database.updateTask(updatedTask);
+
     set((state: StoreState) => {
-      const isTaskCompleted = state.completedTasks.some((task) => task.id === updatedTask.id);
-      if (updatedTask.status && !isTaskCompleted) {
+      if (updatedTask.status) {
         state.completedTasks = [updatedTask, ...state.completedTasks];
         state.uncompletedTasks = state.uncompletedTasks.filter((task) => task.id !== updatedTask.id);
-      } else if (!updatedTask.status && isTaskCompleted) {
+      } else {
         state.uncompletedTasks = [...state.uncompletedTasks, updatedTask];
         state.completedTasks = state.completedTasks.filter((task) => task.id !== updatedTask.id);
       }
@@ -23,13 +24,16 @@ const taskReducer = (set: any, get: any) => ({
       if (updatingTask) {
         Object.assign(updatingTask, updatedTask);
       }
-    }),
+    });
+  },
   createTask: (newTask: Task) => {
     set((state: StoreState) => {
       state.uncompletedTasks = [newTask, ...state.uncompletedTasks];
     });
   },
-  createTasks: (newTasks: Task[]) => {
+  createTasks: async (newTasks: Task[]) => {
+    await database.createTasks(newTasks);
+
     set((state: StoreState) => {
       state.uncompletedTasks = [...newTasks, ...state.uncompletedTasks];
     });
