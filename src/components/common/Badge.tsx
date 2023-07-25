@@ -1,19 +1,19 @@
 import { tv } from 'tailwind-variants';
 import type { VariantProps } from 'tailwind-variants';
+import colors from '@data/colors.json';
 
-const colors = {
-  indigo: 'bg-indigo-100 text-indigo-700',
-  red: 'bg-red-100 text-red-700',
-  lime: 'bg-lime-100 text-lime-700',
-  sky: 'bg-sky-100 text-sky-700',
-  zinc: 'bg-zinc-100 text-zinc-700',
-  orange: 'bg-orange-100 text-orange-700',
-};
+const variantColors = {} as any;
+const colorNames = Object.keys(colors);
+
+colorNames.forEach((colorName) => {
+  const colorData = colors[colorName as keyof typeof colors];
+  variantColors[colorName as keyof typeof variantColors] = `${colorData.light} ${colorData.text}`;
+});
 
 const badgeStyleProps = tv({
   base: 'inline-flex items-center rounded-full h-5 text-xs font-medium',
   variants: {
-    color: colors,
+    color: variantColors,
     size: {
       small: 'pl-2 pr-0.5',
       large: 'pl-2.5 pr-1',
@@ -23,7 +23,7 @@ const badgeStyleProps = tv({
     },
   },
   defaultVariants: {
-    color: 'indigo',
+    color: colorNames[0],
     rounded: 'medium',
     size: 'small',
   },

@@ -1,26 +1,77 @@
 {
-  "indigo": {
-    "strong": "bg-indigo-700",
-    "light": "bg-indigo-100"
+  "gray": {
+    "strong": "bg-gray-700",
+    "light": "bg-gray-100",
+    "text": "text-gray-700"
   },
-  "red": {
-    "strong": "bg-red-700",
-    "light": "bg-red-100"
+  "green": {
+    "strong": "bg-green-700", 
+    "light": "bg-green-100",
+    "text": "text-green-700"
   },
-  "lime": {
-    "strong": "bg-lime-700",
-    "light": "bg-lime-100"
+  "yellow": {
+    "strong": "bg-yellow-700",
+    "light": "bg-yellow-100", 
+    "text": "text-yellow-700"
   },
-  "sky": {
-    "strong": "bg-sky-700",
-    "light": "bg-sky-100"
-  },
-  "zinc": {
-    "strong": "bg-zinc-700",
-    "light": "bg-zinc-100"
+  "pink": {
+    "strong": "bg-pink-700",
+    "light": "bg-pink-100",
+    "text": "text-pink-700"
   },
   "orange": {
     "strong": "bg-orange-700",
-    "light": "bg-orange-100"
+    "light": "bg-orange-100",
+    "text": "text-orange-700"
+  },
+  "blue": {
+    "strong": "bg-blue-700",
+    "light": "bg-blue-100",
+    "text": "text-blue-700"
+  },
+  "purple": {
+    "strong": "bg-purple-700",
+    "light": "bg-purple-100",
+    "text": "text-purple-700"
+  },
+  "lime": {
+    "strong": "bg-lime-700",
+    "light": "bg-lime-100",
+    "text": "text-lime-700"
+  },
+  "teal": {
+    "strong": "bg-teal-700", 
+    "light": "bg-teal-100",
+    "text": "text-teal-700"
+  },
+  "cyan": {
+    "strong": "bg-cyan-700",
+    "light": "bg-cyan-100",
+    "text": "text-cyan-700"
+  },
+  "sky": {
+    "strong": "bg-sky-700",
+    "light": "bg-sky-100",
+    "text": "text-sky-700"
+  },
+  "rose": {
+    "strong": "bg-rose-700",
+    "light": "bg-rose-100",
+    "text": "text-rose-700"
+  },
+  "amber": {
+    "strong": "bg-amber-700",
+    "light": "bg-amber-100",
+    "text": "text-amber-700"
+  },
+  "emerald": {
+    "strong": "bg-emerald-700",
+    "light": "bg-emerald-100",
+    "text": "text-emerald-700"
+  },
+  "fuchsia": {
+    "strong": "bg-fuchsia-700",
+    "light": "bg-fuchsia-100", 
+    "text": "text-fuchsia-700"
   }
 }
