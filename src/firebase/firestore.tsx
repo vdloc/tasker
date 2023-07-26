@@ -2,7 +2,6 @@ import {
   collection,
   doc,
   setDoc,
-  getDoc,
   getDocs,
   query,
   where,
@@ -17,7 +16,6 @@ import firebaseApp from './app';
 import { Tag, Task, User } from '@/types';
 
 export const fireStore = getFirestore(firebaseApp);
-
 export const tagRef = collection(fireStore, 'tag');
 export const taskRef = collection(fireStore, 'task');
 export const userRef = collection(fireStore, 'user');
@@ -108,6 +106,10 @@ async function deleteTask(taskID: string) {
   await deleteDoc(doc(fireStore, 'task', taskID));
 }
 
+async function deleteTag(tagID: string) {
+  await deleteDoc(doc(fireStore, 'tag', tagID));
+}
+
 function setCurrentUser(user: User) {
   Object.assign(currentUser, user);
 }
@@ -123,5 +125,6 @@ export const database = {
   deleteTask,
   createTag,
   createTags,
+  deleteTag,
   setCurrentUser,
 };

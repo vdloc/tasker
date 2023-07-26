@@ -26,7 +26,7 @@ export interface User {
   photoURL: string;
 }
 
-type TagColor =
+export type TagColor =
   | 'gray'
   | 'green'
   | 'yellow'
@@ -81,7 +81,11 @@ export interface UserState {
   setUser: (user: User | null) => void;
 }
 
-export interface StoreState extends TaskState, DialogState, TagState, UserState {}
+export interface StoreState
+  extends TaskState,
+    DialogState,
+    TagState,
+    UserState {}
 
 export interface TaskCreateFormValues {
   title: string;
