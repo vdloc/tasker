@@ -1,6 +1,7 @@
 import { useDialogStore, useTagStore, useTaskStore } from '@/store';
 import { Task } from '@/types';
 import { lazy, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { shallow } from 'zustand/shallow';
 
 import AppTransition from '../AppTransition';
@@ -77,6 +78,7 @@ export default function App() {
         <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
           <TagsListEditForm />
         </DialogPopup>
+        <Toaster />
       </div>
     </AppTransition>
   );
