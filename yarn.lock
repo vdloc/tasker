@@ -3134,14 +3134,14 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/client-logger@7.0.26", "@storybook/client-logger@^7.0.0-beta.0 || ^7.0.0-rc.0 || ^7.0.0":
+"@storybook/client-logger@7.0.26":
   version "7.0.26"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-7.0.26.tgz#26e3f45e2740952a0c14d59b80b47c815c6ab665"
   integrity sha512-OMVLbgceoeuM8sWOfTX/9a4zCrH78G32hg7x8yXLZnRJ9OLaHJHzUM0Onc4MLudqVUdaKH0c8ejpBXUyIr1rJQ==
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/client-logger@7.1.1":
+"@storybook/client-logger@7.1.1", "@storybook/client-logger@^7.0.0-beta.0 || ^7.0.0-rc.0 || ^7.0.0":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-7.1.1.tgz#62b7760ab05977f831f1831d5842ab4a4501c585"
   integrity sha512-R0bdVjzJ5CwLNAG3XMyMZ0e9XDteBkFkTTIZJ9m+WMh/+oa2PInCpXDxoYb180UI6abrqh1jEaAsrHMC1pTKnA==
@@ -3202,6 +3202,14 @@
   dependencies:
     "@storybook/client-logger" "7.0.24"
     "@storybook/preview-api" "7.0.24"
+
+"@storybook/core-client@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-7.1.1.tgz#caeb0e740a701ab4401ab4aba508384d9b652843"
+  integrity sha512-yFd617XKFS+Q5IFmItXR+DdMfpreHHcdy3f67dt8PLnnjNcGMpi7gEcp8t9yBAT+pIgnqSfE/FNUFTg0OEpRpw==
+  dependencies:
+    "@storybook/client-logger" "7.1.1"
+    "@storybook/preview-api" "7.1.1"
 
 "@storybook/core-common@7.0.24":
   version "7.0.24"
@@ -3661,7 +3669,7 @@
     magic-string "^0.27.0"
     react-docgen "6.0.0-alpha.3"
 
-"@storybook/react@7.0.24", "@storybook/react@^7.0.12":
+"@storybook/react@7.0.24":
   version "7.0.24"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-7.0.24.tgz#21ce8a0b09dceac7193bb0f1463b3cb9bd13ead6"
   integrity sha512-JAgSs8ANysBl3+cOAjFSVG3bA2V/wP6jyu7oK0jSATRQhHRjRS/tHFMA82j0j98G2sr3JXQUxNt55Qq3k2mUcg==
@@ -3686,6 +3694,33 @@
     react-element-to-jsx-string "^15.0.0"
     ts-dedent "^2.0.0"
     type-fest "^2.19.0"
+    util-deprecate "^1.0.2"
+
+"@storybook/react@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-7.1.1.tgz#74170fbd0b27d565af8e671aa43260b366e62712"
+  integrity sha512-qgZ/K2KKR+WrIHZEg5UZn0kqlzDk+sP51yosn7Ymt8j85yNgYm4G1q+oGYY+wKSIJEIi31mrQEz8oFHn8jaT2Q==
+  dependencies:
+    "@storybook/client-logger" "7.1.1"
+    "@storybook/core-client" "7.1.1"
+    "@storybook/docs-tools" "7.1.1"
+    "@storybook/global" "^5.0.0"
+    "@storybook/preview-api" "7.1.1"
+    "@storybook/react-dom-shim" "7.1.1"
+    "@storybook/types" "7.1.1"
+    "@types/escodegen" "^0.0.6"
+    "@types/estree" "^0.0.51"
+    "@types/node" "^16.0.0"
+    acorn "^7.4.1"
+    acorn-jsx "^5.3.1"
+    acorn-walk "^7.2.0"
+    escodegen "^2.0.0"
+    html-tags "^3.1.0"
+    lodash "^4.17.21"
+    prop-types "^15.7.2"
+    react-element-to-jsx-string "^15.0.0"
+    ts-dedent "^2.0.0"
+    type-fest "^3.11.0"
     util-deprecate "^1.0.2"
 
 "@storybook/router@7.0.24":
@@ -10246,6 +10281,7 @@ string-natural-compare@^3.0.1:
   integrity sha512-n3sPwynL1nwKi3WJ6AIsClwBMa0zTi54fn2oLU6ndfTSIO05xaznjSf15PcBZU6FNWbmN5Q6cxT4V5hGvB4taw==
 
 "string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.3:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -10319,6 +10355,7 @@ string_decoder@~1.1.1:
     safe-buffer "~5.1.0"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -10801,6 +10838,11 @@ type-fest@^2.19.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
+
+type-fest@^3.11.0:
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.13.1.tgz#bb744c1f0678bea7543a2d1ec24e83e68e8c8706"
+  integrity sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==
 
 type-is@~1.6.18:
   version "1.6.18"
@@ -11319,6 +11361,7 @@ wordwrap@^1.0.0:
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
 
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
+  name wrap-ansi-cjs
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
