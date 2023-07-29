@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 
 export function useMutation() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const [mutationFn, setMutationFn] = useState();
-  const mutation = (mutationCallback: () => Promise<any>) => {
+  const mutation = (mutationCallback: () => Promise<void>) => {
     setLoading(true);
-    setMutationFn(mutationCallback as any);
+    setMutationFn(mutationCallback as SetStateAction<any>);
   };
 
   useEffect(() => {

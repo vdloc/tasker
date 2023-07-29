@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import AppHeader from './Header';
 import AppFooter from './Footer';
 import DialogPopup from '../DialogPopup';
@@ -55,9 +55,7 @@ export default function App() {
 
   const [tasks, isTasksLoading] = useCollection(tasksQuery);
   const [tags] = useCollection(tagsQuery);
-  const [completedTasks, uncompletedTasks] = filterTasksByStatus(
-    (tasks as Task[]) || []
-  );
+  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as Task[]) || []);
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);

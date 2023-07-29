@@ -1,6 +1,5 @@
 import { database } from '@/firebase/firestore';
 import { Tag, StoreState } from '@/types';
-import { onSnapshot } from 'firebase/firestore';
 
 const tagReducer = (set: any) => ({
   tags: [],

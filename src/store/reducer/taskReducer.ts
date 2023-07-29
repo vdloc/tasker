@@ -1,4 +1,4 @@
-import { database } from '@/firebase/firestore';
+import { AddPrefixToKeys, database } from '@/firebase/firestore';
 import { Task, StoreState } from '@/types';
 
 const taskReducer = (set: any, get: any) => ({
@@ -9,7 +9,7 @@ const taskReducer = (set: any, get: any) => ({
   toggleShowCompletedTasks: (isShow: boolean) => set({ isShowCompletedTasks: isShow }),
   setSelectingTask: (task: Task) => set(() => ({ selectingTask: task })),
   updateTask: async (updatedTask: Task) => {
-    await database.updateTask(updatedTask);
+    await database.updateTask(updatedTask as Task & AddPrefixToKeys<string, any>);
 
     set((state: StoreState) => {
       if (updatedTask.status) {

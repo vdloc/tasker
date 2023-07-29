@@ -73,7 +73,11 @@ async function createTag(tag: Tag) {
   await setDoc(docRef, tag);
 }
 
-async function updateTask(task: Task) {
+export declare type AddPrefixToKeys<Prefix extends string, T extends Record<string, unknown>> = {
+    [K in keyof T & string as `${Prefix}.${K}`]+?: string extends K ? any : T[K];
+};
+
+async function updateTask(task: Task & AddPrefixToKeys<string,any>) {
   const docRef = doc(fireStore, 'task', task.id as string);
   await updateDoc(docRef, task);
 }
