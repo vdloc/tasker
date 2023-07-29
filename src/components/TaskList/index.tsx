@@ -1,5 +1,5 @@
-import Todo from '@components/Todo';
-import TodoListHeader from './Header';
+import Todo from '@/components/Task';
+import TaskListHeader from './Header';
 import { Tag, type Task } from '@/types';
 import { useTagStore, useTaskStore, useUserStore } from '@/store';
 import sampleTasks from '@data/todos.json';
@@ -8,12 +8,12 @@ import Placeholder from './Placeholder';
 import { database } from '@/firebase/firestore';
 import { shallow } from 'zustand/shallow';
 
-type TodoListProps = {
-  todos: Task[];
+type TaskListProps = {
+  tasks: Task[];
   loading: boolean;
 };
 
-export default function TodoList({ todos = [], loading }: TodoListProps) {
+export default function TaskList({ tasks = [], loading }: TaskListProps) {
   const user = useUserStore((state) => state.user);
   const setTags = useTagStore((state) => state.setTags);
   const { isShowCompletedTasks, createTasks } = useTaskStore((state) => state, shallow);
@@ -40,12 +40,12 @@ export default function TodoList({ todos = [], loading }: TodoListProps) {
 
   return (
     <fieldset>
-      <TodoListHeader />
+      <TaskListHeader />
       <div className="divide-y divide-gray-200 border-t border-gray-200 text-left px-4 h-[35rem] overflow-y-auto">
         {loading ? (
           <Placeholder.TasksSkeleton />
-        ) : todos.length ? (
-          todos.map((todo) => <Todo todo={todo} key={todo.id} />)
+        ) : tasks.length ? (
+          tasks.map((task) => <Todo task={task} key={task.id} />)
         ) : (
           <p className="font-medium italic mt-8">
             {isShowCompletedTasks ? (

@@ -30,18 +30,14 @@ export async function handleAuthStateChange(onChange: (user: User | null) => voi
 }
 
 export async function createUser(email: string, password: string) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    return userCredential.user;
-  } catch (error: any) {
-    console.log(error.message);
-  }
+  const { user } = await createUserWithEmailAndPassword(auth, email, password);
+  return user;
 }
 
 export async function signInUser(email: string, password: string) {
   await setPersistence(auth, browserLocalPersistence);
-  const userCredential = await signInWithEmailAndPassword(auth, email, password);
-  return userCredential.user;
+  const { user } = await signInWithEmailAndPassword(auth, email, password);
+  return user;
 }
 
 export async function signOutUser() {
@@ -56,22 +52,22 @@ export async function updateUser({ displayName, email, photoURL }: User) {
 
 export async function signInWithGoogle() {
   await setPersistence(auth, browserLocalPersistence);
-  const userCredential = await signInWithPopup(auth, googleAuthProvider);
-  return userCredential.user;
+  const { user } = await signInWithPopup(auth, googleAuthProvider);
+  return user;
 }
 
 export async function signUpWithGoogle() {
   await setPersistence(auth, browserLocalPersistence);
-  const userCredential = await signInWithPopup(auth, googleAuthProvider);
-  return userCredential.user;
+  const { user } = await signInWithPopup(auth, googleAuthProvider);
+  return user;
 }
 
 export async function signInWithGithub() {
-  const userCredential = await signInWithPopup(auth, githubAuthProvider);
-  return userCredential.user;
+  const { user } = await signInWithPopup(auth, githubAuthProvider);
+  return user;
 }
 
 export async function signInWithAnonymously() {
-  const userCredential = await signInAnonymously(auth);
-  return userCredential.user;
+  const { user } = await signInAnonymously(auth);
+  return user;
 }

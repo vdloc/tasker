@@ -1,29 +1,33 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { FirestoreError } from 'firebase/firestore';
+import {  useEffect, useState } from 'react';
+
+type MutationCallback = () => Promise<void>;
 
 export function useMutation() {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
-  const [mutationFn, setMutationFn] = useState();
-  const mutation = (mutationCallback: () => Promise<void>) => {
+  const [data, setData] = useState<unknown>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<FirestoreError | unknown>();
+  const [mutationFn, setMutationFn] = useState<MutationCallback>();
+  const mutation = (mutationCallback: MutationCallback) => {
     setLoading(true);
-    setMutationFn(mutationCallback as SetStateAction<any>);
+    setMutationFn(mutationCallback);
   };
 
   useEffect(() => {
     const mutationCallback = async () => {
-      try {
-        const data = await (mutationFn as any)();
-        setData(data);
-      } catch (error: any) {
-        setError(error);
-      } finally {
-        console.log('finally');
-
-        setLoading(false);
+      if (typeof mutationFn === 'function') {
+        try {
+          const data = await mutationFn();
+          setData(data);
+        } catch (error: unknown) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
-    typeof mutationFn === 'function' && mutationCallback();
+
+    mutationCallback();
   }, [mutationFn]);
 
   return [mutation, data, loading, error];

@@ -1,5 +1,5 @@
-import { AddPrefixToKeys, database } from '@/firebase/firestore';
-import { Task, StoreState } from '@/types';
+import { database } from '@/firebase/firestore';
+import { Task, StoreState, FireStoreTask } from '@/types';
 
 const taskReducer = (set: any, get: any) => ({
   uncompletedTasks: [],
@@ -9,7 +9,7 @@ const taskReducer = (set: any, get: any) => ({
   toggleShowCompletedTasks: (isShow: boolean) => set({ isShowCompletedTasks: isShow }),
   setSelectingTask: (task: Task) => set(() => ({ selectingTask: task })),
   updateTask: async (updatedTask: Task) => {
-    await database.updateTask(updatedTask as Task & AddPrefixToKeys<string, any>);
+    await database.updateTask(updatedTask as FireStoreTask);
 
     set((state: StoreState) => {
       if (updatedTask.status) {
@@ -45,6 +45,9 @@ const taskReducer = (set: any, get: any) => ({
     }),
   fetchTasks: async () => {
     const user = get().user;
+
+    if (!user) return;
+
     const data = (await database.getTasks(user.uid)) as Task[];
     const uncompletedTasks = data.filter((task) => !task.status);
     const completedTasks = data.filter((task) => task.status);

@@ -2,7 +2,7 @@ import { tv } from 'tailwind-variants';
 import type { VariantProps } from 'tailwind-variants';
 import colors from '@data/colors.json';
 
-const variantColors = {} as any;
+const variantColors: Record<string, string> = {};
 const colorNames = Object.keys(colors);
 
 colorNames.forEach((colorName) => {

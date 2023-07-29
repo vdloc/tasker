@@ -13,13 +13,13 @@ import {
   deleteDoc,
 } from 'firebase/firestore';
 import firebaseApp from './app';
-import { Tag, Task, User } from '@/types';
+import { FireStoreTask, Tag, Task, User } from '@/types';
 
 export const fireStore = getFirestore(firebaseApp);
 export const tagRef = collection(fireStore, 'tag');
 export const taskRef = collection(fireStore, 'task');
 export const userRef = collection(fireStore, 'user');
-const currentUser: any = {};
+const currentUser: Partial<User> = {};
 
 async function getTasks(userID: string) {
   const userRef = doc(fireStore, 'user', userID);
@@ -73,11 +73,7 @@ async function createTag(tag: Tag) {
   await setDoc(docRef, tag);
 }
 
-export declare type AddPrefixToKeys<Prefix extends string, T extends Record<string, unknown>> = {
-    [K in keyof T & string as `${Prefix}.${K}`]+?: string extends K ? any : T[K];
-};
-
-async function updateTask(task: Task & AddPrefixToKeys<string,any>) {
+async function updateTask(task: FireStoreTask) {
   const docRef = doc(fireStore, 'task', task.id as string);
   await updateDoc(docRef, task);
 }

@@ -1,6 +1,6 @@
 import { useTaskStore } from '@/store';
 
-export default function TodoListHeader() {
+export default function TaskListHeader() {
   const isShowCompletedTasks = useTaskStore((state) => state.isShowCompletedTasks);
 
   return (

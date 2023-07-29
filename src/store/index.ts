@@ -4,7 +4,7 @@ import { devtools, persist } from 'zustand/middleware';
 import { dialogReducer, tagReducer, taskReducer, userReducer } from './reducer';
 import { DialogState, StorePersistKey, TagState, TaskState, UserState } from '@/types';
 
-function createUseStore<T>(reducer: (set: (state: T) => void, get: () => T) => T, persistName: StorePersistKey) {
+function createUseStore<T>(reducer: (set: any, get: any) => T, persistName: StorePersistKey) {
   const initializer: StateCreator<T, [['zustand/persist', unknown], ['zustand/immer', never]]> = (set, get) =>
     reducer(set, get);
   const store = devtools(persist(immer(initializer), { name: persistName }));
