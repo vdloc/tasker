@@ -24,6 +24,7 @@ Tasker is the perfect tool for anyone who wants to get more done. With its **eas
 ![Firebase](https://img.shields.io/badge/-Firebase-FFCA28?logo=firebase&logoColor=white&style=flat)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white&style=flat)
 ![Storybook](https://img.shields.io/badge/-Storybook-FF4785?logo=storybook&logoColor=white&style=flat)
+![Headless UI](https://img.shields.io/badge/-Headless_UI-38B2AC?logo=headless-ui&logoColor=white&style=flat)
 
 | Technology   | Description                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------ |
@@ -33,7 +34,8 @@ Tasker is the perfect tool for anyone who wants to get more done. With its **eas
 | Zustand      | A simple and lightweight state management solution for React.                                    |
 | Firebase     | A platform for building web and mobile applications backed by Google's infrastructure.           |
 | TypeScript   | A statically typed superset of JavaScript that compiles to plain JavaScript.                     |
-| Storybook    | An open source tool for developing UI components in isolation. 
+| Storybook    | An open source tool for developing UI components in isolation.                                   |
+| Headless UI  | A library for building user interfaces that are decoupled from the DOM.                         |
 
 Here are just a few of the features that make Tasker so powerful:
 
