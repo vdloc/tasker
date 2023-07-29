@@ -11,10 +11,7 @@ import { shallow } from 'zustand/shallow';
 import { Tag, Task } from '@/types';
 import UserProfileForm from '../forms/UserProfileForm';
 import AppTransition from '../AppTransition';
-import { query, where } from 'firebase/firestore';
-import { tagRef, taskRef } from '@/firebase/firestore';
-import { filterTasksByStatus } from '@/utils';
-import { useCollection } from '@/firebase/hooks/useCollection';
+
 
 export default function App() {
   const {
@@ -27,15 +24,10 @@ export default function App() {
     toggleTaskCreateDialog,
     toggleUserProfileDialog,
   } = useDialogStore((state) => state, shallow);
-  const { isShowCompletedTasks, setSelectingTask } = useTaskStore((state) => state, shallow);
+  const { isShowCompletedTasks, setSelectingTask, completedTasks, uncompletedTasks, fetchTasks, listenOnTasksChanged } =
+    useTaskStore((state) => state, shallow);
   const user = useUserStore((state) => state.user);
-  const setTags = useTagStore((state) => state.setTags);
-  const tasksQuery = query(taskRef, where('userID', '==', user?.uid));
-  const tagsQuery = query(tagRef, where('userID', '==', user?.uid));
-
-  const [tasks, isTasksLoading] = useCollection(tasksQuery);
-  const [tags] = useCollection(tagsQuery);
-  const [completedTasks, uncompletedTasks] = filterTasksByStatus((tasks as Task[]) || []);
+  const { fetchTags, listenOnTagsChanged } = useTagStore((state) => state, shallow);
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);
@@ -54,19 +46,28 @@ export default function App() {
   function handleCloseUserProfileDialog() {
     toggleUserProfileDialog(false);
   }
+  console.log('render');
 
   useEffect(() => {
-    setTags(tags as Tag[]);
-  }, [tags, setTags]);
+    fetchTasks();
+    fetchTags();
+    listenOnTasksChanged();
+    const unsubscribeTags = listenOnTagsChanged();
+
+    return () => {
+      unsubscribeTags();
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   setTags(tags as Tag[]);
+  // }, [tags, setTags]);
 
   return (
     <AppTransition>
       <div className="w-screen md:w-[28rem] h-screen md:h-auto overflow-hidden divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
         <AppHeader />
-        <TaskList
-          tasks={isShowCompletedTasks ? completedTasks : uncompletedTasks}
-          loading={isTasksLoading as boolean}
-        />
+        <TaskList tasks={isShowCompletedTasks ? completedTasks : uncompletedTasks} loading={false} />
         <AppFooter />
         <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
           <TaskEditForm />

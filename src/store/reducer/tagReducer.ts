@@ -1,18 +1,32 @@
-import { database } from '@/firebase/firestore';
-import { Tag, StoreState } from '@/types';
+import { database, tagRef } from '@/firebase/firestore';
+import { Tag } from '@/types';
+import { getDataFromSnapshot } from '@/utils';
+import { onSnapshot, query } from 'firebase/firestore';
 
 const tagReducer = (set: any) => ({
   tags: [],
-  setTags: (tags: Tag[]) => set({ tags }),
+  fetchTags: async () => {
+    const tags = await database.getTags();
+    set({ tags });
+  },
+
   addTag: async (tag: Tag) => {
     await database.createTag(tag);
   },
-  addTags: (tags: Tag[]) => set((state: StoreState) => ({ tags: [...state.tags, ...tags] })),
+  addTags: async (tags: Tag[]) => {
+    await database.createTags(tags);
+  },
   deleteTag: async (tag: Tag) => {
     await database.deleteTag(tag.id as string);
-    set((state: StoreState) => ({
-      tags: state.tags.filter(({ id }) => id !== tag.id),
-    }));
+  },
+  listenOnTagsChanged() {
+    const tagQuery = query(tagRef);
+    const unsubscribe = onSnapshot(tagQuery, (querySnapshot) => {
+      const tags = getDataFromSnapshot<Tag[]>(querySnapshot);
+      set({ tags });
+    });
+
+    return unsubscribe;
   },
 });
 

@@ -1,9 +1,9 @@
+import { type Unsubscribe } from 'firebase/firestore';
 import type { Control } from 'react-hook-form';
 
 type AddPrefixToKeys<Prefix extends string, T extends Record<string, unknown>> = {
   [K in keyof T & string as `${Prefix}.${K}`]+?: string extends K ? any : T[K];
 };
-
 
 export interface Task {
   userID?: string;
@@ -56,12 +56,13 @@ export interface TaskState {
   completedTasks: Task[];
   isShowCompletedTasks: boolean;
   setSelectingTask: (task: Task) => void;
-  updateTask: (task: Task) => void;
-  fetchTasks: () => void;
-  deleteTask: (task: Task) => void;
-  createTask: (task: Task) => void;
-  createTasks: (tasks: Task[]) => void;
+  updateTask: (task: Task) => Promise<void>;
+  deleteTask: (task: Task) => Promise<void>;
+  fetchTasks: () => Promise<void>;
+  createTask: (task: Task) => Promise<void>;
+  createTasks: (tasks: Task[]) => Promise<void>;
   toggleShowCompletedTasks: (isShow: boolean) => void;
+  listenOnTasksChanged: () => Unsubscribe;
 }
 
 export interface DialogState {
@@ -77,10 +78,11 @@ export interface DialogState {
 
 export interface TagState {
   tags: Tag[];
-  addTag: (tag: Tag) => void;
-  deleteTag: (tag: Tag) => void;
-  addTags: (tags: Tag[]) => void;
-  setTags: (tags: Tag[]) => void;
+  fetchTags: () => Promise<void>;
+  addTag: (tag: Tag) => Promise<void>;
+  deleteTag: (tag: Tag) => Promise<void>;
+  addTags: (tags: Tag[]) => Promise<void>;
+  listenOnTagsChanged: () => Unsubscribe;
 }
 
 export interface UserState {

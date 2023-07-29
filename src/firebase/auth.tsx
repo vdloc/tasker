@@ -35,7 +35,7 @@ export async function createUser(email: string, password: string) {
 }
 
 export async function signInUser(email: string, password: string) {
-  await setPersistence(auth, browserLocalPersistence);
+await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithEmailAndPassword(auth, email, password);
   return user;
 }
@@ -51,13 +51,13 @@ export async function updateUser({ displayName, email, photoURL }: User) {
 }
 
 export async function signInWithGoogle() {
-  await setPersistence(auth, browserLocalPersistence);
+await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithPopup(auth, googleAuthProvider);
   return user;
 }
 
 export async function signUpWithGoogle() {
-  await setPersistence(auth, browserLocalPersistence);
+await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithPopup(auth, googleAuthProvider);
   return user;
 }

@@ -1,7 +1,7 @@
-import { FirestoreError, onSnapshot, query, Query } from 'firebase/firestore';
+import { type DocumentData, FirestoreError, onSnapshot, query, Query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
-export function useCollection(collectionQuery: Query<any>) {
+export function useCollection(collectionQuery: Query<DocumentData>) {
   const [data, setData] = useState<unknown>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<FirestoreError>();

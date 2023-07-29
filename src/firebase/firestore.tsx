@@ -6,14 +6,13 @@ import {
   query,
   where,
   getFirestore,
-  type QueryDocumentSnapshot,
-  type DocumentData,
   updateDoc,
   writeBatch,
   deleteDoc,
 } from 'firebase/firestore';
 import firebaseApp from './app';
 import { FireStoreTask, Tag, Task, User } from '@/types';
+import { getDataFromSnapshot } from '@/utils';
 
 export const fireStore = getFirestore(firebaseApp);
 export const tagRef = collection(fireStore, 'tag');
@@ -21,36 +20,25 @@ export const taskRef = collection(fireStore, 'task');
 export const userRef = collection(fireStore, 'user');
 const currentUser: Partial<User> = {};
 
-async function getTasks(userID: string) {
+async function getTasks(userID: string): Promise<Task[]> {
   const userRef = doc(fireStore, 'user', userID);
   const tasksQuery = query(taskRef, where('user', '==', userRef));
   const querySnapshot = await getDocs(tasksQuery);
-  const tasks = [] as DocumentData[];
-  querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
-    tasks.push(doc.data());
-  });
 
-  return tasks;
+  return getDataFromSnapshot<Task[]>(querySnapshot);
 }
 
-async function getTags() {
+async function getTags(): Promise<Tag[]> {
   const tagsQuery = query(tagRef);
   const querySnapshot = await getDocs(tagsQuery);
-  const tags = [] as DocumentData[];
-  querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
-    tags.push(doc.data());
-  });
 
-  return tags;
+  return getDataFromSnapshot<Tag[]>(querySnapshot);
 }
 
-async function getUser(uid: string) {
+async function getUser(uid: string): Promise<User> {
   const userQuery = query(userRef, where('uid', '==', uid));
   const querySnapshot = await getDocs(userQuery);
-  const users = [] as DocumentData[];
-  querySnapshot.forEach((doc: QueryDocumentSnapshot<DocumentData>) => {
-    users.push(doc.data());
-  });
+  const users = getDataFromSnapshot<User[]>(querySnapshot);
 
   return users?.[0];
 }
@@ -90,7 +78,7 @@ async function createTasks(tasks: Task[]) {
   await batch.commit();
 }
 
-async function createTags(tags: Tag[]) {
+async function createTags(tags: Tag[]): Promise<Tag[]> {
   const batch = writeBatch(fireStore);
   tags.forEach((tag) => {
     const docRef = doc(tagRef);

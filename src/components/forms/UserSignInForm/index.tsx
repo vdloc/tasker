@@ -15,7 +15,7 @@ const {
 
 export default function UserSignInForm() {
   const { control, handleSubmit } = useForm<UserSignInFormValues>({
-    defaultValues: {},
+    defaultValues: { email: '', password: '' },
   });
   const setUser = useUserStore((state) => state.setUser);
   const navigate = useNavigate();
