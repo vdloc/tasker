@@ -1,5 +1,5 @@
-import { tv } from 'tailwind-variants';
 import type { VariantProps } from 'tailwind-variants';
+import { tv } from 'tailwind-variants';
 
 const buttonStyleProps = tv({
   base: 'relative inline-flex items-center border border-transparent text-sm text-white shadow-sm font-medium focus:outline-none transition-colors',

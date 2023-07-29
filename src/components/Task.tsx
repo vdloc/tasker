@@ -1,8 +1,8 @@
 import { useDialogStore, useTaskStore } from '@/store';
+import { shallow } from 'zustand/shallow';
 import Button from './common/Button';
 import type { Task } from '@/types';
 import { ChangeEvent } from 'react';
-import { shallow } from 'zustand/shallow';
 
 type TaskProps = {
   task: Task;

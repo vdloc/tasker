@@ -1,6 +1,7 @@
-import Button from '../common/Button';
 import { useDialogStore, useTaskStore } from '@/store';
 import { shallow } from 'zustand/shallow';
+
+import Button from '../common/Button';
 
 const CardFooter = function AppFooter() {
   const { toggleTagsListEditDialog, toggleUserProfileDialog, isTagsListEditDialogOpen, isUserProfileOpen } =

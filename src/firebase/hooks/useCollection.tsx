@@ -1,4 +1,4 @@
-import { type DocumentData, FirestoreError, onSnapshot, query, Query } from 'firebase/firestore';
+import { type DocumentData, FirestoreError, Query, onSnapshot, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 export function useCollection(collectionQuery: Query<DocumentData>) {

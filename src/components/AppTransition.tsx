@@ -12,12 +12,12 @@ export default function AppTransition({ children }: PropsWithChildren) {
   return (
     <Transition
       show={isShow}
-      enter='transition duration-500 ease-in-out'
-      enterFrom='opacity-0 scale-0'
-      enterTo='opacity-100 scale-100'
-      leave='transition duration-500 ease-in-out'
-      leaveFrom='opacity-100 scale-100'
-      leaveTo='opacity-0 scale-0'
+      enter="transition duration-500 ease-in-out"
+      enterFrom="opacity-0 scale-0"
+      enterTo="opacity-100 scale-100"
+      leave="transition duration-500 ease-in-out"
+      leaveFrom="opacity-100 scale-100"
+      leaveTo="opacity-0 scale-0"
     >
       {children}
     </Transition>

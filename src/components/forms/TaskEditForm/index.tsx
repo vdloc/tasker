@@ -1,12 +1,13 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import FormLayout from '../FormLayout';
+import { database } from '@/firebase/firestore';
 import { useDialogStore, useTagStore, useTaskStore } from '@/store';
-import { Tag, TaskEditFormValues, Task } from '@/types';
-import TaskEditFormHeader from './Header';
+import { Tag, Task, TaskEditFormValues } from '@/types';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import FormLayout from '../FormLayout';
 import TaskEditFormContent from './Content';
 import TaskEditFormFooter from './Footer';
-import { useState } from 'react';
-import { database } from '@/firebase/firestore';
+import TaskEditFormHeader from './Header';
 
 export default function TaskEditForm() {
   const selectingTask = useTaskStore((state) => state.selectingTask);

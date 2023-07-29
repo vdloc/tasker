@@ -1,5 +1,6 @@
-import Button from '../common/Button';
 import { classNames } from '@/utils';
+
+import Button from '../common/Button';
 
 type DoingTasksPlaceholderProps = {
   handleCreateSampleTasks: () => void;

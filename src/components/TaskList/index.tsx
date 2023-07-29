@@ -1,12 +1,13 @@
 import Todo from '@/components/Task';
-import TaskListHeader from './Header';
-import { Tag, type Task } from '@/types';
-import { useTagStore, useTaskStore, useUserStore } from '@/store';
-import sampleTasks from '@data/todos.json';
-import sampleTags from '@data/tags.json';
-import Placeholder from './Placeholder';
 import { database } from '@/firebase/firestore';
+import { useTagStore, useTaskStore, useUserStore } from '@/store';
+import { Tag, type Task } from '@/types';
+import sampleTags from '@data/tags.json';
+import sampleTasks from '@data/todos.json';
 import { shallow } from 'zustand/shallow';
+
+import TaskListHeader from './Header';
+import Placeholder from './Placeholder';
 
 type TaskListProps = {
   tasks: Task[];

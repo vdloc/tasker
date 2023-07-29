@@ -1,8 +1,9 @@
-import Badge from '../common/Badge';
 import { FormInputProps, Tag } from '@/types';
-import { useController } from 'react-hook-form';
 import { useState } from 'react';
+import { useController } from 'react-hook-form';
+
 import TagsDropDown from '../TagsDropDown';
+import Badge from '../common/Badge';
 
 type TagsProps = {
   defaultTags: (Tag | undefined)[];

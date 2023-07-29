@@ -1,5 +1,5 @@
 import { database, taskRef } from '@/firebase/firestore';
-import { Task, FireStoreTask } from '@/types';
+import { FireStoreTask, Task } from '@/types';
 import { filterTasksByStatus, getDataFromSnapshot } from '@/utils';
 import { onSnapshot, query } from 'firebase/firestore';
 

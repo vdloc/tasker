@@ -1,7 +1,8 @@
-import { Control } from 'react-hook-form';
-import Input from '../components/Input';
 import { UserProfileFormValues } from '@/types';
+import { Control } from 'react-hook-form';
+
 import Avatar from '../components/Avatar';
+import Input from '../components/Input';
 
 type UserProfileFormContentProps = {
   control: Control<UserProfileFormValues>;

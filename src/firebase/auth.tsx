@@ -1,20 +1,21 @@
-import firebaseApp from './app';
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile,
-  updateEmail,
-  setPersistence,
-  browserLocalPersistence,
-  onAuthStateChanged,
-  GoogleAuthProvider,
   GithubAuthProvider,
-  signInWithPopup,
-  signInAnonymously,
+  GoogleAuthProvider,
   type User,
+  browserLocalPersistence,
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  setPersistence,
+  signInAnonymously,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateEmail,
+  updateProfile,
 } from 'firebase/auth';
+
+import firebaseApp from './app';
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(firebaseApp);
@@ -35,7 +36,7 @@ export async function createUser(email: string, password: string) {
 }
 
 export async function signInUser(email: string, password: string) {
-await setPersistence(auth, browserLocalPersistence);
+  await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithEmailAndPassword(auth, email, password);
   return user;
 }
@@ -51,13 +52,13 @@ export async function updateUser({ displayName, email, photoURL }: User) {
 }
 
 export async function signInWithGoogle() {
-await setPersistence(auth, browserLocalPersistence);
+  await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithPopup(auth, googleAuthProvider);
   return user;
 }
 
 export async function signUpWithGoogle() {
-await setPersistence(auth, browserLocalPersistence);
+  await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithPopup(auth, googleAuthProvider);
   return user;
 }

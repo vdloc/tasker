@@ -1,18 +1,19 @@
-import {
-  collection,
-  doc,
-  setDoc,
-  getDocs,
-  query,
-  where,
-  getFirestore,
-  updateDoc,
-  writeBatch,
-  deleteDoc,
-} from 'firebase/firestore';
-import firebaseApp from './app';
 import { FireStoreTask, Tag, Task, User } from '@/types';
 import { getDataFromSnapshot } from '@/utils';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  getFirestore,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+  writeBatch,
+} from 'firebase/firestore';
+
+import firebaseApp from './app';
 
 export const fireStore = getFirestore(firebaseApp);
 export const tagRef = collection(fireStore, 'tag');

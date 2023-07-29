@@ -1,5 +1,5 @@
 import { FormInputProps } from '@/types';
-import { ArrowRightIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
 import { useController } from 'react-hook-form';
 import Datepicker from 'tailwind-datepicker-react';
@@ -16,10 +16,8 @@ const pickerOptions = {
   minDate: new Date('1950-01-01'),
   theme: {
     background: 'z-50',
-    todayBtn:
-      'bg-indigo-700 hover:bg-indigo-800 hover:shadow-lg transition duration-300 focus:ring-1',
-    clearBtn:
-      'text-indigo-700 hover:shadow-lg transition-colors duration-300 focus:ring-1',
+    todayBtn: 'bg-indigo-700 hover:bg-indigo-800 hover:shadow-lg transition duration-300 focus:ring-1',
+    clearBtn: 'text-indigo-700 hover:shadow-lg transition-colors duration-300 focus:ring-1',
     icons: 'text-indigo-700 transition duration-300',
     text: 'text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm',
     disabledText: 'bg-white',
@@ -31,12 +29,12 @@ const pickerOptions = {
   icons: {
     prev: () => (
       <span>
-        <ArrowLeftIcon className='w-5 h-5 stroke-2 ' />
+        <ArrowLeftIcon className="w-5 h-5 stroke-2 " />
       </span>
     ),
     next: () => (
       <span>
-        <ArrowRightIcon className='w-5 h-5 stroke-2' />
+        <ArrowRightIcon className="w-5 h-5 stroke-2" />
       </span>
     ),
   },
@@ -45,12 +43,7 @@ const pickerOptions = {
   language: 'en',
 };
 
-export default function DateTimePicker({
-  title,
-  control,
-  name,
-  label,
-}: DateTimePickerProps & FormInputProps) {
+export default function DateTimePicker({ title, control, name, label }: DateTimePickerProps & FormInputProps) {
   const [show, setShow] = useState(false);
   const { field } = useController({
     name,
@@ -72,14 +65,9 @@ export default function DateTimePicker({
 
   return (
     <div>
-      <label className='block text-sm font-medium text-gray-900'>{label}</label>
-      <div className='mt-1 relative'>
-        <Datepicker
-          options={options}
-          onChange={handleChange}
-          show={show}
-          setShow={handleClose}
-        />
+      <label className="block text-sm font-medium text-gray-900">{label}</label>
+      <div className="mt-1 relative">
+        <Datepicker options={options} onChange={handleChange} show={show} setShow={handleClose} />
       </div>
     </div>
   );

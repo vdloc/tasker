@@ -1,7 +1,7 @@
 import Container from '@/layout/Container';
-import { Outlet } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import configs from '@data/configs.json';
+import { Helmet } from 'react-helmet';
+import { Outlet } from 'react-router-dom';
 
 const {
   app: { name, description },

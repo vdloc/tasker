@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
+import { useTagStore } from '@/store';
+import { Tag } from '@/types';
 import { Menu, Transition } from '@headlessui/react';
 import { PlusIcon } from '@heroicons/react/24/outline';
-import { useTagStore } from '@/store';
+import { Fragment } from 'react';
 
-import { Tag } from '@/types';
 import TagDropDownMenuItem from './MenuItem';
 
 type TagsDropDownProps = {

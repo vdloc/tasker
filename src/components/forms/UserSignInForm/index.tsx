@@ -1,13 +1,14 @@
-import { User, UserSignInFormValues } from '@/types';
-import Input from '../components/Input';
-import { useForm } from 'react-hook-form';
-import Button from '@components/common/Button';
-import { signInWithGithub, signInWithGoogle, signInUser, signInWithAnonymously } from '@/firebase/auth';
-import SocialButton from '@components/common/SocialButton';
-import { GoogleIcon, GithubIcon, UserIcon } from '@components/icons';
+import { signInUser, signInWithAnonymously, signInWithGithub, signInWithGoogle } from '@/firebase/auth';
 import { useUserStore } from '@/store';
-import { Link, useNavigate } from 'react-router-dom';
+import { User, UserSignInFormValues } from '@/types';
+import Button from '@components/common/Button';
+import SocialButton from '@components/common/SocialButton';
+import { GithubIcon, GoogleIcon, UserIcon } from '@components/icons';
 import configs from '@data/configs.json';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+
+import Input from '../components/Input';
 
 const {
   app: { name, description },

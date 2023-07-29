@@ -1,7 +1,7 @@
 import { UserProfileFormValues } from '@/types';
 import { classNames } from '@/utils';
 import { UserIcon } from '@heroicons/react/24/solid';
-import { useController, type Control } from 'react-hook-form';
+import { type Control, useController } from 'react-hook-form';
 
 type AvatarProps = {
   control: Control<UserProfileFormValues>;

@@ -1,9 +1,10 @@
+import Tags from '@/components/Tags';
 import { TaskCreateFormValues } from '@/types';
+import { Control } from 'react-hook-form';
+
 import DateTimePicker from '../components/DateTimePicker';
 import Input from '../components/Input';
 import TextArea from '../components/TextArea';
-import { Control } from 'react-hook-form';
-import Tags from '@/components/Tags';
 
 type TaskCreateFormContentProps = {
   control: Control<TaskCreateFormValues>;

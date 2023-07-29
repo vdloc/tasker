@@ -1,14 +1,10 @@
 import FormLayout from '../FormLayout';
-import TagsListEditFormHeader from './Header';
 import TagsListEditFormContent from './Content';
 import TagsListEditFormFooter from './Footer';
+import TagsListEditFormHeader from './Header';
 
 export default function TagsEditForm() {
   return (
-    <FormLayout
-      Header={TagsListEditFormHeader}
-      Content={TagsListEditFormContent}
-      Footer={TagsListEditFormFooter}
-    />
+    <FormLayout Header={TagsListEditFormHeader} Content={TagsListEditFormContent} Footer={TagsListEditFormFooter} />
   );
 }

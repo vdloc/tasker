@@ -1,17 +1,17 @@
+import { useDialogStore, useTagStore, useTaskStore } from '@/store';
+import { Task } from '@/types';
 import { useEffect } from 'react';
-import AppHeader from './Header';
-import AppFooter from './Footer';
+import { shallow } from 'zustand/shallow';
+
+import AppTransition from '../AppTransition';
 import DialogPopup from '../DialogPopup';
 import TaskList from '../TaskList';
-import { useDialogStore, useTagStore, useTaskStore, useUserStore } from '@/store';
-import TaskEditForm from '../forms/TaskEditForm';
-import TaskCreateForm from '../forms/TaskCreateForm';
 import TagsListEditForm from '../forms/TagsListEditForm';
-import { shallow } from 'zustand/shallow';
-import { Tag, Task } from '@/types';
+import TaskCreateForm from '../forms/TaskCreateForm';
+import TaskEditForm from '../forms/TaskEditForm';
 import UserProfileForm from '../forms/UserProfileForm';
-import AppTransition from '../AppTransition';
-
+import AppFooter from './Footer';
+import AppHeader from './Header';
 
 export default function App() {
   const {
@@ -26,7 +26,6 @@ export default function App() {
   } = useDialogStore((state) => state, shallow);
   const { isShowCompletedTasks, setSelectingTask, completedTasks, uncompletedTasks, fetchTasks, listenOnTasksChanged } =
     useTaskStore((state) => state, shallow);
-  const user = useUserStore((state) => state.user);
   const { fetchTags, listenOnTagsChanged } = useTagStore((state) => state, shallow);
 
   function handleCloseTaskEditDialog() {
@@ -58,10 +57,6 @@ export default function App() {
       unsubscribeTags();
     };
   }, []);
-
-  // useEffect(() => {
-  //   setTags(tags as Tag[]);
-  // }, [tags, setTags]);
 
   return (
     <AppTransition>

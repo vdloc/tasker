@@ -1,10 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
-import RootRoute from './Root';
 import App from '@/components/App';
-import UserSignUpForm from '@/components/forms/UserSignUpForm';
-import Auth from './Auth';
-import SignIn from './SignIn';
 import AppTransition from '@/components/AppTransition';
+import UserSignUpForm from '@/components/forms/UserSignUpForm';
+import { createBrowserRouter } from 'react-router-dom';
+
+import Auth from './Auth';
+import RootRoute from './Root';
+import SignIn from './SignIn';
 
 const router = createBrowserRouter([
   {

@@ -1,5 +1,5 @@
-import { Fragment, JSX } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import { Fragment, JSX } from 'react';
 
 type DialogPopUpProps = {
   isOpen: boolean;

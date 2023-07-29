@@ -1,6 +1,7 @@
-import { useDialogStore } from '@/store';
-import Button from '../common/Button';
 import configs from '@/data/configs.json';
+import { useDialogStore } from '@/store';
+
+import Button from '../common/Button';
 
 const {
   app: { name, description },

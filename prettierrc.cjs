@@ -5,4 +5,7 @@ module.exports = {
   singleQuote: true,
   printWidth: 120,
   bracketSpacing: true,
+  importOrder: ['^@core/(.*)$', '^@server/(.*)$', '^@ui/(.*)$', '^[./]'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
 };

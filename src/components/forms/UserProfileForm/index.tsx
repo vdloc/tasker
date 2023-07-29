@@ -1,12 +1,13 @@
-import { useDialogStore, useUserStore } from '@/store';
-import FormLayout from '../FormLayout';
-import UserProfileFormHeader from './Header';
-import UserProfileFormFooter from './Footer';
-import UserProfileFormContent from './Content';
-import { useForm } from 'react-hook-form';
-import { UserProfileFormValues } from '@/types';
 import { updateUser } from '@/firebase/auth';
+import { useDialogStore, useUserStore } from '@/store';
+import { UserProfileFormValues } from '@/types';
 import { type User } from 'firebase/auth';
+import { useForm } from 'react-hook-form';
+
+import FormLayout from '../FormLayout';
+import UserProfileFormContent from './Content';
+import UserProfileFormFooter from './Footer';
+import UserProfileFormHeader from './Header';
 
 export default function UserProfileForm() {
   const toggleUserProfileDialog = useDialogStore((state) => state.toggleUserProfileDialog);
