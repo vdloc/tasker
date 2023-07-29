@@ -1,7 +1,6 @@
 import Todo from '@/components/Task';
-import { database } from '@/firebase/firestore';
 import { useTagStore, useTaskStore, useUserStore } from '@/store';
-import { Tag, type Task } from '@/types';
+import { Tag, Task } from '@/types';
 import sampleTags from '@data/tags.json';
 import sampleTasks from '@data/todos.json';
 import { shallow } from 'zustand/shallow';
@@ -16,26 +15,14 @@ type TaskListProps = {
 
 export default function TaskList({ tasks = [], loading }: TaskListProps) {
   const user = useUserStore((state) => state.user);
-  const setTags = useTagStore((state) => state.setTags);
+  const addTags = useTagStore((state) => state.addTags);
   const { isShowCompletedTasks, createTasks } = useTaskStore((state) => state, shallow);
 
   async function handleCreateSampleTasks() {
     const tasks = sampleTasks.map((item) => ({ ...item, userID: user?.uid }));
     const tags = sampleTags.map((item) => ({ ...item, userID: user?.uid }));
-    const updatedTags = await database.createTags(tags as Tag[]);
-    tasks.forEach((task) => {
-      const { tags } = task;
 
-      tags.forEach((tag) => {
-        const updatedTag = updatedTags.find((updatedTag) => updatedTag.name === tag.name);
-
-        if (updatedTag) {
-          tag.id = updatedTag.id as number;
-        }
-      });
-    });
-
-    setTags(updatedTags);
+    addTags(tags as Tag[]);
     createTasks(tasks as Task[]);
   }
 

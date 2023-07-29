@@ -1,17 +1,18 @@
 import { useDialogStore, useTagStore, useTaskStore } from '@/store';
 import { Task } from '@/types';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { shallow } from 'zustand/shallow';
 
 import AppTransition from '../AppTransition';
 import DialogPopup from '../DialogPopup';
 import TaskList from '../TaskList';
-import TagsListEditForm from '../forms/TagsListEditForm';
-import TaskCreateForm from '../forms/TaskCreateForm';
-import TaskEditForm from '../forms/TaskEditForm';
-import UserProfileForm from '../forms/UserProfileForm';
 import AppFooter from './Footer';
 import AppHeader from './Header';
+
+const TagsListEditForm = lazy(() => import('../forms/TagsListEditForm'));
+const TaskCreateForm = lazy(() => import('../forms/TaskCreateForm'));
+const TaskEditForm = lazy(() => import('../forms/TaskEditForm'));
+const UserProfileForm = lazy(() => import('../forms/UserProfileForm'));
 
 export default function App() {
   const {
@@ -45,15 +46,15 @@ export default function App() {
   function handleCloseUserProfileDialog() {
     toggleUserProfileDialog(false);
   }
-  console.log('render');
 
   useEffect(() => {
     fetchTasks();
     fetchTags();
-    listenOnTasksChanged();
+    const unsubscribeTasks = listenOnTasksChanged();
     const unsubscribeTags = listenOnTagsChanged();
 
     return () => {
+      unsubscribeTasks();
       unsubscribeTags();
     };
   }, []);
