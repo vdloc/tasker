@@ -10,9 +10,9 @@ import TaskEditFormFooter from './Footer';
 import TaskEditFormHeader from './Header';
 
 export default function TaskEditForm() {
-  const selectingTask = useTaskStore((state) => state.selectingTask);
-  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
-  const tags = useTagStore((state) => state.tags) || [];
+  const { selectingTask } = useTaskStore();
+  const { toggleTaskUpdateDialog } = useDialogStore();
+  const { tags } = useTagStore() || [];
   const { control, handleSubmit } = useForm<TaskEditFormValues>({
     defaultValues: { ...selectingTask },
   });
@@ -20,7 +20,7 @@ export default function TaskEditForm() {
 
   function getCurrentTags(selectingTask: Task) {
     if (!selectingTask || !selectingTask.tags || !selectingTask.tags.length) return [];
-    return (selectingTask.tags as Tag[]).filter((tag) => tags.find(({ id }) => tag.id === id));
+    return (selectingTask.tags as Tag[]).filter((tag) => tags.find(({ id }: Tag) => tag.id === id));
   }
 
   const onSubmit: SubmitHandler<TaskEditFormValues> = (data: TaskEditFormValues) => {

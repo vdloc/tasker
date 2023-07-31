@@ -1,5 +1,4 @@
 import { useDialogStore, useTaskStore } from '@/store';
-import { shallow } from 'zustand/shallow';
 import Button from './common/Button';
 import type { Task } from '@/types';
 import { ChangeEvent } from 'react';
@@ -10,8 +9,8 @@ type TaskProps = {
 
 export default function Task({ task }: TaskProps) {
   const { id, title, description, status } = task;
-  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
-  const { updateTask, setSelectingTask } = useTaskStore((state) => state, shallow);
+  const {toggleTaskUpdateDialog} = useDialogStore();
+  const { updateTask, setSelectingTask } = useTaskStore();
 
   function handleTaskEditClick() {
     setSelectingTask(task);

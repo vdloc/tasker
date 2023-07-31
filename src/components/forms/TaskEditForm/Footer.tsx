@@ -6,7 +6,7 @@ type TaskEditFormFooterProps = {
 };
 
 export default function TaskEditFormFooter({ onDeleteTask }: TaskEditFormFooterProps) {
-  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
+  const { toggleTaskUpdateDialog } = useDialogStore();
 
   return (
     <>

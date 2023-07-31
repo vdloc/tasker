@@ -10,9 +10,9 @@ import TaskCreateFormFooter from './Footer';
 import TaskCreateFormHeader from './Header';
 
 export default function TaskCreateForm() {
-  const toggleTaskCreateDialog = useDialogStore((state) => state.toggleTaskCreateDialog);
-  const createTask = useTaskStore((state) => state.createTask);
-  const user = useUserStore((state) => state.user);
+  const { toggleTaskCreateDialog } = useDialogStore();
+  const { createTask } = useTaskStore();
+  const { user } = useUserStore();
   const { control, handleSubmit } = useForm<TaskCreateFormValues>({
     defaultValues: {
       createDate: new Date().toDateString(),

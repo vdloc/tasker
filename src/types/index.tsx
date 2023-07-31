@@ -63,6 +63,7 @@ export interface TaskState {
   createTasks: (tasks: Task[]) => Promise<void>;
   toggleShowCompletedTasks: (isShow: boolean) => void;
   listenOnTasksChanged: () => Unsubscribe;
+  resetTasks: () => void;
 }
 
 export interface DialogState {
@@ -74,6 +75,7 @@ export interface DialogState {
   toggleTaskCreateDialog: (isOpen: boolean) => void;
   toggleTagsListEditDialog: (isOpen: boolean) => void;
   toggleUserProfileDialog: (isOpen: boolean) => void;
+  resetDialogs: () => void;
 }
 
 export interface TagState {
@@ -83,6 +85,7 @@ export interface TagState {
   deleteTag: (tag: Tag) => Promise<void>;
   addTags: (tags: Tag[]) => Promise<void>;
   listenOnTagsChanged: () => Unsubscribe;
+  resetTags: () => void;
 }
 
 export interface UserState {
@@ -137,6 +140,7 @@ export const enum StorePersistKey {
   Task = 'tasker-task',
   Dialog = 'tasker-dialog',
   User = 'tasker-user',
+  App = 'tasker',
 }
 
 export enum Priority {

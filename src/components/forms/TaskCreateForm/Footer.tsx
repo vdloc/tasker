@@ -2,7 +2,7 @@ import Button from '@/components/common/Button';
 import { useDialogStore } from '@/store';
 
 export default function TaskCreateFormFooter() {
-  const toggleTaskCreateDialog = useDialogStore((state) => state.toggleTaskCreateDialog);
+  const { toggleTaskCreateDialog } = useDialogStore();
 
   function handleCloseDialog() {
     toggleTaskCreateDialog(false);

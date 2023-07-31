@@ -12,8 +12,8 @@ type TagsDropDownProps = {
 };
 
 export default function TagsDropDown({ onChange, excludeTags }: TagsDropDownProps) {
-  const tags: Tag[] = useTagStore((state) => state.tags) || [];
-  const selectableTags = tags.filter(({ id }) => excludeTags.every((excludeTag) => (excludeTag as Tag).id !== id));
+  const { tags } = useTagStore() || [];
+  const selectableTags = tags.filter(({ id }: Tag) => excludeTags.every((excludeTag) => (excludeTag as Tag).id !== id));
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -41,7 +41,7 @@ export default function TagsDropDown({ onChange, excludeTags }: TagsDropDownProp
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-52 overflow-y-scroll origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {selectableTags.map((tag) => (
+            {selectableTags.map((tag: Tag) => (
               <TagDropDownMenuItem tag={tag} key={tag.id} handleClick={() => onChange(tag)} />
             ))}
           </div>

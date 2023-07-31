@@ -10,8 +10,8 @@ import UserProfileFormFooter from './Footer';
 import UserProfileFormHeader from './Header';
 
 export default function UserProfileForm() {
-  const toggleUserProfileDialog = useDialogStore((state) => state.toggleUserProfileDialog);
-  const user = useUserStore((state) => state.user);
+  const { toggleUserProfileDialog } = useDialogStore();
+  const { user } = useUserStore();
   const { displayName, email, phoneNumber, photoURL } = user || {};
   const { control, handleSubmit } = useForm<UserProfileFormValues>({
     defaultValues: { displayName, email, phoneNumber, photoURL },

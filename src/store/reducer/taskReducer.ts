@@ -1,5 +1,5 @@
 import { database, taskRef } from '@/firebase/firestore';
-import { FireStoreTask, Task } from '@/types';
+import { FireStoreTask, Task, User } from '@/types';
 import { filterTasksByStatus, getDataFromSnapshot } from '@/utils';
 import { onSnapshot, query } from 'firebase/firestore';
 
@@ -11,9 +11,9 @@ const taskReducer = (set: any, get: any) => ({
   toggleShowCompletedTasks: (isShow: boolean) => set({ isShowCompletedTasks: isShow }),
   setSelectingTask: (task: Task) => set(() => ({ selectingTask: task })),
   fetchTasks: async () => {
-    const user = get().user;
+    const user = get().user as User;
     if (!user) return;
-    const tasks = await database.getTasks(user.id);
+    const tasks = await database.getTasks(user.uid);
     const [completedTasks, uncompletedTasks] = filterTasksByStatus(tasks);
     set({ uncompletedTasks, completedTasks });
   },
@@ -38,6 +38,9 @@ const taskReducer = (set: any, get: any) => ({
     });
 
     return unsubscribe;
+  },
+  resetTasks() {
+    set({ uncompletedTasks: [], completedTasks: [], selectingTask: {} as Task, isShowCompletedTasks: false });
   },
 });
 

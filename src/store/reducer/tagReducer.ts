@@ -9,7 +9,6 @@ const tagReducer = (set: any) => ({
     const tags = await database.getTags();
     set({ tags });
   },
-
   addTag: async (tag: Tag) => {
     await database.createTag(tag);
   },
@@ -27,6 +26,9 @@ const tagReducer = (set: any) => ({
     });
 
     return unsubscribe;
+  },
+  resetTags: () => {
+    set({ tags: [] });
   },
 });
 

@@ -1,12 +1,11 @@
 import { useDialogStore, useTaskStore } from '@/store';
-import { shallow } from 'zustand/shallow';
 
 import Button from '../common/Button';
 
 const CardFooter = function AppFooter() {
   const { toggleTagsListEditDialog, toggleUserProfileDialog, isTagsListEditDialogOpen, isUserProfileOpen } =
-    useDialogStore((state) => state, shallow);
-  const { isShowCompletedTasks, toggleShowCompletedTasks } = useTaskStore((state) => state, shallow);
+    useDialogStore();
+  const { isShowCompletedTasks, toggleShowCompletedTasks } = useTaskStore();
 
   function handleEditTagsButtonClick() {
     toggleTagsListEditDialog(!isTagsListEditDialogOpen);

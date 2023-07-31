@@ -25,6 +25,9 @@ googleAuthProvider.addScope('email');
 const githubAuthProvider = new GithubAuthProvider();
 githubAuthProvider.addScope('profile');
 githubAuthProvider.addScope('email');
+googleAuthProvider.setCustomParameters({
+  prompt: 'select_account',
+});
 
 export async function handleAuthStateChange(onChange: (user: User | null) => void) {
   onAuthStateChanged(auth, onChange);

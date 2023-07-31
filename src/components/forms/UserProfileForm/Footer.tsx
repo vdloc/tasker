@@ -4,7 +4,8 @@ import { useDialogStore } from '@/store';
 import { redirect } from 'react-router-dom';
 
 export default function UserProfileFormFooter() {
-  const toggleUserProfileDialog = useDialogStore((state) => state.toggleUserProfileDialog);
+  const { toggleUserProfileDialog } = useDialogStore();
+  const { resetDialogs } = useDialogStore();
 
   function handleCloseDialog() {
     toggleUserProfileDialog(false);
@@ -14,6 +15,7 @@ export default function UserProfileFormFooter() {
     await signOutUser();
     redirect('/sign-in');
     toggleUserProfileDialog(false);
+    resetDialogs();
   }
 
   return (

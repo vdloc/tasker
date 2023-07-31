@@ -3,7 +3,6 @@ import { useTagStore, useTaskStore, useUserStore } from '@/store';
 import { Tag, Task } from '@/types';
 import sampleTags from '@data/tags.json';
 import sampleTasks from '@data/todos.json';
-import { shallow } from 'zustand/shallow';
 
 import TaskListHeader from './Header';
 import Placeholder from './Placeholder';
@@ -14,9 +13,9 @@ type TaskListProps = {
 };
 
 export default function TaskList({ tasks = [], loading }: TaskListProps) {
-  const user = useUserStore((state) => state.user);
-  const addTags = useTagStore((state) => state.addTags);
-  const { isShowCompletedTasks, createTasks } = useTaskStore((state) => state, shallow);
+  const { user } = useUserStore();
+  const { addTags } = useTagStore();
+  const { isShowCompletedTasks, createTasks } = useTaskStore();
 
   async function handleCreateSampleTasks() {
     const tasks = sampleTasks.map((item) => ({ ...item, userID: user?.uid }));

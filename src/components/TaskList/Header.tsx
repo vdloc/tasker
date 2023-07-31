@@ -1,7 +1,7 @@
 import { useTaskStore } from '@/store';
 
 export default function TaskListHeader() {
-  const isShowCompletedTasks = useTaskStore((state) => state.isShowCompletedTasks);
+  const { isShowCompletedTasks } = useTaskStore();
 
   return (
     <legend className="font-medium text-gray-900 grid grid-cols-12 justify-center w-full px-4 h-12 items-center">

@@ -1,7 +1,7 @@
 import { useDialogStore } from '@/store';
 
 export default function TagsListEditFormFooter() {
-  const toggleTagsListEditDialog = useDialogStore((state) => state.toggleTagsListEditDialog);
+  const { toggleTagsListEditDialog } = useDialogStore();
 
   function handleCloseDialog() {
     toggleTagsListEditDialog(false);

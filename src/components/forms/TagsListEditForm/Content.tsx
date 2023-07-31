@@ -3,13 +3,12 @@ import { useTagStore } from '@/store';
 import { Tag, TagColor, TagsListEditFormValues } from '@/types';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
-import { shallow } from 'zustand/shallow';
 
 import Input from '../components/Input';
 import TagsCombobox from '../components/TagsCombobox';
 
 export default function TagsListEditFormContent() {
-  const { tags, addTag, deleteTag } = useTagStore((state) => state, shallow);
+  const { tags, addTag, deleteTag } = useTagStore();
 
   const { control, getValues, setValue, trigger, formState } = useForm<TagsListEditFormValues>({
     defaultValues: { name: '', color: '' as TagColor },
@@ -75,7 +74,7 @@ export default function TagsListEditFormContent() {
         <h4 className="block text-sm font-medium text-gray-900">Tags</h4>
         <div className="flex gap-2 flex-wrap mt-4">
           {tags &&
-            tags.map((tag) => (
+            tags.map((tag: Tag) => (
               <Badge key={tag.id} title={tag.name} color={tag.color} onClose={() => handleDeleteTag(tag)} />
             ))}
         </div>

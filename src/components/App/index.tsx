@@ -2,7 +2,6 @@ import { useDialogStore, useTagStore, useTaskStore } from '@/store';
 import { Task } from '@/types';
 import { lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { shallow } from 'zustand/shallow';
 
 import AppTransition from '../AppTransition';
 import DialogPopup from '../DialogPopup';
@@ -25,10 +24,10 @@ export default function App() {
     toggleTaskUpdateDialog,
     toggleTaskCreateDialog,
     toggleUserProfileDialog,
-  } = useDialogStore((state) => state, shallow);
+  } = useDialogStore();
   const { isShowCompletedTasks, setSelectingTask, completedTasks, uncompletedTasks, fetchTasks, listenOnTasksChanged } =
-    useTaskStore((state) => state, shallow);
-  const { fetchTags, listenOnTagsChanged } = useTagStore((state) => state, shallow);
+    useTaskStore();
+  const { fetchTags, listenOnTagsChanged } = useTagStore();
 
   function handleCloseTaskEditDialog() {
     toggleTaskUpdateDialog(false);

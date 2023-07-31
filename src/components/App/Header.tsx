@@ -8,7 +8,7 @@ const {
 } = configs;
 
 export default function AppHeader() {
-  const toggleTaskCreateDialog = useDialogStore((state) => state.toggleTaskCreateDialog);
+  const { toggleTaskCreateDialog } = useDialogStore();
 
   function handleCreateTaskButtonClick() {
     toggleTaskCreateDialog(true);

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
-  const user = useUserStore((state) => state.user);
+  const { user } = useUserStore();
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {

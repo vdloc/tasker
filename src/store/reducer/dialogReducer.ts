@@ -16,6 +16,14 @@ const dialogReducer = (set: any) => ({
       isTagsListEditDialogOpen: isOpen,
     }),
   toggleUserProfileDialog: (isOpen = false) => set({ isUserProfileOpen: isOpen }),
+  resetDialogs() {
+    set({
+      isTaskUpdateDialogOpen: false,
+      isTaskCreateDialogOpen: false,
+      isTagsListEditDialogOpen: false,
+      isUserProfileOpen: false,
+    });
+  },
 });
 
 export default dialogReducer;

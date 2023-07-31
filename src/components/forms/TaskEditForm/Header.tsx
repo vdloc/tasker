@@ -3,7 +3,7 @@ import { useDialogStore } from '@/store';
 import FormHeader from '../components/FormHeader';
 
 export default function TaskEditFormHeader() {
-  const toggleTaskUpdateDialog = useDialogStore((state) => state.toggleTaskUpdateDialog);
+  const { toggleTaskUpdateDialog } = useDialogStore();
 
   return (
     <FormHeader
