@@ -39,16 +39,22 @@ Tasker is the perfect tool for anyone who wants to get more done. With its **eas
 | Headless UI  | A library for building user interfaces that are decoupled from the DOM.                          |
 | TailwindUI   | A library of UI components built on top of Tailwind CSS.                                         |
 
-Here are just a few of the features that make Tasker so powerful:
+**Features:**
 
-- **Login/logout with social platform services or as a guest:** You can login to Tasker with your Google, GitHub, or Twitter account, or you can create a guest account.
-- **Tasks management with tags, start time, due time:** You can create tasks with tags, start time, and due time. You can also set priorities for your tasks.
-- **User profile:** You can view your user profile, which includes your tasks, tags, and settings.
-- **Dark mode:** Work in the dark with dark mode.
+* **User authentication:** Tasker supports login with social platform services or as a guest. This allows you to easily access your tasks from any device.
+* **Task management:** Tasker allows you to create tasks with tags, start time, and due time. You can also set priorities for your tasks. This helps you to stay organized and track your progress.
+* **User profile:** Tasker allows you to view your user profile, which includes your tasks, tags, and settings. This allows you to customize your experience and make sure that Tasker is working the way you want it to.
+* **Dark mode:** Tasker supports dark mode, which allows you to work in the dark without straining your eyes.
+* **Customization:** Tasker offers extensive customization options, allowing you to personalize the theme and fine-tune various settings to align with your individual preferences. This allows you to make Tasker your own and work in a way that is comfortable for you.
 
-Tasker offers extensive **customizability** options, allowing you to personalize the **theme** and fine-tune various settings to align with your individual preferences.
+**Why use Tasker?**
 
+* **Easy to use:** Tasker is a simple and intuitive app that is easy to learn and use.
+* **Powerful features:** Tasker offers a wide range of features that can help you to stay organized and productive.
+* **Customizable:** Tasker can be customized to your individual preferences.
+* **Cross-platform:** Tasker is available on both desktop and mobile devices.
 
+**If you are looking for a todo app that is easy to use, powerful, and customizable, then Tasker is a great option.**
 
 ## Installation Instructions
 
