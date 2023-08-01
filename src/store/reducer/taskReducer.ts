@@ -1,14 +1,15 @@
 import { database, taskRef } from '@/firebase/firestore';
 import { FireStoreTask, Task, User } from '@/types';
 import { filterTasksByStatus, getDataFromSnapshot } from '@/utils';
-import { onSnapshot, query } from 'firebase/firestore';
+import { onSnapshot, query, where } from 'firebase/firestore';
 
 const taskReducer = (set: any, get: any) => ({
   uncompletedTasks: [],
   completedTasks: [],
   selectingTask: {} as Task,
   isShowCompletedTasks: false,
-  toggleShowCompletedTasks: (isShow: boolean) => set({ isShowCompletedTasks: isShow }),
+  toggleShowCompletedTasks: (isShow: boolean) =>
+    set({ isShowCompletedTasks: isShow }),
   setSelectingTask: (task: Task) => set(() => ({ selectingTask: task })),
   fetchTasks: async () => {
     const user = get().user as User;
@@ -30,8 +31,10 @@ const taskReducer = (set: any, get: any) => ({
     await database.deleteTask(deleteTask.id as string);
   },
   listenOnTasksChanged() {
-    const taskQuery = query(taskRef);
-    const unsubscribe = onSnapshot(taskQuery, (querySnapshot) => {
+    const user = get().user as User;
+    if (!user) return () => {};
+    const tasksQuery = query(taskRef, where('userID', '==', user.uid));
+    const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
       const tasks = getDataFromSnapshot<Task[]>(querySnapshot);
       const [completedTasks, uncompletedTasks] = filterTasksByStatus(tasks);
       set({ uncompletedTasks, completedTasks });
@@ -40,7 +43,12 @@ const taskReducer = (set: any, get: any) => ({
     return unsubscribe;
   },
   resetTasks() {
-    set({ uncompletedTasks: [], completedTasks: [], selectingTask: {} as Task, isShowCompletedTasks: false });
+    set({
+      uncompletedTasks: [],
+      completedTasks: [],
+      selectingTask: {} as Task,
+      isShowCompletedTasks: false,
+    });
   },
 });
 

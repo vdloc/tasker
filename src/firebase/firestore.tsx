@@ -1,3 +1,4 @@
+import firebaseApp from './app';
 import { FireStoreTask, Tag, Task, User } from '@/types';
 import { getDataFromSnapshot } from '@/utils';
 import {
@@ -13,8 +14,6 @@ import {
   writeBatch,
 } from 'firebase/firestore';
 
-import firebaseApp from './app';
-
 export const fireStore = getFirestore(firebaseApp);
 export const tagRef = collection(fireStore, 'tag');
 export const taskRef = collection(fireStore, 'task');
@@ -22,15 +21,14 @@ export const userRef = collection(fireStore, 'user');
 const currentUser: Partial<User> = {};
 
 async function getTasks(userID: string): Promise<Task[]> {
-  const userRef = doc(fireStore, 'user', userID);
-  const tasksQuery = query(taskRef, where('user', '==', userRef));
+  const tasksQuery = query(taskRef, where('userID', '==', userID));
   const querySnapshot = await getDocs(tasksQuery);
 
   return getDataFromSnapshot<Task[]>(querySnapshot);
 }
 
-async function getTags(): Promise<Tag[]> {
-  const tagsQuery = query(tagRef);
+async function getTags(userID: string): Promise<Tag[]> {
+  const tagsQuery = query(tagRef, where('userID', '==', userID));
   const querySnapshot = await getDocs(tagsQuery);
 
   return getDataFromSnapshot<Tag[]>(querySnapshot);

@@ -1,14 +1,20 @@
 import { Task } from '@/types';
-import { type DocumentData, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
+import {
+  type DocumentData,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
+} from 'firebase/firestore';
 
-export function classNames(...classes: (string | undefined)[]) {
+export function classNames(...classes: (string | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
 }
 
 type CompletedTasks = Task[];
 type UncompletedTasks = Task[];
 
-export function filterTasksByStatus(tasks: Task[]): [CompletedTasks, UncompletedTasks] {
+export function filterTasksByStatus(
+  tasks: Task[]
+): [CompletedTasks, UncompletedTasks] {
   const completedTask: Task[] = [];
   const uncompletedTask: Task[] = [];
 

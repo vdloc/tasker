@@ -1,12 +1,14 @@
 import { database, tagRef } from '@/firebase/firestore';
-import { Tag } from '@/types';
+import { Tag, User } from '@/types';
 import { getDataFromSnapshot } from '@/utils';
-import { onSnapshot, query } from 'firebase/firestore';
+import { onSnapshot, query, where } from 'firebase/firestore';
 
-const tagReducer = (set: any) => ({
+const tagReducer = (set: any, get: any) => ({
   tags: [],
   fetchTags: async () => {
-    const tags = await database.getTags();
+    const user = get().user as User;
+    if (!user) return;
+    const tags = await database.getTags(user.uid);
     set({ tags });
   },
   addTag: async (tag: Tag) => {
@@ -19,8 +21,10 @@ const tagReducer = (set: any) => ({
     await database.deleteTag(tag.id as string);
   },
   listenOnTagsChanged() {
-    const tagQuery = query(tagRef);
-    const unsubscribe = onSnapshot(tagQuery, (querySnapshot) => {
+    const user = get().user as User;
+    if (!user) return () => {};
+    const tagsQuery = query(tagRef, where('userID', '==', user.uid));
+    const unsubscribe = onSnapshot(tagsQuery, (querySnapshot) => {
       const tags = getDataFromSnapshot<Tag[]>(querySnapshot);
       set({ tags });
     });
