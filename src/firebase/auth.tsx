@@ -29,7 +29,9 @@ googleAuthProvider.setCustomParameters({
   prompt: 'select_account',
 });
 
-export async function handleAuthStateChange(onChange: () => void) {
+export async function handleAuthStateChange(
+  onChange: (user: User | null) => Promise<void>
+) {
   onAuthStateChanged(auth, onChange);
 }
 
