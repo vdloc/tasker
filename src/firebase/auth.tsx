@@ -1,7 +1,8 @@
+import firebaseApp from './app';
+import { User } from '@/types';
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
-  type User,
   browserLocalPersistence,
   createUserWithEmailAndPassword,
   getAuth,
@@ -13,9 +14,8 @@ import {
   signOut,
   updateEmail,
   updateProfile,
+  type User as FirebaseUser,
 } from 'firebase/auth';
-
-import firebaseApp from './app';
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(firebaseApp);
@@ -29,19 +29,19 @@ googleAuthProvider.setCustomParameters({
   prompt: 'select_account',
 });
 
-export async function handleAuthStateChange(onChange: (user: User | null) => void) {
+export async function handleAuthStateChange(onChange: () => void) {
   onAuthStateChanged(auth, onChange);
 }
 
 export async function createUser(email: string, password: string) {
   const { user } = await createUserWithEmailAndPassword(auth, email, password);
-  return user;
+  return user as User;
 }
 
 export async function signInUser(email: string, password: string) {
   await setPersistence(auth, browserLocalPersistence);
   const { user } = await signInWithEmailAndPassword(auth, email, password);
-  return user;
+  return user as User;
 }
 
 export async function signOutUser() {
@@ -50,8 +50,11 @@ export async function signOutUser() {
 }
 
 export async function updateUser({ displayName, email, photoURL }: User) {
-  await updateProfile(auth.currentUser as User, { displayName, photoURL });
-  await updateEmail(auth.currentUser as User, email as string);
+  await updateProfile(auth.currentUser as FirebaseUser, {
+    displayName,
+    photoURL,
+  });
+  await updateEmail(auth.currentUser as FirebaseUser, email as string);
 }
 
 export async function signInWithGoogle() {

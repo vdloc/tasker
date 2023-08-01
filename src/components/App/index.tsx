@@ -1,13 +1,11 @@
-import { useDialogStore, useTagStore, useTaskStore } from '@/store';
-import { Task } from '@/types';
-import { lazy, useEffect } from 'react';
-import { Toaster } from 'react-hot-toast';
-
 import AppTransition from '../AppTransition';
 import DialogPopup from '../DialogPopup';
 import TaskList from '../TaskList';
 import AppFooter from './Footer';
 import AppHeader from './Header';
+import { useDialogStore, useTagStore, useTaskStore } from '@/store';
+import { Task } from '@/types';
+import { lazy, useEffect } from 'react';
 
 const TagsListEditForm = lazy(() => import('../forms/TagsListEditForm'));
 const TaskCreateForm = lazy(() => import('../forms/TaskCreateForm'));
@@ -25,8 +23,14 @@ export default function App() {
     toggleTaskCreateDialog,
     toggleUserProfileDialog,
   } = useDialogStore();
-  const { isShowCompletedTasks, setSelectingTask, completedTasks, uncompletedTasks, fetchTasks, listenOnTasksChanged } =
-    useTaskStore();
+  const {
+    isShowCompletedTasks,
+    setSelectingTask,
+    completedTasks,
+    uncompletedTasks,
+    fetchTasks,
+    listenOnTasksChanged,
+  } = useTaskStore();
   const { fetchTags, listenOnTagsChanged } = useTagStore();
 
   function handleCloseTaskEditDialog() {
@@ -61,23 +65,37 @@ export default function App() {
 
   return (
     <AppTransition>
-      <div className="w-screen md:w-[28rem] h-screen md:h-auto overflow-hidden divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl">
+      <div className='w-screen md:w-[28rem] h-screen md:h-auto overflow-hidden divide-y divide-gray-200 relative z-10 px-4 rounded-2xl bg-white shadow-2xl drop-shadow-2xl'>
         <AppHeader />
-        <TaskList tasks={isShowCompletedTasks ? completedTasks : uncompletedTasks} loading={false} />
+        <TaskList
+          tasks={isShowCompletedTasks ? completedTasks : uncompletedTasks}
+          loading={false}
+        />
         <AppFooter />
-        <DialogPopup isOpen={isTaskUpdateDialogOpen} onClose={handleCloseTaskEditDialog}>
+        <DialogPopup
+          isOpen={isTaskUpdateDialogOpen}
+          onClose={handleCloseTaskEditDialog}
+        >
           <TaskEditForm />
         </DialogPopup>
-        <DialogPopup isOpen={isUserProfileOpen} onClose={handleCloseUserProfileDialog}>
+        <DialogPopup
+          isOpen={isUserProfileOpen}
+          onClose={handleCloseUserProfileDialog}
+        >
           <UserProfileForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTaskCreateDialogOpen} onClose={handleCloseTaskCreateDialog}>
+        <DialogPopup
+          isOpen={isTaskCreateDialogOpen}
+          onClose={handleCloseTaskCreateDialog}
+        >
           <TaskCreateForm />
         </DialogPopup>
-        <DialogPopup isOpen={isTagsListEditDialogOpen} onClose={handleCloseTagsEditDialog}>
+        <DialogPopup
+          isOpen={isTagsListEditDialogOpen}
+          onClose={handleCloseTagsEditDialog}
+        >
           <TagsListEditForm />
         </DialogPopup>
-        <Toaster />
       </div>
     </AppTransition>
   );

@@ -30,10 +30,10 @@ export interface Tag {
 
 export interface User {
   uid: string;
-  displayName: string;
-  email: string;
-  phoneNumber: string;
-  photoURL: string;
+  displayName: string | null;
+  email: string | null;
+  phoneNumber: string | null;
+  photoURL: string | null;
 }
 
 export type TagColor =

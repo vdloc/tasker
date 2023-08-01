@@ -1,0 +1,39 @@
+{
+  "auth": {
+    "auth/invalid-email": "The email address is badly formatted.",
+    "auth/user-disabled": "Your account has been disabled by an administrator.",
+    "auth/email-already-in-use": "The email address is already in use by another account.",
+    "auth/operation-not-allowed": "The given sign-in provider is disabled for this Firebase project.",
+    "auth/user-not-found": "There is no user corresponding to the provided identifier.",
+    "auth/wrong-password": "The password is invalid.",
+    "auth/weak-password": "The password is not strong enough.",
+    "auth/email-change-needs-verification": "You need to verify your new email address before this change can be applied.",
+    "auth/credential-already-in-use": "This credential is already associated with a different user account.",
+    "auth/account-exists-with-different-credential": "An account already exists with the same email address but different sign-in credentials.",
+    "auth/requires-recent-login": "This operation is sensitive and requires recent authentication. Log in again before retrying this request.",
+    "auth/provider-already-linked": "User can only be linked to one identity for the given provider.",
+    "auth/invalid-credential": "The credential used is malformed or has expired.",
+    "auth/invalid-verification-code": "The verification code used is invalid.",
+    "auth/invalid-verification-id": "The verification ID used is invalid.",
+    "auth/expired-action-code": "The action code has expired.",
+    "auth/invalid-action-code": "The action code is invalid. This can happen if the code is malformed, expired, or has already been used.",
+    "auth/too-many-requests": "Access to this account has been temporarily disabled due to many failed login attempts.",
+    "auth/reset-password-error": "We couldn't reset your password. Please try again later.",
+    "auth/verify-email-error": "We couldn't verify your email address. Please try again later."
+  },
+  "firestore": {
+    "unavailable": "The Firestore service is unavailable at the moment. Please try again later.",
+    "unauthenticated": "You must be authenticated to access this resource.",
+    "permission-denied": "You do not have permission to access this document.",
+    "not-found": "The document you requested does not exist.",
+    "already-exists": "A document with the same ID already exists.",
+    "resource-exhausted": "Your project has exceeded its quota for Firestore resources.",
+    "failed-precondition": "Your request could not be completed due to a conflict.",
+    "aborted": "The operation was aborted because another operation failed.",
+    "invalid-argument": "Invalid or missing arguments were provided.",
+    "deadline-exceeded": "The deadline for this operation has been exceeded.",
+    "not-implemented": "This operation is not implemented on the server.",
+    "internal": "An internal server error has occurred. Please try again later.",
+    "unknown": "An unknown error has occurred. Please try again."
+  }
+}

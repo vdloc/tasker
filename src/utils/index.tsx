@@ -1,4 +1,6 @@
 import { Task } from '@/types';
+import firebaseErrorMessages from '@data/firebaseErrors.json';
+import { FirebaseError } from 'firebase/app';
 import {
   type DocumentData,
   QueryDocumentSnapshot,
@@ -32,4 +34,17 @@ export function getDataFromSnapshot<T>(querySnapshot: QuerySnapshot): T {
   });
 
   return values as T;
+}
+
+export function getAuthErrorMessage(errorCode: FirebaseError['code']) {
+  const errorMessages = firebaseErrorMessages.auth as Record<string, string>;
+  return errorMessages[errorCode] || `Authentication error: ${errorCode}`;
+}
+
+export function getFirestoreErrorMessage(errorCode: FirebaseError['code']) {
+  const errorMessages = firebaseErrorMessages.firestore as Record<
+    string,
+    string
+  >;
+  return errorMessages[errorCode] || `Database error: ${errorCode}`;
 }
