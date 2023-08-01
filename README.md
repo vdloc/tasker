@@ -25,6 +25,7 @@ Tasker is the perfect tool for anyone who wants to get more done. With its **eas
 ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white&style=flat)
 ![Storybook](https://img.shields.io/badge/-Storybook-FF4785?logo=storybook&logoColor=white&style=flat)
 ![Headless UI](https://img.shields.io/badge/-Headless_UI-38B2AC?logo=headless-ui&logoColor=white&style=flat)
+![Tailwind UI](https://img.shields.io/badge/-Tailwind_UI-38B2AC?logo=tailwind-css&logoColor=white&style=flat)
 
 | Technology   | Description                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------ |
@@ -35,7 +36,8 @@ Tasker is the perfect tool for anyone who wants to get more done. With its **eas
 | Firebase     | A platform for building web and mobile applications backed by Google's infrastructure.           |
 | TypeScript   | A statically typed superset of JavaScript that compiles to plain JavaScript.                     |
 | Storybook    | An open source tool for developing UI components in isolation.                                   |
-| Headless UI  | A library for building user interfaces that are decoupled from the DOM.                         |
+| Headless UI  | A library for building user interfaces that are decoupled from the DOM.                          |
+| TailwindUI   | A library of UI components built on top of Tailwind CSS.                                         |
 
 Here are just a few of the features that make Tasker so powerful:
 
@@ -62,13 +64,13 @@ To run Tasker locally, follow these steps:
    ```
 3. Install the dependencies:
    ```bash
-   npm install
+   yarn install
    ```
 4. Start the development server:
    ```bash
-   npm run dev
+   yarn dev
    ```
-5. Open your browser and visit http://localhost:3000 to see Tasker in action.
+5. Open your browser and visit http://localhost:5173 to see Tasker in action.
 
 ## Contributing
 
@@ -81,6 +83,6 @@ these steps:
 4. Push your changes to your fork.
 5. Open a pull request on the main repository.
 
-We will review your pull request and let you know if it's approved. Once your pull request is approved, your changes will be merged into the main repository.
+I will review your pull request and let you know if it's approved. Once your pull request is approved, your changes will be merged into the main repository.
 
 Thank you for your interest in contributing to Tasker!
