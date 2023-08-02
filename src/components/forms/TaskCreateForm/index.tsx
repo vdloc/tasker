@@ -1,7 +1,10 @@
-import { database } from '@/firebase/firestore';
 import { useDialogStore, useTaskStore, useUserStore } from '@/store';
 import { TaskCreateFormValues } from '@/types';
+import { getFirestoreErrorMessage } from '@/utils';
+import { FirebaseError } from 'firebase/app';
+import { useCallback } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { v4 as uuidv4 } from 'uuid';
 
 import FormLayout from '../FormLayout';
@@ -31,15 +34,24 @@ export default function TaskCreateForm() {
       userID: user?.uid as string,
     };
 
-    await database.createTask(updatedTask);
-    createTask(updatedTask);
-    toggleTaskCreateDialog(false);
+    try {
+      await createTask(updatedTask);
+      toast.success('Your task has been created!');
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      const errorMessage = getFirestoreErrorMessage(firebaseError.code);
+      toast.error(errorMessage);
+    } finally {
+      toggleTaskCreateDialog(false);
+    }
   };
+
+  const content = useCallback(() => <TaskCreateFormContent control={control} />, [control]);
 
   return (
     <FormLayout
       Header={TaskCreateFormHeader}
-      Content={() => <TaskCreateFormContent control={control} />}
+      Content={content}
       Footer={TaskCreateFormFooter}
       onSubmit={handleSubmit(onSubmit)}
     />

@@ -4,7 +4,10 @@ import configs from '@/data/configs.json';
 import { createUser, signInWithGithub, signInWithGoogle } from '@/firebase/auth';
 import { useUserStore } from '@/store';
 import { User, UserSignUpFormValues } from '@/types';
+import { getAuthErrorMessage } from '@/utils';
+import { FirebaseError } from 'firebase/app';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Button from '../../common/Button';
@@ -21,35 +24,31 @@ export default function UserSignUpForm() {
   const { setUser } = useUserStore();
   const navigate = useNavigate();
 
-  async function onSubmit(data: UserSignUpFormValues) {
-    const { email, password } = data;
+  async function handleSignUp(signUpPromise: Promise<User>) {
     try {
-      const user = await createUser(email, password);
+      const user = await signUpPromise;
       setUser(user as User);
       navigate('/');
+      toast.success(`Welcome ${user.displayName || 'Captain Unknown'}!`);
     } catch (error) {
-      console.log(error);
+      const firebaseError = error as FirebaseError;
+      toast.error(getAuthErrorMessage(firebaseError.code), {
+        id: firebaseError.code,
+      });
     }
+  }
+
+  async function onSubmit(data: UserSignUpFormValues) {
+    const { email, password } = data;
+    handleSignUp(createUser(email, password));
   }
 
   async function handleGoogleSignUp() {
-    try {
-      const user = await signInWithGoogle();
-      setUser(user as User);
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+    handleSignUp(signInWithGoogle());
   }
 
   async function handleGithubSignUp() {
-    try {
-      const user = await signInWithGithub();
-      setUser(user as User);
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
+    handleSignUp(signInWithGithub());
   }
 
   return (

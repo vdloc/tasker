@@ -8,18 +8,18 @@ type DoingTasksPlaceholderProps = {
 
 function CompletedTasksPlaceholder() {
   return (
-    <span>
+    <p className="text-sm">
       No tasks has been completed! <br /> Do your tasks!
-    </span>
+    </p>
   );
 }
 
 function DoingTasksPlaceholder({ handleCreateSampleTasks }: DoingTasksPlaceholderProps) {
   return (
     <>
-      <span className="text-sm block">
-        There aren&apos;t any tasks created yet! Create your owns or load some sample tasks?
-      </span>
+      <p className="text-sm">
+        There are no tasks created yet! You can create your own or load some AI-generated samples.
+      </p>
       <Button label="Load sample tasks" size="small" onClick={handleCreateSampleTasks} className="mt-4" />
     </>
   );

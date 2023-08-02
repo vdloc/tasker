@@ -1,6 +1,6 @@
-import firebaseApp from './app';
 import { User } from '@/types';
 import {
+  type User as FirebaseUser,
   GithubAuthProvider,
   GoogleAuthProvider,
   browserLocalPersistence,
@@ -14,8 +14,9 @@ import {
   signOut,
   updateEmail,
   updateProfile,
-  type User as FirebaseUser,
 } from 'firebase/auth';
+
+import firebaseApp from './app';
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(firebaseApp);
@@ -29,9 +30,7 @@ googleAuthProvider.setCustomParameters({
   prompt: 'select_account',
 });
 
-export async function handleAuthStateChange(
-  onChange: (user: User | null) => Promise<void>
-) {
+export async function handleAuthStateChange(onChange: (user: User | null) => Promise<void>) {
   onAuthStateChanged(auth, onChange);
 }
 

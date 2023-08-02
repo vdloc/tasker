@@ -1,8 +1,11 @@
 import { updateUser } from '@/firebase/auth';
 import { useDialogStore, useUserStore } from '@/store';
 import { UserProfileFormValues } from '@/types';
+import { getFirestoreErrorMessage } from '@/utils';
+import { FirebaseError } from 'firebase/app';
 import { type User } from 'firebase/auth';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import FormLayout from '../FormLayout';
 import UserProfileFormContent from './Content';
@@ -18,8 +21,16 @@ export default function UserProfileForm() {
   });
 
   async function onSubmit({ displayName, email, photoURL }: UserProfileFormValues) {
-    await updateUser({ displayName, email, photoURL } as User);
-    toggleUserProfileDialog(false);
+    try {
+      await updateUser({ displayName, email, photoURL } as User);
+      toast.success('Your profile has been updated!');
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      const errorMessage = getFirestoreErrorMessage(firebaseError.code);
+      toast.error(errorMessage);
+    } finally {
+      toggleUserProfileDialog(false);
+    }
   }
   return (
     <FormLayout
