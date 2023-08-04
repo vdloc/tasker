@@ -22,6 +22,16 @@
   border: 1px solid var(--primary);
 }
 
+::selection {
+  background-color: var(--secondary); 
+  color: #fff;
+}
+
+::-moz-selection {
+  background-color: var(--secondary);
+  color: #fff;
+}
+
 @tailwind components;
 @tailwind utilities;
 
