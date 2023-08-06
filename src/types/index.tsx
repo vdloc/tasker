@@ -20,7 +20,7 @@ export interface FireStoreTask extends Task, AddPrefixToKeys<string, any> {}
 
 export interface Tag {
   userID?: string;
-  id: number | string;
+  id: string;
   name: string;
   color: TagColor;
 }
@@ -85,7 +85,7 @@ export interface TagState {
   deleteTag: (tag: Tag) => Promise<void>;
   addTags: (tags: Tag[]) => Promise<void>;
   listenOnTagsChanged: () => Unsubscribe;
-  resetTags: () => void;
+  resetTags: () => Promise<void>;
 }
 
 export interface UserState {
@@ -110,7 +110,7 @@ export interface TaskEditFormValues extends TaskCreateFormValues {
 
 export interface TagsListEditFormValues {
   id: string | number;
-  name: string;
+  tagName: string;
   color: TagColor;
 }
 
@@ -133,6 +133,7 @@ export interface FormInputProps {
   id?: string;
   className?: string;
   type?: string;
+  placeholder?: string;
 }
 
 export const enum StorePersistKey {
