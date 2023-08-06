@@ -27,10 +27,7 @@ export default function TagsDropDown({ onChange, excludeTags }: TagsDropDownProp
 
   function menuButtonClickHandler() {
     if (!isMenuShoulDisplay) {
-      toast.error(
-        'No tags have been defined. Define your tags in the Tags Manager.',
-        { id: 'No tag defined' },
-      );
+      toast.error("There aren't any tags left. Define your tags in the Tags Manager.", { id: 'No tag defined' });
     }
   }
 
@@ -64,7 +61,7 @@ export default function TagsDropDown({ onChange, excludeTags }: TagsDropDownProp
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-52 overflow-y-scroll origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-40 h-auto max-h-52 overflow-y-auto origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 {selectableTags.map((tag: Tag) => (
                   <TagDropDownMenuItem tag={tag} key={tag.id} handleClick={() => onChange(tag)} />
