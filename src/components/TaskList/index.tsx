@@ -2,7 +2,7 @@ import Todo from '@/components/Task';
 import { useTagStore, useTaskStore, useUserStore } from '@/store';
 import { Tag, Task } from '@/types';
 import sampleTags from '@data/tags.json';
-import sampleTasks from '@data/todos.json';
+import sampleTasks from '@data/tasks.json';
 
 import TaskListHeader from './Header';
 import Placeholder from './Placeholder';
