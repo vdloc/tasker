@@ -4,7 +4,7 @@ import { useController } from 'react-hook-form';
 
 import Label from './Label';
 
-export default function Input({ control, rules, name, label, id, className, type }: FormInputProps) {
+export default function Input({ control, rules, name, label, id, className, type, placeholder }: FormInputProps) {
   const { field, formState, fieldState } = useController({
     name,
     control,
@@ -25,6 +25,7 @@ export default function Input({ control, rules, name, label, id, className, type
           value={field.value}
           onChange={field.onChange}
           ref={field.ref}
+          placeholder={placeholder}
         />
       </div>
       <ErrorMessage
