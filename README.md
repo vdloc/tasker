@@ -56,6 +56,22 @@ Tasker is the perfect tool for anyone who wants to get more done. With its **eas
 
 **If you are looking for a todo app that is easy to use, powerful, and customizable, then Tasker is a great option.**
 
+**Kanban Board**
+
+I'm using Notion to track progress on features and tasks for this project. Here is an embedded view of the kanban board:
+
+[Tasker Kanban Board](https://vdloc.notion.site/5b937e90fc664e44aca154d980038940?v=5efc294ae8a7485fab0f40d3775ac3d3&pvs=4)
+
+The kanban board includes:
+
+- Backlog - Prioritized list of tasks to complete
+- In Progress - Tasks currently being worked on
+- Halted - Tasks paused or delayed for some reason
+- Discarded - Tasks removed from scope or cancelled 
+- Done - Completed tasks and features
+
+Let me know if you have any questions! I'm open to suggestions on better ways to manage project tasks as well.
+
 ## Installation Instructions
 
 To run Tasker locally, follow these steps:
