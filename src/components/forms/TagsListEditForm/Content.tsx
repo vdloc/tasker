@@ -10,7 +10,7 @@ import TagsCombobox from '../components/TagsCombobox';
 export default function TagsListEditFormContent() {
   const { tags, addTag, deleteTag } = useTagStore();
 
-  const { control, getValues, setValue, trigger, formState } = useForm<TagsListEditFormValues>({
+  const { control, getValues, setValue, trigger } = useForm<TagsListEditFormValues>({
     defaultValues: { name: '', color: '' as TagColor },
   });
 
