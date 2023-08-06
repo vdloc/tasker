@@ -2,31 +2,42 @@ import Badge from '@/components/common/Badge';
 import { useTagStore } from '@/store';
 import { Tag, TagColor, TagsListEditFormValues } from '@/types';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Input from '../components/Input';
 import TagsCombobox from '../components/TagsCombobox';
+import toast from 'react-hot-toast';
 
 export default function TagsListEditFormContent() {
   const { tags, addTag, deleteTag } = useTagStore();
 
   const { control, getValues, setValue, trigger } = useForm<TagsListEditFormValues>({
-    defaultValues: { name: '', color: '' as TagColor },
+    defaultValues: { tagName: '', color: '' as TagColor },
   });
+
+  const existedTagValidator = useCallback(
+    (tagName: string) => {
+      const isTagExisted = tags.some((tag: Tag) => tag.name === tagName);
+
+      return isTagExisted ? 'Tag already existed!' : true;
+    },
+    [tags],
+  );
 
   async function handleAddTag() {
     const newTag = {
       id: Math.round(Math.random() * 10),
-      name: getValues('name'),
+      name: getValues('tagName'),
       color: getValues('color') as TagColor,
     };
 
     try {
-      const isTagNameValidate = await trigger('name', { shouldFocus: true });
-
+      const isTagNameValidate = await trigger('tagName', { shouldFocus: true });
       if (isTagNameValidate) {
         addTag(newTag);
-        setValue('name', '');
+        setValue('tagName', '');
+        toast.success(`Tag "${newTag.name}" was successfully created.`)
       }
     } catch (error) {
       console.log(error);
@@ -41,20 +52,22 @@ export default function TagsListEditFormContent() {
       <div className="grid grid-cols-10 gap-4 relative">
         <Input
           control={control}
-          name="name"
+          name="tagName"
           label="Name"
           id="tag-name"
           className="col-span-4"
+          placeholder="Enter tag name"
           rules={{
             required: { value: true, message: 'Tag name must be required!' },
             maxLength: {
-              value: 1000,
+              value: 20,
               message: 'Tag name is maximum of 20 characters only!',
             },
             minLength: {
               value: 3,
               message: 'Tag name is at least 3 characters!',
             },
+            validate: existedTagValidator,
           }}
         />
         <TagsCombobox label="Color" className="col-span-4" control={control} name="color" />
