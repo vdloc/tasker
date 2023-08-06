@@ -31,8 +31,9 @@ const tagReducer = (set: any, get: any) => ({
 
     return unsubscribe;
   },
-  resetTags: () => {
-    set({ tags: [] });
+  resetTags: async () => {
+    const tags = get().tags;
+    await database.deleteTags(tags);
   },
 });
 
