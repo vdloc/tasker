@@ -1,19 +1,32 @@
-import { useDialogStore } from '@/store';
+import Button from '@/components/common/Button';
+import { useDialogStore, useTagStore } from '@/store';
+import { getFirestoreErrorMessage } from '@/utils';
+import { FirebaseError } from 'firebase/app';
+import toast from 'react-hot-toast';
 
 export default function TagsListEditFormFooter() {
   const { toggleTagsListEditDialog } = useDialogStore();
+  const { resetTags } = useTagStore();
 
   function handleCloseDialog() {
     toggleTagsListEditDialog(false);
   }
 
+  async function handleRemoveAllTag() {
+    try {
+      await resetTags();
+      toast.success('All tags has been deleted.');
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      const errorMessage = getFirestoreErrorMessage(firebaseError.code);
+      toast.error(errorMessage);
+    }
+  }
+
   return (
-    <button
-      type="button"
-      className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      onClick={handleCloseDialog}
-    >
-      Close
-    </button>
+    <>
+      <Button label="Delete all" color="pink" onClick={handleRemoveAllTag} />
+      <Button label="Close" color="white" className='ml-3' onClick={handleCloseDialog} />
+    </>
   );
 }
