@@ -8,7 +8,7 @@ const buttonStyleProps = tv({
       indigo: 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700',
       pink: 'focus:ring-pink-500 bg-pink-600 hover:bg-pink-700',
       white: 'bg-white border-gray-300 text-black',
-      gray: 'bg-gray-900 border-gray-900 text-white',
+      gray: 'bg-gray-600 border-gray-600 text-white',
     },
     size: {
       small: 'px-2 py-1',
