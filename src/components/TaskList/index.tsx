@@ -34,13 +34,13 @@ export default function TaskList({ tasks = [], loading }: TaskListProps) {
         ) : tasks.length ? (
           tasks.map((task) => <Todo task={task} key={task.id} />)
         ) : (
-          <p className="font-medium italic mt-8">
+          <div className="font-medium italic mt-8 leading-normal">
             {isShowCompletedTasks ? (
               <Placeholder.CompletedTasks />
             ) : (
               <Placeholder.DoingTasks handleCreateSampleTasks={handleCreateSampleTasks} />
             )}
-          </p>
+          </div>
         )}
       </div>
     </fieldset>
