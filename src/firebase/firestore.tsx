@@ -1,4 +1,3 @@
-import firebaseApp from './app';
 import { FireStoreTask, Tag, Task, User } from '@/types';
 import { getDataFromSnapshot } from '@/utils';
 import {
@@ -13,6 +12,8 @@ import {
   where,
   writeBatch,
 } from 'firebase/firestore';
+
+import firebaseApp from './app';
 
 export const fireStore = getFirestore(firebaseApp);
 export const tagRef = collection(fireStore, 'tag');
@@ -97,6 +98,15 @@ async function deleteTag(tagID: string) {
   await deleteDoc(doc(fireStore, 'tag', tagID));
 }
 
+async function deleteTags(tags: Tag[]) {
+  const batch = writeBatch(fireStore);
+  tags.forEach((tag) => {
+    const docRef = doc(fireStore, 'tag', tag.id);
+    batch.delete(docRef);
+  });
+  await batch.commit();
+}
+
 function setCurrentUser(user: User) {
   Object.assign(currentUser, user);
 }
@@ -113,5 +123,6 @@ export const database = {
   createTag,
   createTags,
   deleteTag,
+  deleteTags,
   setCurrentUser,
 };
