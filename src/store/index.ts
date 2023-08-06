@@ -25,8 +25,11 @@ function combineReducers(set: any, get: any) {
 const useStore: any = createUseStore<StoreState>(combineReducers, StorePersistKey.App);
 
 export const useTagStore = () => {
-  const { tags, addTag, addTags, deleteTag, fetchTags, listenOnTagsChanged } = useStore((state: any) => state, shallow);
-  return { tags, addTag, addTags, deleteTag, fetchTags, listenOnTagsChanged };
+  const { tags, addTag, addTags, deleteTag, fetchTags, listenOnTagsChanged, resetTags } = useStore(
+    (state: any) => state,
+    shallow,
+  );
+  return { tags, addTag, addTags, deleteTag, fetchTags, listenOnTagsChanged, resetTags };
 };
 export const useTaskStore = () => {
   const {
