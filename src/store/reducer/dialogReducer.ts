@@ -1,4 +1,4 @@
-const dialogReducer = (set: any) => ({
+const dialogReducer = (set: any, get: any) => ({
   isTaskUpdateDialogOpen: false,
   isTaskCreateDialogOpen: false,
   isTagsListEditDialogOpen: false,
@@ -6,6 +6,7 @@ const dialogReducer = (set: any) => ({
   toggleTaskUpdateDialog: (isOpen = false) =>
     set({
       isTaskUpdateDialogOpen: isOpen,
+      selectingTask: isOpen ? get().selectingTask : {},
     }),
   toggleTaskCreateDialog: (isOpen = false) =>
     set({

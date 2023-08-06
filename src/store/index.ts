@@ -17,7 +17,7 @@ function combineReducers(set: any, get: any) {
   return {
     ...tagReducer(set, get),
     ...taskReducer(set, get),
-    ...dialogReducer(set),
+    ...dialogReducer(set, get),
     ...userReducer(set),
   };
 }
