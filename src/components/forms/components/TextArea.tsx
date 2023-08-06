@@ -2,6 +2,8 @@ import { FormInputProps } from '@/types';
 import { ErrorMessage } from '@hookform/error-message';
 import { useController } from 'react-hook-form';
 
+import Label from './Label';
+
 export default function TextArea({ control, rules, name, label, id }: FormInputProps) {
   const { field, fieldState, formState } = useController({
     name,
@@ -11,9 +13,7 @@ export default function TextArea({ control, rules, name, label, id }: FormInputP
 
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-900">
-        {label}
-      </label>
+      <Label label={label} id={id} />
       <div className="mt-1">
         <textarea
           id={id}

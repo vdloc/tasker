@@ -2,6 +2,8 @@ import { FormInputProps } from '@/types';
 import { ErrorMessage } from '@hookform/error-message';
 import { useController } from 'react-hook-form';
 
+import Label from './Label';
+
 export default function Input({ control, rules, name, label, id, className, type }: FormInputProps) {
   const { field, formState, fieldState } = useController({
     name,
@@ -11,9 +13,7 @@ export default function Input({ control, rules, name, label, id, className, type
 
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-900">
-        {label}
-      </label>
+      <Label label={label} id={id} />
       <div className="mt-1">
         <input
           type={type || 'text'}

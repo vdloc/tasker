@@ -3,6 +3,8 @@ import { classNames } from '@/utils';
 import { Switch } from '@headlessui/react';
 import { useController } from 'react-hook-form';
 
+import Label from './Label';
+
 export default function Toggle({ control, name, label, id }: FormInputProps) {
   const { field } = useController({
     name,
@@ -10,9 +12,7 @@ export default function Toggle({ control, name, label, id }: FormInputProps) {
   });
   return (
     <div>
-      <label htmlFor="" className="block text-sm font-medium text-gray-900">
-        {label}
-      </label>
+      <Label label={label} id={id} />
       <div className="mt-1">
         <Switch
           checked={field.value}
