@@ -34,7 +34,7 @@ export default function TaskCreateFormContent({ control }: TaskCreateFormContent
         rules={descritionRules}
       />
       <div className="grid grid-cols-2 items-center gap-4">
-        <PriorityComboBox control={control} name="priority" />
+        <PriorityComboBox control={control} name="priority" label="Priority" />
         <DateTimePicker title="Choose due date" label="Due date" name="dueDate" control={control} />
       </div>
       <Tags label="Tags" name="tags" control={control} defaultTags={[]} />

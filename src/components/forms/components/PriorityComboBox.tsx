@@ -8,7 +8,7 @@ import { useController } from 'react-hook-form';
 
 import Label from './Label';
 
-export default function PriorityComboBox({ control, name }: FormInputProps) {
+export default function PriorityComboBox({ control, name, label }: FormInputProps) {
   const { field } = useController({
     name,
     control,
@@ -28,7 +28,7 @@ export default function PriorityComboBox({ control, name }: FormInputProps) {
 
   return (
     <div>
-      <Label label="Priority" />
+      <Label label={label} />
       <Listbox value={selected} onChange={handleChange}>
         {({ open }) => (
           <>

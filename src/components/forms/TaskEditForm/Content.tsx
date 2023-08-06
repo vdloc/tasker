@@ -1,5 +1,5 @@
 import Tags from '@/components/Tags';
-import { Priority, Tag, TaskEditFormValues } from '@/types';
+import { Tag, TaskEditFormValues } from '@/types';
 import { Control } from 'react-hook-form';
 
 import DateTimePicker from '../components/DateTimePicker';
