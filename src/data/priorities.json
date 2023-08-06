@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1, 
+    "title": "Low",
+    "current": false,
+    "color": "bg-teal-700"
+  },
+  {
+    "id": 2,
+    "title": "Medium",
+    "current": false,
+    "color": "bg-blue-700"
+  },
+  {
+    "id": 3,
+    "title": "High",
+    "current": true, 
+    "color": "bg-yellow-700"
+  },
+  {
+    "id": 4,
+    "title": "Urgent",
+    "current": false,
+    "color": "bg-orange-700"
+  },
+  {
+    "id": 5,
+    "title": "Critical",
+    "current": false,
+    "color": "bg-red-700"
+  }
+]

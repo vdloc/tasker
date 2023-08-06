@@ -1,10 +1,7 @@
 import { type Unsubscribe } from 'firebase/firestore';
 import type { Control } from 'react-hook-form';
 
-type AddPrefixToKeys<
-  Prefix extends string,
-  T extends Record<string, unknown>
-> = {
+type AddPrefixToKeys<Prefix extends string, T extends Record<string, unknown>> = {
   [K in keyof T & string as `${Prefix}.${K}`]+?: string extends K ? any : T[K];
 };
 
@@ -96,11 +93,7 @@ export interface UserState {
   setUser: (user: User | null) => void;
 }
 
-export interface StoreState
-  extends TaskState,
-    DialogState,
-    TagState,
-    UserState {}
+export interface StoreState extends TaskState, DialogState, TagState, UserState {}
 
 export interface TaskCreateFormValues {
   title: string;
@@ -150,10 +143,9 @@ export const enum StorePersistKey {
   App = 'tasker',
 }
 
-export enum Priority {
-  Low = 1,
-  Medium = 2,
-  High = 3,
-  Urgent = 4,
-  Critical = 5,
+export interface Priority {
+  id: number;
+  title: string;
+  current: boolean;
+  color: string;
 }

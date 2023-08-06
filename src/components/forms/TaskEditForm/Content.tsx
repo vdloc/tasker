@@ -1,9 +1,10 @@
 import Tags from '@/components/Tags';
-import { Tag, TaskEditFormValues } from '@/types';
+import { Priority, Tag, TaskEditFormValues } from '@/types';
 import { Control } from 'react-hook-form';
 
 import DateTimePicker from '../components/DateTimePicker';
 import Input from '../components/Input';
+import PriorityComboBox from '../components/PriorityComboBox';
 import TextArea from '../components/TextArea';
 import Toggle from '../components/Toggle';
 
@@ -34,11 +35,11 @@ export default function TaskEditFormContent({ control, currentTags }: TaskEditFo
         name="description"
         rules={descriptionRules}
       />
+      <Toggle label="Status" control={control} id="task-stastus" name="status" />
       <div className="grid grid-cols-2 items-center gap-4">
-        <DateTimePicker title="Choose start date" label="Start date" control={control} name="startDate" />
+        <PriorityComboBox control={control} name="priority" label="Priority" />
         <DateTimePicker title="Choose due date" label="Due date" name="dueDate" control={control} />
       </div>
-      <Toggle label="Status" control={control} id="task-stastus" name="status" />
       <Tags label="Tags" name="tags" control={control} defaultTags={currentTags} />
     </>
   );

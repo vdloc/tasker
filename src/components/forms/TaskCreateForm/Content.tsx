@@ -4,6 +4,7 @@ import { Control } from 'react-hook-form';
 
 import DateTimePicker from '../components/DateTimePicker';
 import Input from '../components/Input';
+import PriorityComboBox from '../components/PriorityComboBox';
 import TextArea from '../components/TextArea';
 
 type TaskCreateFormContentProps = {
@@ -33,7 +34,7 @@ export default function TaskCreateFormContent({ control }: TaskCreateFormContent
         rules={descritionRules}
       />
       <div className="grid grid-cols-2 items-center gap-4">
-        <DateTimePicker title="Choose start date" label="Start date" control={control} name="startDate" />
+        <PriorityComboBox control={control} name="priority" />
         <DateTimePicker title="Choose due date" label="Due date" name="dueDate" control={control} />
       </div>
       <Tags label="Tags" name="tags" control={control} defaultTags={[]} />
