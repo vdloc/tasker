@@ -22,9 +22,9 @@ export default function TagsListEditFormContent() {
     };
 
     try {
-      await trigger('name', { shouldFocus: true });
+      const isTagNameValidate = await trigger('name', { shouldFocus: true });
 
-      if (!Object.keys(formState.errors).length) {
+      if (isTagNameValidate) {
         addTag(newTag);
         setValue('name', '');
       }
