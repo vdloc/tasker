@@ -1,6 +1,6 @@
 import Button from '@/components/common/Button';
 import { signOutUser } from '@/firebase/auth';
-import { useDialogStore, useTaskStore } from '@/store';
+import { useDialogStore, useTaskStore, useUserStore } from '@/store';
 import { getFirestoreErrorMessage } from '@/utils';
 import { FirebaseError } from 'firebase/app';
 import toast from 'react-hot-toast';
@@ -9,6 +9,7 @@ import { redirect } from 'react-router-dom';
 export default function UserProfileFormFooter() {
   const { toggleUserProfileDialog, resetDialogs } = useDialogStore();
   const { toggleShowCompletedTasks } = useTaskStore();
+  const { setUser } = useUserStore();
 
   function handleCloseDialog() {
     toggleUserProfileDialog(false);
@@ -18,6 +19,7 @@ export default function UserProfileFormFooter() {
     try {
       await signOutUser();
       resetDialogs();
+      setUser(null);
       toggleShowCompletedTasks(false);
       redirect('/sign-in');
       toast.success('You have been successfully logged out.');
