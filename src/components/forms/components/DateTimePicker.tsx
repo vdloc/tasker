@@ -22,7 +22,7 @@ const pickerOptions = {
     text: 'text-indigo-700 hover:text-indigo-700 transition duration-300 text-sm',
     disabledText: 'bg-white',
     input:
-      'block peer pl-10 rounded-md border shadow-sm ring-1 ring-inset ring-gray-300 focus:border-indigo-500 focus:ring-indigo-500 md:text-sm',
+      'block peer pl-10 py-2 rounded-md border shadow-sm ring-1 ring-inset ring-gray-300 focus:border-indigo-500 focus:ring-indigo-500 md:text-sm',
     inputIcon: 'fill-indigo-700',
     selected: 'bg-indigo-700',
   },
