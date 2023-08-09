@@ -1,6 +1,6 @@
 import { handleAuthStateChange } from '@/firebase/auth';
 import { database } from '@/firebase/firestore';
-import { useUserStore } from '@/store';
+import { useSettingsStore } from '@/store';
 import { User } from '@/types';
 import { PropsWithChildren, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ function Redirect() {
 }
 
 export default function Auth({ children }: PropsWithChildren) {
-  const { user, setUser } = useUserStore();
+  const { user, setUser } = useSettingsStore();
   async function onAuthChange(user: User | null) {
     if (user) {
       setUser(user);

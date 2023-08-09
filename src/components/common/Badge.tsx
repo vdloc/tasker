@@ -50,7 +50,16 @@ export default function Badge({ title, className, color, size, rounded, onClose,
       {typeof onClose === 'function' && (
         <button
           type="button"
-          className="ml-0.5 h-4 w-4 inline-flex text flex-shrink-0 items-center justify-center group rounded-full hover:bg-current transition-colors focus:outline-none"
+          className={`
+          ml-0.5 h-4 w-4
+          inline-flex text
+          flex-shrink-0
+          items-center justify-center
+          group
+          rounded-full
+          hover:bg-current transition-colors
+          focus:outline-none
+        `}
           onClick={() => onClose()}
         >
           <span className="sr-only">Remove tag</span>

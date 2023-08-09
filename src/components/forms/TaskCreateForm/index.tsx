@@ -1,4 +1,4 @@
-import { useDialogStore, useTaskStore, useUserStore } from '@/store';
+import { useDialogStore, useSettingsStore, useTaskStore } from '@/store';
 import { TaskCreateFormValues } from '@/types';
 import { getFirestoreErrorMessage } from '@/utils';
 import { FirebaseError } from 'firebase/app';
@@ -15,7 +15,7 @@ import TaskCreateFormHeader from './Header';
 export default function TaskCreateForm() {
   const { toggleTaskCreateDialog } = useDialogStore();
   const { createTask } = useTaskStore();
-  const { user } = useUserStore();
+  const { user } = useSettingsStore();
   const { control, handleSubmit } = useForm<TaskCreateFormValues>({
     defaultValues: {
       createDate: new Date().toDateString(),

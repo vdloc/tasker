@@ -14,6 +14,7 @@ export interface Task {
   tags?: Tag[];
   createDate?: string;
   dueDate?: string;
+  priority: number;
 }
 
 export interface FireStoreTask extends Task, AddPrefixToKeys<string, any> {}
@@ -88,12 +89,14 @@ export interface TagState {
   resetTags: () => Promise<void>;
 }
 
-export interface UserState {
+export interface SettingState {
   user: User | null;
   setUser: (user: User | null) => void;
+  darkMode: boolean;
+  setDarkMode: (isDarkMode: boolean) => void;
 }
 
-export interface StoreState extends TaskState, DialogState, TagState, UserState {}
+export interface StoreState extends TaskState, DialogState, TagState, SettingState {}
 
 export interface TaskCreateFormValues {
   title: string;
@@ -123,7 +126,9 @@ export interface UserSignUpFormValues extends UserSignInFormValues {
   confirmPassword: string;
 }
 
-export type UserProfileFormValues = User;
+export interface SettingsFormValues extends User {
+  darkMode: boolean;
+}
 
 export interface FormInputProps {
   control: Control<any>;

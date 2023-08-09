@@ -1,15 +1,15 @@
 import Button from '@/components/common/Button';
 import { signOutUser } from '@/firebase/auth';
-import { useDialogStore, useTaskStore, useUserStore } from '@/store';
+import { useDialogStore, useSettingsStore, useTaskStore } from '@/store';
 import { getFirestoreErrorMessage } from '@/utils';
 import { FirebaseError } from 'firebase/app';
 import toast from 'react-hot-toast';
 import { redirect } from 'react-router-dom';
 
-export default function UserProfileFormFooter() {
+export default function SettingsFormFooter() {
   const { toggleUserProfileDialog, resetDialogs } = useDialogStore();
   const { toggleShowCompletedTasks } = useTaskStore();
-  const { setUser } = useUserStore();
+  const { setUser } = useSettingsStore();
 
   function handleCloseDialog() {
     toggleUserProfileDialog(false);

@@ -2,12 +2,17 @@ import type { VariantProps } from 'tailwind-variants';
 import { tv } from 'tailwind-variants';
 
 const buttonStyleProps = tv({
-  base: 'relative inline-flex items-center border border-transparent text-sm text-white shadow-sm font-medium focus:outline-none transition-colors',
+  base: `relative inline-flex items-center
+  border border-transparent
+  text-sm text-white dark:text-gray-100  
+  shadow-sm font-medium
+  focus:outline-none
+  transition-colors`,
   variants: {
     color: {
       indigo: 'focus:ring-indigo-500 bg-indigo-600 hover:bg-indigo-700',
       pink: 'focus:ring-pink-500 bg-pink-600 hover:bg-pink-700',
-      white: 'bg-white border-gray-300 text-black',
+      white: 'bg-white border-gray-300 text-black dark:text-black',
       gray: 'bg-gray-600 border-gray-600 text-white',
     },
     size: {

@@ -2,7 +2,7 @@ import SocialButton from '@/components/common/SocialButton';
 import { GithubIcon, GoogleIcon } from '@/components/icons';
 import configs from '@/data/configs.json';
 import { createUser, signInWithGithub, signInWithGoogle } from '@/firebase/auth';
-import { useUserStore } from '@/store';
+import { useSettingsStore } from '@/store';
 import { User, UserSignUpFormValues } from '@/types';
 import { getAuthErrorMessage } from '@/utils';
 import { FirebaseError } from 'firebase/app';
@@ -21,7 +21,7 @@ export default function UserSignUpForm() {
   const { control, handleSubmit } = useForm<UserSignUpFormValues>({
     defaultValues: { email: '', password: '', confirmPassword: '' },
   });
-  const { setUser } = useUserStore();
+  const { setUser } = useSettingsStore();
   const navigate = useNavigate();
 
   async function handleSignUp(signUpPromise: Promise<User>) {

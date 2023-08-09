@@ -15,7 +15,12 @@ export default function DialogPopUpHeader({ onClose, title, description }: Dialo
         <div className="ml-3 flex h-7 items-center">
           <button
             type="button"
-            className="rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+            className={`
+            rounded-md
+            bg-indigo-700
+            text-indigo-200 hover:text-white
+            focus:outline-none focus:ring-2 focus:ring-white
+          `}
             onClick={() => onClose(false)}
           >
             <span className="sr-only">Close panel</span>

@@ -1,26 +1,32 @@
 import { updateUser } from '@/firebase/auth';
-import { useDialogStore, useUserStore } from '@/store';
-import { UserProfileFormValues } from '@/types';
+import { useDialogStore, useSettingsStore } from '@/store';
+import { SettingsFormValues } from '@/types';
 import { getFirestoreErrorMessage } from '@/utils';
 import { FirebaseError } from 'firebase/app';
 import { type User } from 'firebase/auth';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 import FormLayout from '../FormLayout';
-import UserProfileFormContent from './Content';
-import UserProfileFormFooter from './Footer';
-import UserProfileFormHeader from './Header';
+import SettingsFormContent from './Content';
+import SettingsFormFooter from './Footer';
+import SettingsFormHeader from './Header';
 
-export default function UserProfileForm() {
+export default function SettingsForm() {
   const { toggleUserProfileDialog } = useDialogStore();
-  const { user } = useUserStore();
+  const { user, darkMode, setDarkMode } = useSettingsStore();
   const { displayName, email, phoneNumber, photoURL } = user || {};
-  const { control, handleSubmit } = useForm<UserProfileFormValues>({
-    defaultValues: { displayName, email, phoneNumber, photoURL },
+  const { control, handleSubmit, watch } = useForm<SettingsFormValues>({
+    defaultValues: { displayName, email, phoneNumber, photoURL, darkMode },
   });
+  const watchDarkMode = watch('darkMode');
 
-  async function onSubmit({ displayName, email, photoURL }: UserProfileFormValues) {
+  useEffect(() => {
+    setDarkMode(watchDarkMode);
+  }, [watchDarkMode, setDarkMode]);
+
+  async function onSubmit({ displayName, email, photoURL }: SettingsFormValues) {
     try {
       await updateUser({ displayName, email, photoURL } as User);
       toast.success('Your profile has been updated!');
@@ -34,9 +40,9 @@ export default function UserProfileForm() {
   }
   return (
     <FormLayout
-      Header={UserProfileFormHeader}
-      Footer={UserProfileFormFooter}
-      Content={() => <UserProfileFormContent control={control} />}
+      Header={SettingsFormHeader}
+      Footer={SettingsFormFooter}
+      Content={() => <SettingsFormContent control={control} />}
       onSubmit={handleSubmit(onSubmit)}
     />
   );

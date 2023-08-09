@@ -4,6 +4,7 @@ import { useController } from 'react-hook-form';
 
 import TagsDropDown from '../TagsDropDown';
 import Badge from '../common/Badge';
+import Label from '../forms/components/Label';
 
 type TagsProps = {
   defaultTags: (Tag | undefined)[];
@@ -30,7 +31,7 @@ export default function Tags({ label, control, name, defaultTags }: TagsProps & 
 
   return (
     <div>
-      <h3 className="text-sm font-medium text-gray-900">{label}</h3>
+      <Label label={label} />
       <div className="mt-2">
         <div className="space-y-2">
           <div className="flex gap-2 flex-wrap items-center">

@@ -4,10 +4,11 @@ import { Tag, TagColor, TagsListEditFormValues } from '@/types';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import Input from '../components/Input';
+import Label from '../components/Label';
 import TagsCombobox from '../components/TagsCombobox';
-import toast from 'react-hot-toast';
 
 export default function TagsListEditFormContent() {
   const { tags, addTag, deleteTag } = useTagStore();
@@ -37,7 +38,7 @@ export default function TagsListEditFormContent() {
       if (isTagNameValidate) {
         addTag(newTag);
         setValue('tagName', '');
-        toast.success(`Tag "${newTag.name}" was successfully created.`)
+        toast.success(`Tag "${newTag.name}" was successfully created.`);
       }
     } catch (error) {
       console.log(error);
@@ -83,9 +84,9 @@ export default function TagsListEditFormContent() {
           </button>
         </div>
       </div>
-      <div>
-        <h4 className="block text-sm font-medium text-gray-900">Tags</h4>
-        <div className="flex gap-2 flex-wrap mt-4">
+      <div className='mt-2'>
+        <Label label="Tags" />
+        <div className="flex gap-2 flex-wrap mt-1">
           {tags &&
             tags.map((tag: Tag) => (
               <Badge key={tag.id} title={tag.name} color={tag.color} onClose={() => handleDeleteTag(tag)} />

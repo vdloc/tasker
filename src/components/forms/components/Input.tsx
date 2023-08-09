@@ -18,9 +18,13 @@ export default function Input({ control, rules, name, label, id, className, type
         <input
           type={type || 'text'}
           id={id}
-          className={`block w-full p-2 rounded-md border shadow-sm ring-1 ring-inset ring-gray-300 focus:border-indigo-500 focus:ring-indigo-500 md:text-sm ${
-            fieldState.error && 'border-pink-600 focus:border-pink-600 focus:ring-pink-600'
-          }`}
+          className={`block
+            w-full p-2
+            rounded-md border shadow-sm ring-1 ring-inset ring-gray-300
+            focus:border-indigo-500 focus:ring-indigo-500
+            md:text-sm
+            ${fieldState.error && 'border-pink-600 focus:border-pink-600 focus:ring-pink-600'}
+            `}
           name={field.name}
           value={field.value}
           onChange={field.onChange}
