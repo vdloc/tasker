@@ -12,7 +12,14 @@ export default function DialogPopup({ isOpen, onClose, children }: DialogPopUpPr
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog as="div" className="fixed w-screen h-screen top-0 left-0 z-20" onClose={onClose}>
         <div className="bg-indigo-400 opacity-40 absolute w-full h-full"></div>
-        <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] md:w-[25rem] z-30">
+        <div
+          className={`
+  pointer-events-none absolute
+  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+  w-[calc(100%-2rem)] md:w-[25rem]
+  z-30
+`}
+        >
           <Transition.Child
             as={Fragment}
             enter="transform transition ease-in-out duration-300"

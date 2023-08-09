@@ -22,7 +22,7 @@ const CardFooter = function AppFooter() {
   return (
     <div className="h-16 md:h-20 grid items-center">
       <div className="flex gap-4 justify-end">
-        <Button label="Profile" size="large" onClick={handleUserProfileButtonClick} />
+        <Button label="Settings" size="large" onClick={handleUserProfileButtonClick} />
         <Button label="Tags" size="large" onClick={handleEditTagsButtonClick} />
         <Button
           label={isShowCompletedTasks ? 'Doing Tasks' : 'Completed Tasks'}

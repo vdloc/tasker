@@ -27,10 +27,10 @@ export default function Task({ task }: TaskProps) {
   return (
     <div className="relative grid grid-cols-12 items-center py-4">
       <div className="col-span-8">
-        <label htmlFor={`task-${id}`} className="select-none font-medium text-md text-gray-700 cursor-pointer">
+        <label htmlFor={`task-${id}`} className="select-none font-medium text-md text-gray-700 dark:text-gray-300 cursor-pointer">
           {title}
         </label>
-        <p className="text-xs text-black mt-1">{description}</p>
+        <p className="text-xs text-black dark:text-gray-100 mt-1">{description}</p>
       </div>
       <div className="col-span-2 text-right pr-3">
         <input

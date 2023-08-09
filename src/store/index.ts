@@ -4,7 +4,7 @@ import { devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 import { shallow } from 'zustand/shallow';
 
-import { dialogReducer, tagReducer, taskReducer, userReducer } from './reducer';
+import { dialogReducer, settingReducer, tagReducer, taskReducer } from './reducer';
 
 function createUseStore<T>(reducer: (set: any, get: any) => T, persistName: StorePersistKey) {
   const initializer: StateCreator<T, [['zustand/persist', unknown], ['zustand/immer', never]]> = (set, get) =>
@@ -18,7 +18,7 @@ function combineReducers(set: any, get: any) {
     ...tagReducer(set, get),
     ...taskReducer(set, get),
     ...dialogReducer(set, get),
-    ...userReducer(set),
+    ...settingReducer(set),
   };
 }
 
@@ -87,7 +87,7 @@ export const useDialogStore = () => {
     resetDialogs,
   };
 };
-export const useUserStore = () => {
-  const { user, setUser } = useStore((state: any) => state, shallow);
-  return { user, setUser };
+export const useSettingsStore = () => {
+  const { user, setUser, darkMode, setDarkMode } = useStore((state: any) => state, shallow);
+  return { user, setUser, darkMode, setDarkMode };
 };

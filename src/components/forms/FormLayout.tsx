@@ -7,7 +7,7 @@ type FormLayoutProps = {
 
 export default function FormLayout({ Header, Content, Footer, onSubmit }: FormLayoutProps) {
   return (
-    <form className="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl rounded-lg" onSubmit={onSubmit}>
+    <form className="flex h-full flex-col divide-y divide-gray-200 bg-white dark:bg-indigo-900 shadow-xl rounded-lg" onSubmit={onSubmit}>
       <div className="flex-1">
         {<Header />}
         <div className="flex flex-1 flex-col justify-between ">
